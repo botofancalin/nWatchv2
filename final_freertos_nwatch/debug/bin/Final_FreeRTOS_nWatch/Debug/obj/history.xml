@@ -1,406 +1,415 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O1 -std=c99 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -DSTM32F407ZG -DSTM32F4XX -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib\include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_boot -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\sram -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin\Config -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\inc -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\libjpeg -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\ff -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\elements -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\nokia_LCD -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\jpeg -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\ConfigurationTemplate -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DRD -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\Include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\Config -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC\ARM_CM4F -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\touch -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC">
-      <target file="trcHardwarePort.o" lastModified="156954e2568">
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O1 -std=c99 -c -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -DSTM32F407ZG -DSTM32F4XX -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib\include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_boot -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\sram -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\mpu6050 -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin\Config -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\inc -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\libjpeg -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\ff -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\elements -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\nokia_LCD -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\jpeg -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\ConfigurationTemplate -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DRD -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\Include -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\Config -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC\ARM_CM4F -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\touch -I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC">
+      <target file="trcHardwarePort.o" lastModified="156a2360557">
          <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcHardwarePort.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jfdctfst.o" lastModified="15695480a5a">
+      <target file="inv_mpu_dmp_motion_driver.o" lastModified="156a33d46e5">
+         <source file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.c" lastModified="156a03e98fc"/>
+      </target>
+      <target file="jfdctfst.o" lastModified="156a2353c23">
          <source file="..\..\..\..\..\..\libjpeg\jfdctfst.c" lastModified="1524d54c090"/>
       </target>
-      <target file="heading.o" lastModified="156954d50f1">
+      <target file="heading.o" lastModified="156a859083e">
          <source file="..\..\..\..\..\..\heading.c" lastModified="1568578e6b6"/>
       </target>
-      <target file="stmpe811.o" lastModified="156954d6843">
-         <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="15684d61a18"/>
+      <target file="stmpe811.o" lastModified="156a235be8b">
+         <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="1569a5903e6"/>
       </target>
-      <target file="jmemmgr.o" lastModified="1569547eeb4">
+      <target file="inv_mpu.o" lastModified="156a478bd3e">
+         <source file="..\..\..\..\..\..\mpu6050\inv_mpu.c" lastModified="156a478af36"/>
+      </target>
+      <target file="jmemmgr.o" lastModified="156a23518ec">
          <source file="..\..\..\..\..\..\libjpeg\jmemmgr.c" lastModified="1524d54c090"/>
       </target>
-      <target file="GUIDRV_Template.o" lastModified="1569547c99b">
+      <target file="GUIDRV_Template.o" lastModified="156a234ee42">
          <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.c" lastModified="156857618e7"/>
       </target>
-      <target file="jcmaster.o" lastModified="156954e547f">
-         <source file="..\..\..\..\..\..\libjpeg\jcmaster.c" lastModified="1524d54c090"/>
-      </target>
-      <target file="jdatadst.o" lastModified="156954d5be9">
+      <target file="jdatadst.o" lastModified="156a235adcd">
          <source file="..\..\..\..\..\..\libjpeg\jdatadst.c" lastModified="1524d54c090"/>
       </target>
-      <target file="misc.o" lastModified="156954e2800">
+      <target file="jcmaster.o" lastModified="156a23641ec">
+         <source file="..\..\..\..\..\..\libjpeg\jcmaster.c" lastModified="1524d54c090"/>
+      </target>
+      <target file="misc.o" lastModified="156a2360882">
          <source file="..\..\..\..\..\..\cmsis_lib\source\misc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdinput.o" lastModified="156954e32e6">
+      <target file="jdinput.o" lastModified="156a23616e8">
          <source file="..\..\..\..\..\..\libjpeg\jdinput.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_req.o" lastModified="156954d6d73">
+      <target file="usbd_req.o" lastModified="156a235c580">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="GUIConf.o" lastModified="1569547d3b0">
+      <target file="GUIConf.o" lastModified="156a234f4ef">
          <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.c" lastModified="15680e956a6"/>
       </target>
-      <target file="usbh_hcs.o" lastModified="1569547e446">
+      <target file="usbh_hcs.o" lastModified="156a2350b52">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="usbh_msc_scsi.o" lastModified="156954d5d0e">
+      <target file="usbh_msc_scsi.o" lastModified="156a235afc5">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="jdmarker.o" lastModified="156954d5af4">
+      <target file="jdmarker.o" lastModified="156a235ac18">
          <source file="..\..\..\..\..\..\libjpeg\jdmarker.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jcdctmgr.o" lastModified="1569547b8cd">
+      <target file="jcdctmgr.o" lastModified="156a234e028">
          <source file="..\..\..\..\..\..\libjpeg\jcdctmgr.c" lastModified="1524d54c090"/>
       </target>
-      <target file="bsp_jpg.o" lastModified="156954d39f1">
+      <target file="bsp_jpg.o" lastModified="156a235725d">
          <source file="..\..\..\..\..\..\jpeg\bsp_jpg.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_gpio.o" lastModified="156954d53ef">
-         <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="1524d54c090"/>
+      <target file="stm32f4xx_gpio.o" lastModified="156a235a17f">
+         <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="15697847a18"/>
       </target>
-      <target file="usbd_msc_scsi.o" lastModified="156954d403a">
+      <target file="usbd_msc_scsi.o" lastModified="156a2357c2f">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_scsi.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="stm32f4xx_rng.o" lastModified="156954e1f5d">
+      <target file="stm32f4xx_rng.o" lastModified="156a235fc7b">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_rng.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jutils.o" lastModified="156954d49d3">
+      <target file="jutils.o" lastModified="156a23587f1">
          <source file="..\..\..\..\..\..\libjpeg\jutils.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_flash.o" lastModified="156954d5848">
+      <target file="stm32f4xx_flash.o" lastModified="156a235a817">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_flash.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_desc.o" lastModified="156954d422f">
+      <target file="usbd_desc.o" lastModified="156a2357dcd">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="menu.o" lastModified="156954d47ba">
-         <source file="..\..\..\..\..\..\menu.c" lastModified="15692e571fc"/>
+      <target file="menu.o" lastModified="156aab405dc">
+         <source file="..\..\..\..\..\..\menu.c" lastModified="156aab3f7e1"/>
       </target>
-      <target file="usb_hcd_int.o" lastModified="156954e4fe1">
+      <target file="usb_hcd_int.o" lastModified="156a2363c33">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="stm32f4xx_adc.o" lastModified="15695481d74">
+      <target file="stm32f4xx_adc.o" lastModified="156a235618e">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbh_stdreq.o" lastModified="1569547e949">
+      <target file="usbh_stdreq.o" lastModified="156a2351287">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="tjpgd.o" lastModified="156954802bb">
+      <target file="tjpgd.o" lastModified="156a235338c">
          <source file="..\..\..\..\..\..\jpeg\tjpgd.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usb_dcd_int.o" lastModified="156954d72cc">
+      <target file="usb_dcd_int.o" lastModified="156a235ccae">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="stm32f4xx_sdio.o" lastModified="1569547cb3a">
+      <target file="stm32f4xx_sdio.o" lastModified="156a234efc8">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdhuff.o" lastModified="15695482277">
+      <target file="jdhuff.o" lastModified="156a23567a9">
          <source file="..\..\..\..\..\..\libjpeg\jdhuff.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_syscfg.o" lastModified="1569547bd84">
+      <target file="stm32f4xx_syscfg.o" lastModified="156a234e4cd">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="1524d54c090"/>
       </target>
-      <target file="sdio_stm32f4.o" lastModified="156954e2fa8">
+      <target file="sdio_stm32f4.o" lastModified="156a2361250">
          <source file="..\..\..\..\..\..\ff\sdio_stm32f4.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbh_msc_bot.o" lastModified="156954d80cc">
+      <target file="usbh_msc_bot.o" lastModified="156a235e3fe">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="jcapistd.o" lastModified="156954e208b">
+      <target file="jcapistd.o" lastModified="156a235fe76">
          <source file="..\..\..\..\..\..\libjpeg\jcapistd.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jidctflt.o" lastModified="15695480445">
+      <target file="jidctflt.o" lastModified="156a2353589">
          <source file="..\..\..\..\..\..\libjpeg\jidctflt.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jccoefct.o" lastModified="156954e4090">
+      <target file="jccoefct.o" lastModified="156a2362976">
          <source file="..\..\..\..\..\..\libjpeg\jccoefct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdapimin.o" lastModified="156954e2af7">
+      <target file="jdapimin.o" lastModified="156a2360c51">
          <source file="..\..\..\..\..\..\libjpeg\jdapimin.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jfdctint.o" lastModified="156954d7506">
+      <target file="jfdctint.o" lastModified="156a235d0cd">
          <source file="..\..\..\..\..\..\libjpeg\jfdctint.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jcarith.o" lastModified="15695482618">
+      <target file="jcarith.o" lastModified="156a2356b76">
          <source file="..\..\..\..\..\..\libjpeg\jcarith.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jquant2.o" lastModified="156954e440b">
+      <target file="jquant2.o" lastModified="156a2362e88">
          <source file="..\..\..\..\..\..\libjpeg\jquant2.c" lastModified="1524d54c090"/>
       </target>
-      <target file="itoa.o" lastModified="156954d88c1">
+      <target file="itoa.o" lastModified="156a235f1c5">
          <source file="..\..\..\..\..\..\nokia_LCD\itoa.c" lastModified="1524d54c090"/>
       </target>
-      <target file="heap_4.o" lastModified="1569547ba76">
+      <target file="heap_4.o" lastModified="156a234e1c1">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\MemMang\heap_4.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jquant1.o" lastModified="156954e387f">
+      <target file="jquant1.o" lastModified="156a2361e7b">
          <source file="..\..\..\..\..\..\libjpeg\jquant1.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdpostct.o" lastModified="1569547da5b">
+      <target file="jdpostct.o" lastModified="156a234ff12">
          <source file="..\..\..\..\..\..\libjpeg\jdpostct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdtrans.o" lastModified="15695480731">
+      <target file="jdtrans.o" lastModified="156a2353850">
          <source file="..\..\..\..\..\..\libjpeg\jdtrans.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_i2c.o" lastModified="156954e1e8d">
+      <target file="stm32f4xx_i2c.o" lastModified="156a235fb0a">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="1524d54c090"/>
       </target>
-      <target file="SIMConf.o" lastModified="1569547fdc6">
+      <target file="SIMConf.o" lastModified="156a2352d35">
          <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\SIMConf.c" lastModified="14e91692d10"/>
       </target>
-      <target file="jcsample.o" lastModified="156954d3e6a">
+      <target file="jcsample.o" lastModified="156a23579da">
          <source file="..\..\..\..\..\..\libjpeg\jcsample.c" lastModified="1524d54c090"/>
       </target>
-      <target file="list.o" lastModified="156954d6296">
+      <target file="list.o" lastModified="156a235b615">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\list.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jcomapi.o" lastModified="156954e3cbb">
+      <target file="jcomapi.o" lastModified="156a2362407">
          <source file="..\..\..\..\..\..\libjpeg\jcomapi.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_pwr.o" lastModified="1569547ea69">
+      <target file="stm32f4xx_pwr.o" lastModified="156a23513bc">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jchuff.o" lastModified="1569547e158">
+      <target file="jchuff.o" lastModified="156a2350829">
          <source file="..\..\..\..\..\..\libjpeg\jchuff.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_rtc.o" lastModified="156954e3b57">
+      <target file="stm32f4xx_rtc.o" lastModified="156a2362221">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_msc_data.o" lastModified="156954d7383">
+      <target file="usbd_msc_data.o" lastModified="156a235ce65">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_data.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="usbh_ioreq.o" lastModified="156954e22a8">
+      <target file="usbh_ioreq.o" lastModified="156a23601c9">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="usbh_msc_core.o" lastModified="156954827ed">
+      <target file="usbh_msc_core.o" lastModified="156a2356f7d">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="stm32f4xx_tim.o" lastModified="156954e4b33">
-         <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="15676bd2b29"/>
+      <target file="MPU5060.o" lastModified="156a235285f">
+         <source file="..\..\..\..\..\..\MPU5060.c" lastModified="1569fa586f6"/>
       </target>
-      <target file="usb_dcd.o" lastModified="156954e2969">
-         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.c" lastModified="14a0f652ac0"/>
-      </target>
-      <target file="ff.o" lastModified="156954d7f09">
+      <target file="ff.o" lastModified="156a235e07d">
          <source file="..\..\..\..\..\..\ff\ff.c" lastModified="1524d54c090"/>
       </target>
-      <target file="clock.o" lastModified="156954e52d5">
-         <source file="..\..\..\..\..\..\clock.c" lastModified="1568f4ee8a4"/>
+      <target file="usb_dcd.o" lastModified="156a2360a6d">
+         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="usbd_msc_core.o" lastModified="15695480592">
+      <target file="stm32f4xx_tim.o" lastModified="156a2363743">
+         <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="15676bd2b29"/>
+      </target>
+      <target file="usbd_msc_core.o" lastModified="156a23536f4">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="syscalls.o" lastModified="156954d644d">
+      <target file="clock.o" lastModified="156a8591398">
+         <source file="..\..\..\..\..\..\clock.c" lastModified="1568f4ee8a4"/>
+      </target>
+      <target file="syscalls.o" lastModified="156a235b928">
          <source file="..\..\..\..\..\..\syscalls\syscalls.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jccolor.o" lastModified="156954e464b">
+      <target file="jccolor.o" lastModified="156a23631cb">
          <source file="..\..\..\..\..\..\libjpeg\jccolor.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jidctfst.o" lastModified="156954d85a1">
+      <target file="jidctfst.o" lastModified="156a235eba1">
          <source file="..\..\..\..\..\..\libjpeg\jidctfst.c" lastModified="1524d54c090"/>
       </target>
-      <target file="button.o" lastModified="1569547d2a5">
+      <target file="button.o" lastModified="156a234f41c">
          <source file="..\..\..\..\..\..\elements\button.c" lastModified="1524d54c090"/>
       </target>
-      <target file="manager.o" lastModified="1569547e73f">
-         <source file="..\..\..\..\..\..\manager.c" lastModified="155e3b3d5c1"/>
+      <target file="manager.o" lastModified="156a858e8b8">
+         <source file="..\..\..\..\..\..\manager.c" lastModified="156a01b3eb6"/>
       </target>
-      <target file="jcinit.o" lastModified="156954d82e0">
+      <target file="jcinit.o" lastModified="156a235e751">
          <source file="..\..\..\..\..\..\libjpeg\jcinit.c" lastModified="1524d54c090"/>
       </target>
-      <target file="GUI_X.o" lastModified="156954e4bf1">
+      <target file="GUI_X.o" lastModified="156a2363806">
          <source file="..\..\..\..\..\..\STemWin\OS\GUI_X.c" lastModified="1524d54c090"/>
       </target>
-      <target file="GUI_X_FreeRTOS.o" lastModified="156954d48d6">
+      <target file="GUI_X_FreeRTOS.o" lastModified="156a2358633">
          <source file="..\..\..\..\..\..\STemWin\Config\GUI_X_FreeRTOS.c" lastModified="1524d54c090"/>
       </target>
-      <target file="sram.o" lastModified="156954e3133">
+      <target file="sram.o" lastModified="156a236146a">
          <source file="..\..\..\..\..\..\sram\sram.c" lastModified="15689fe991d"/>
       </target>
-      <target file="explorer.o" lastModified="1569547f121">
+      <target file="explorer.o" lastModified="156a2351d18">
          <source file="..\..\..\..\..\..\explorer.c" lastModified="1524d54c090"/>
       </target>
-      <target file="decode.o" lastModified="156954d4ae0">
+      <target file="decode.o" lastModified="156a2358a10">
          <source file="..\..\..\..\..\..\libjpeg\decode.c" lastModified="156891183f5"/>
       </target>
-      <target file="jdmaster.o" lastModified="156954d8a25">
+      <target file="jdmaster.o" lastModified="156a235f3d3">
          <source file="..\..\..\..\..\..\libjpeg\jdmaster.c" lastModified="1524d54c090"/>
       </target>
-      <target file="trcUser.o" lastModified="156954d6a43">
+      <target file="trcUser.o" lastModified="156a235c103">
          <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcUser.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_ioreq.o" lastModified="156954e3dd1">
+      <target file="usbd_ioreq.o" lastModified="156a23625cd">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="jddctmgr.o" lastModified="156954e2709">
+      <target file="jddctmgr.o" lastModified="156a2360762">
          <source file="..\..\..\..\..\..\libjpeg\jddctmgr.c" lastModified="1524d54c090"/>
       </target>
-      <target file="startup_stm32f4xx.o" lastModified="1569547ffc1">
-         <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="15689f7f6de"/>
+      <target file="startup_stm32f4xx.o" lastModified="156a858ef4a">
+         <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="156a8340a67"/>
       </target>
-      <target file="jcmarker.o" lastModified="156954e246d">
+      <target file="jcmarker.o" lastModified="156a2360441">
          <source file="..\..\..\..\..\..\libjpeg\jcmarker.c" lastModified="1524d54c090"/>
       </target>
-      <target file="croutine.o" lastModified="156954d81de">
+      <target file="croutine.o" lastModified="156a235e56b">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\croutine.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_msc_bot.o" lastModified="156954e3ef4">
-         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.c" lastModified="14a0f652ac0"/>
-      </target>
-      <target file="jcmainct.o" lastModified="156954d5717">
+      <target file="jcmainct.o" lastModified="156a235a63e">
          <source file="..\..\..\..\..\..\libjpeg\jcmainct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdmerge.o" lastModified="1569547faf6">
+      <target file="usbd_msc_bot.o" lastModified="156a236272a">
+         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.c" lastModified="14a0f652ac0"/>
+      </target>
+      <target file="jdmerge.o" lastModified="156a2352a5e">
          <source file="..\..\..\..\..\..\libjpeg\jdmerge.c" lastModified="1524d54c090"/>
       </target>
-      <target file="timers.o" lastModified="1569548156a">
+      <target file="timers.o" lastModified="156a23556c0">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\timers.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jcparam.o" lastModified="1569547f335">
+      <target file="jcparam.o" lastModified="156a2351f39">
          <source file="..\..\..\..\..\..\libjpeg\jcparam.c" lastModified="1524d54c090"/>
       </target>
-      <target file="counter.o" lastModified="1569547f821">
+      <target file="counter.o" lastModified="156a858ecc0">
          <source file="..\..\..\..\..\..\counter.c" lastModified="1568829a891"/>
       </target>
-      <target file="usb_hcd.o" lastModified="156954d7fdf">
+      <target file="usb_hcd.o" lastModified="156a235e217">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="event_groups.o" lastModified="156954e1b0a">
+      <target file="event_groups.o" lastModified="156a235f617">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\event_groups.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usb_otg.o" lastModified="156954d83fe">
+      <target file="usb_otg.o" lastModified="156a235e931">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_otg.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="trcKernel.o" lastModified="1569547c320">
+      <target file="trcKernel.o" lastModified="156a234e935">
          <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcKernel.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jaricom.o" lastModified="1569547c634">
+      <target file="jaricom.o" lastModified="156a234ebe0">
          <source file="..\..\..\..\..\..\libjpeg\jaricom.c" lastModified="1524d54c090"/>
       </target>
-      <target file="trcKernelPortFreeRTOS.o" lastModified="156954d51e9">
+      <target file="trcKernelPortFreeRTOS.o" lastModified="156a235985c">
          <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcKernelPortFreeRTOS.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdsample.o" lastModified="156954e4dce">
-         <source file="..\..\..\..\..\..\libjpeg\jdsample.c" lastModified="1524d54c090"/>
-      </target>
-      <target file="mp3.o" lastModified="1569547d11b">
+      <target file="mp3.o" lastModified="156a858e52d">
          <source file="..\..\..\..\..\..\mp3.c" lastModified="15688731e9c"/>
       </target>
-      <target file="jdatasrc.o" lastModified="156954e47bc">
+      <target file="jdsample.o" lastModified="156a23639f8">
+         <source file="..\..\..\..\..\..\libjpeg\jdsample.c" lastModified="1524d54c090"/>
+      </target>
+      <target file="jdatasrc.o" lastModified="156a2363352">
          <source file="..\..\..\..\..\..\libjpeg\jdatasrc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="trcBase.o" lastModified="15695481062">
+      <target file="trcBase.o" lastModified="156a2354f78">
          <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcBase.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_exti.o" lastModified="156954e2172">
+      <target file="stm32f4xx_exti.o" lastModified="156a235ffe7">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdarith.o" lastModified="156954d7933">
+      <target file="jdarith.o" lastModified="156a235d767">
          <source file="..\..\..\..\..\..\libjpeg\jdarith.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbh_core.o" lastModified="156954d4c5e">
-         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.c" lastModified="14a0f652ac0"/>
-      </target>
-      <target file="jidctint.o" lastModified="1569547ec62">
-         <source file="..\..\..\..\..\..\libjpeg\jidctint.c" lastModified="1524d54c090"/>
-      </target>
-      <target file="jdapistd.o" lastModified="156954d553c">
+      <target file="jdapistd.o" lastModified="156a235a40b">
          <source file="..\..\..\..\..\..\libjpeg\jdapistd.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdcoefct.o" lastModified="156954d7699">
+      <target file="jidctint.o" lastModified="156a23515ef">
+         <source file="..\..\..\..\..\..\libjpeg\jidctint.c" lastModified="1524d54c090"/>
+      </target>
+      <target file="usbh_core.o" lastModified="156a2358d32">
+         <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.c" lastModified="14a0f652ac0"/>
+      </target>
+      <target file="jdcoefct.o" lastModified="156a235d3a2">
          <source file="..\..\..\..\..\..\libjpeg\jdcoefct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="textbox.o" lastModified="156954d4e40">
+      <target file="textbox.o" lastModified="156a2358fd9">
          <source file="..\..\..\..\..\..\elements\textbox.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jcapimin.o" lastModified="1569547c4f2">
+      <target file="jcapimin.o" lastModified="156a234ead2">
          <source file="..\..\..\..\..\..\libjpeg\jcapimin.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jfdctflt.o" lastModified="156954e342d">
+      <target file="jfdctflt.o" lastModified="156a23618c7">
          <source file="..\..\..\..\..\..\libjpeg\jfdctflt.c" lastModified="1524d54c090"/>
       </target>
-      <target file="list1.o" lastModified="1569547dbac">
+      <target file="list1.o" lastModified="156a2350129">
          <source file="..\..\..\..\..\..\list1.c" lastModified="1524d54c090"/>
       </target>
-      <target file="vs1003.o" lastModified="156954e35b6">
-         <source file="..\..\..\..\..\..\vs1003.c" lastModified="1524d54c090"/>
-      </target>
-      <target file="usb_bsp.o" lastModified="156954d6b90">
+      <target file="usb_bsp.o" lastModified="156a235c314">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_bsp.c" lastModified="14f3c6842f0"/>
       </target>
-      <target file="usbd_usr.o" lastModified="1569547e277">
+      <target file="vs1003.o" lastModified="156a2361ae3">
+         <source file="..\..\..\..\..\..\vs1003.c" lastModified="1524d54c090"/>
+      </target>
+      <target file="stm32f4xx_it.o" lastModified="156a858fc18">
+         <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="156a748d830"/>
+      </target>
+      <target file="usbd_usr.o" lastModified="156a23509bd">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_usr.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="stm32f4xx_it.o" lastModified="156954813f4">
-         <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="1567e707a7a"/>
-      </target>
-      <target file="port.o" lastModified="156954d713a">
+      <target file="port.o" lastModified="156a235ca28">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM4F\port.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_fsmc.o" lastModified="156954d4368">
+      <target file="stm32f4xx_fsmc.o" lastModified="156a2358007">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_fsmc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbh_msc_usr.o" lastModified="156954d5301">
+      <target file="usbh_msc_usr.o" lastModified="156a2359f49">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_msc_usr.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="queue.o" lastModified="156954d6fda">
+      <target file="queue.o" lastModified="156a235c86e">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\queue.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usb_core.o" lastModified="1569547c19c">
+      <target file="usb_core.o" lastModified="156a234e81b">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="tasks.o" lastModified="156954d3c84">
+      <target file="tasks.o" lastModified="156a23576eb">
          <source file="..\..\..\..\..\..\FreeRTOS\Source\tasks.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jdcolor.o" lastModified="1569547fd16">
+      <target file="jdcolor.o" lastModified="156a2352cae">
          <source file="..\..\..\..\..\..\libjpeg\jdcolor.c" lastModified="1524d54c090"/>
       </target>
-      <target file="system_stm32f4xx.o" lastModified="156954d635c">
+      <target file="system_stm32f4xx.o" lastModified="156a235b778">
          <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1531a36cb80"/>
       </target>
-      <target file="jctrans.o" lastModified="1569547bc61">
+      <target file="jctrans.o" lastModified="156a234e3b2">
          <source file="..\..\..\..\..\..\libjpeg\jctrans.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_dma.o" lastModified="156954d6552">
+      <target file="stm32f4xx_dma.o" lastModified="156a235bafc">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="1524d54c090"/>
       </target>
-      <target file="stm32f4xx_spi.o" lastModified="156954d86ca">
+      <target file="stm32f4xx_spi.o" lastModified="156a235ef6a">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_storage_msd.o" lastModified="1569548290d">
+      <target file="usbd_storage_msd.o" lastModified="156a23570b0">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_storage_msd.c" lastModified="14f401341c0"/>
       </target>
-      <target file="jcprepct.o" lastModified="1569547d611">
+      <target file="jcprepct.o" lastModified="156a234f68f">
          <source file="..\..\..\..\..\..\libjpeg\jcprepct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="LCDConf.o" lastModified="1569547f45b">
+      <target file="LCDConf.o" lastModified="156a23520a9">
          <source file="..\..\..\..\..\..\STemWin\Config\LCDConf.c" lastModified="15679cfac0e"/>
       </target>
-      <target file="jmemnobs.o" lastModified="15695481bac">
+      <target file="jmemnobs.o" lastModified="156a2355f64">
          <source file="..\..\..\..\..\..\libjpeg\jmemnobs.c" lastModified="1524d54c090"/>
       </target>
-      <target file="ili9320.o" lastModified="15695481a40">
+      <target file="ili9320.o" lastModified="156a8590181">
          <source file="..\..\..\..\..\..\ili9320.c" lastModified="155e4e0eb3d"/>
       </target>
-      <target file="stm32f4xx_rcc.o" lastModified="15695481247">
+      <target file="stm32f4xx_rcc.o" lastModified="156a23551e0">
          <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="1524d54c090"/>
       </target>
-      <target file="LCD_6300.o" lastModified="156954d6161">
-         <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="156884dbf7a"/>
+      <target file="LCD_6300.o" lastModified="156aabdea7e">
+         <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="156aabdd5b6"/>
       </target>
-      <target file="main.o" lastModified="15695480f2c">
-         <source file="..\..\..\..\..\..\main.c" lastModified="15692e497e1"/>
+      <target file="main.o" lastModified="156aada83ff">
+         <source file="..\..\..\..\..\..\main.c" lastModified="156aada7157"/>
       </target>
-      <target file="bsp.o" lastModified="156954e1d3d">
-         <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="15689ed11e4"/>
-      </target>
-      <target file="ccsbcs.o" lastModified="156954d68f5">
+      <target file="ccsbcs.o" lastModified="156a235bfb8">
          <source file="..\..\..\..\..\..\ff\ccsbcs.c" lastModified="1524d54c090"/>
       </target>
-      <target file="usbd_core.o" lastModified="156954808af">
+      <target file="bsp.o" lastModified="156a85a3d1b">
+         <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="156a85a2678"/>
+      </target>
+      <target file="usbd_core.o" lastModified="156a2353a4c">
          <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.c" lastModified="14a0f652ac0"/>
       </target>
-      <target file="jdmainct.o" lastModified="1569547d8ca">
+      <target file="jdmainct.o" lastModified="156a234f8b9">
          <source file="..\..\..\..\..\..\libjpeg\jdmainct.c" lastModified="1524d54c090"/>
       </target>
-      <target file="jerror.o" lastModified="156954d882e">
+      <target file="jerror.o" lastModified="156a235f0d9">
          <source file="..\..\..\..\..\..\libjpeg\jerror.c" lastModified="1524d54c090"/>
       </target>
    </processor>

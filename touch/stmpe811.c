@@ -21,24 +21,24 @@ touch ts;
 
 void i2c_ini(void)
 {
-	RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
+
     I2C_InitTypeDef i2c_init;
-    I2C_DeInit(I2C2 );       //Deinit and reset the I2C to avoid it locking up
-    I2C_SoftwareResetCmd(I2C2, ENABLE);
+    I2C_DeInit(STMPE811_I2C );       //Deinit and reset the I2C to avoid it locking up
+    I2C_SoftwareResetCmd(STMPE811_I2C, ENABLE);
     int var;
     for ( var= 0; var < 0xffff; ++var) {};
-    I2C_SoftwareResetCmd(I2C2, DISABLE);
+    I2C_SoftwareResetCmd(STMPE811_I2C, DISABLE);
 
     i2c_init.I2C_ClockSpeed = 400000;
     i2c_init.I2C_Mode = I2C_Mode_I2C;
     i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-    i2c_init.I2C_OwnAddress1 = 0x0A;
+    i2c_init.I2C_OwnAddress1 = 0xD0;
     i2c_init.I2C_Ack = I2C_Ack_Enable;
     i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-    I2C_Init(I2C2, &i2c_init);
+    I2C_Init(STMPE811_I2C, &i2c_init);
 
-    I2C_StretchClockCmd(I2C2, ENABLE);
-    I2C_Cmd(I2C2, ENABLE);
+    I2C_StretchClockCmd(STMPE811_I2C, ENABLE);
+    I2C_Cmd(STMPE811_I2C, ENABLE);
 }
 
 uint8_t stmpe811_TestConnection(void)
@@ -84,59 +84,58 @@ void I2C_Read_Reg(char addr,  char * Buffer, unsigned int N)
 
   //Check, if I2C is free
 
-  while(I2C_GetFlagStatus(I2C2, I2C_FLAG_BUSY));
+  while(I2C_GetFlagStatus(STMPE811_I2C, I2C_FLAG_BUSY));
 
-  I2C_GenerateSTART(I2C2,ENABLE);
+  I2C_GenerateSTART(STMPE811_I2C,ENABLE);
   //Test on EV5 and clear it
-  while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT));
+  while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_MODE_SELECT));
   //Send chip address, set I2C master in transmiter mode
-  I2C_Send7bitAddress(I2C2, STMPE811_ADRR, I2C_Direction_Transmitter);
+  I2C_Send7bitAddress(STMPE811_I2C, STMPE811_ADRR, I2C_Direction_Transmitter);
   //Test on EV6 and clear it
-  while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+  while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
   //Send base register address, set address autoincrement
-  I2C_SendData(I2C2, addr);
+  I2C_SendData(STMPE811_I2C, addr);
   //Test on EV8 and clear it
-  while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
-
+  while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
   //Re-generate START, transmition from slave beginning
-  I2C_GenerateSTART(I2C2,ENABLE);
+  I2C_GenerateSTART(STMPE811_I2C,ENABLE);
   //Test on EV5 and clear it
-  while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT));
+  while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_MODE_SELECT));
   //Send chip address, set I2C master in receiver mode
-  I2C_Send7bitAddress(I2C2, STMPE811_ADRR, I2C_Direction_Receiver);
+  I2C_Send7bitAddress(STMPE811_I2C, STMPE811_ADRR, I2C_Direction_Receiver);
   //Test on EV6 and clear it
-  while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
+  while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED));
 
   i=0;               //Current read count
   while(N) {
     //Before receiving last byte, disable acknowledge and generate stop
     if(N == 1) {
-      I2C_AcknowledgeConfig(I2C2, DISABLE);
-      I2C_GenerateSTOP(I2C2, ENABLE);
+      I2C_AcknowledgeConfig(STMPE811_I2C, DISABLE);
+      I2C_GenerateSTOP(STMPE811_I2C, ENABLE);
     }
     //Test on EV7 and clear it
-    while(!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_RECEIVED));
+    while(!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_BYTE_RECEIVED));
     //Read a byte from the LI35
-    Buffer[i] = I2C_ReceiveData(I2C2);
+    Buffer[i] = I2C_ReceiveData(STMPE811_I2C);
     i++;
     N--;
   }
 
-  I2C_AcknowledgeConfig(I2C2, ENABLE);
+  I2C_AcknowledgeConfig(STMPE811_I2C, ENABLE);
 
 }
 
 void I2C_Write_Byte( uint8_t WriteAddr,uint8_t pBuffer )
 {
-    I2C_GenerateSTART(I2C2, ENABLE);
-    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_MODE_SELECT));
-    I2C_Send7bitAddress(I2C2, STMPE811_ADRR, I2C_Direction_Transmitter);
-    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
-    I2C_SendData(I2C2, WriteAddr);
-    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
-    I2C_SendData(I2C2, pBuffer);
-    while (!I2C_CheckEvent(I2C2, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
-    I2C_GenerateSTOP(I2C2, ENABLE);
+    I2C_GenerateSTART(STMPE811_I2C, ENABLE);
+    while (!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_MODE_SELECT));
+    I2C_Send7bitAddress(STMPE811_I2C, STMPE811_ADRR, I2C_Direction_Transmitter);
+    while (!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED));
+    I2C_SendData(STMPE811_I2C, WriteAddr);
+    while (!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+    I2C_SendData(STMPE811_I2C, pBuffer);
+    while (!I2C_CheckEvent(STMPE811_I2C, I2C_EVENT_MASTER_BYTE_TRANSMITTED));
+    I2C_GenerateSTOP(STMPE811_I2C, ENABLE);
 }
 
 u8 read_touch_but(touch *pressed)

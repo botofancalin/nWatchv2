@@ -28,13 +28,13 @@
  ================================================================================================
  */
 
-#ifndef __MPU6050_H
-#define __MPU6050_H
+#ifndef __MPU6050__H
+#define __MPU6050__H
 
 #include "stm32f4xx.h"
 
-#define MPU6050_I2C					I2C2
-#define MPU6050_ADRR				0x68
+#define MPU6050_I2C					I2C1
+#define MPU6050_ADRR				0xD0
 #define MPU6050_ADDRESS_AD0_LOW     0x68 // address pin low (GND), default for InvenSense evaluation board
 #define MPU6050_ADDRESS_AD0_HIGH    0x69 // address pin high (VCC)
 #define MPU6050_DEFAULT_ADDRESS     (MPU6050_ADDRESS_AD0_LOW<<1)
@@ -388,8 +388,8 @@
 #define MPU6050_DMP_MEMORY_BANK_SIZE    256
 #define MPU6050_DMP_MEMORY_CHUNK_SIZE   16
 
-void MPU6050_Initialize();
-bool MPU6050_TestConnection();
+void MPU6050_Init();
+u8 MPU6050_TestConnection();
 
 // GYRO_CONFIG register
 uint8_t MPU6050_GetFullScaleGyroRange();
@@ -397,9 +397,9 @@ void MPU6050_SetFullScaleGyroRange(uint8_t range);
 // ACCEL_CONFIG register
 uint8_t MPU6050_GetFullScaleAccelRange();
 void MPU6050_SetFullScaleAccelRange(uint8_t range);
-
+void MPU6050_IntThreshold(uint8_t threshold);
 // PWR_MGMT_1 register
-bool MPU6050_GetSleepModeStatus();
+u8 MPU6050_GetSleepModeStatus();
 void MPU6050_SetSleepModeStatus(FunctionalState NewState);
 void MPU6050_SetClockSource(uint8_t source);
 // WHO_AM_I register
@@ -411,8 +411,11 @@ void MPU6050_WriteBits( uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8
 void MPU6050_WriteBit( uint8_t regAddr, uint8_t bitNum, uint8_t data);
 void MPU6050_ReadBits( uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8_t *data);
 void MPU6050_ReadBit( uint8_t regAddr, uint8_t bitNum, uint8_t *data);
+void MPU6050_IntEnable(void);
+
 
 void MPU6050_I2C_Init();
+void MPU_I2C_ClockToggling();
 void MPU6050_I2C_ByteWrite( u8* pBuffer, u8 writeAddr);
 void MPU6050_I2C_BufferRead(u8* pBuffer, u8 readAddr, u16 NumByteToRead);
 

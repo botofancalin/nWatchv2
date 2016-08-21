@@ -22,7 +22,7 @@
 #include "global_inc.h"
 
 /*----------Stack Configuration-----------------------------------------------*/
-#define STACK_SIZE       0x0002800      /*!< The Stack size suggest using even number    *///0x0004200
+#define STACK_SIZE       0x0002900      /*!< The Stack size suggest using even number    *///0x0004200
 
 __attribute__ ((section(".co_stack")))
 unsigned long pulStack[STACK_SIZE];
@@ -414,14 +414,13 @@ static void Default_Handler(void)
 	/* Go into an infinite loop. */
 	while (1)
 	{
-
-//		if(vol_down)
-//		{
-//			while(1)
-//			{
-//				CPU_OFF;
-//			}
-//		}
+		if(vol_up)
+		{
+			while(1)
+			{
+				CPU_OFF;
+			}
+		}
 	}
 }
 

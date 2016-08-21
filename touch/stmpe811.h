@@ -4,7 +4,7 @@
 #include "stm32f4xx.h"
 
 #define STMPE811_ADRR 0x82
-
+#define STMPE811_I2C  I2C2
 //typedef u8 uint8_t;
 //typedef u16 uint16_t;
 

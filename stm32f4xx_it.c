@@ -30,6 +30,7 @@
 #include "usb_hcd_int.h"
 #include "usb_dcd_int.h"
 #include "usbh_core.h"
+#include "global_inc.h"
 
 /** @addtogroup STM32F4xx_StdPeriph_Examples
   * @{
@@ -68,6 +69,14 @@ extern uint32_t USBD_OTG_EP1OUT_ISR_Handler (USB_OTG_CORE_HANDLE *pdev);
   */
 void NMI_Handler(void)
 {
+	while(1)
+	{
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
+	}
 }
 
 /**
@@ -80,6 +89,12 @@ void HardFault_Handler(void)
   /* Go to infinite loop when Hard Fault exception occurs */
   while (1)
   {
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
+
 	  LCD_String_lc("!ACHTUNG!",4,5,0x00ff,0x0000,2);
 	  LCD_String_lc("HARD FAULT",4,6,0x00ff,0x0000,2);
   }
@@ -95,6 +110,11 @@ void MemManage_Handler(void)
   /* Go to infinite loop when Memory Manage exception occurs */
   while (1)
   {
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
 	  LCD_String_lc("! ACHTUNG !",4,9,0xff0000,0x000000,2);
 	  LCD_String_lc("MEMORY FAULT",4,10,0xff0000,0x000000,2);
 //	  ili9320_String_lc("! ACHTUNG !",4,9,0xff00,0x0000,2);
@@ -112,6 +132,11 @@ void BusFault_Handler(void)
   /* Go to infinite loop when Bus Fault exception occurs */
   while (1)
   {
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
   }
 }
 
@@ -125,6 +150,11 @@ void UsageFault_Handler(void)
   /* Go to infinite loop when Usage Fault exception occurs */
   while (1)
   {
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
   }
 }
 
@@ -144,6 +174,11 @@ void UsageFault_Handler(void)
   */
 void DebugMon_Handler(void)
 {
+	if(wake)
+	{
+		CPU_OFF;
+		while(1);
+	}
 }
 
 /**

@@ -42,7 +42,7 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 uint32_t BSP_Initt (void);
-void BSP_Pointer_Update(void);
+u8 BSP_Pointer_Update(void);
 int APP_GetData(void * p, const U8 * * ppData, unsigned NumBytesReq, U32 Off);
 
 #ifdef __cplusplus

@@ -1413,12 +1413,12 @@ static int _ButtonSkin(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
     //
 //    GUI_SetColor(_aMenu[Index].Color);
     GUI_SetColor(GUI_RED);
-    GUI_FillRoundedRect(10, 6, 47 + 10, 47 + 6, 12);
+    GUI_FillRoundedRect(15, 40, 47 + 15, 47 + 40, 12);
     //
     // Draw compressed alpha bitmap
     //
     GUI_SetColor(GUI_WHITE);
-    GUI_DrawBitmap(_aMenu[Index].pBm, 18, 14);
+    GUI_DrawBitmap(_aMenu[Index].pBm, 23, 48);
     //
     // Draw button text
     //
@@ -1429,8 +1429,8 @@ static int _ButtonSkin(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
     //
     // Draw small separator line
     //
-    GUI_SetColor(0xccc7c8);
-    GUI_DrawHLine(ySize - 1, 80, xSize - 1);
+    GUI_SetColor(0xFFFFFF);
+    GUI_DrawHLine(ySize - 1, 240, xSize - 1);
     //
     // Draw arrow at the right
     //
@@ -1515,7 +1515,7 @@ static void _cbMenu(WM_MESSAGE * pMsg)
 
     for (i = 0; (unsigned)i <=GUI_COUNTOF(_aMenu); i++)
     {
-      hButton = BUTTON_CreateUser(0, i * 60, xSize, 60, hWin, WM_CF_SHOW, 0, GUI_ID_BUTTON0 + i, sizeof(i));
+      hButton = BUTTON_CreateUser(0, i * 80, xSize, 80, hWin, WM_CF_SHOW, 0, GUI_ID_BUTTON0 + i, sizeof(i));
       BUTTON_SetSkin(hButton, _ButtonSkin);
       BUTTON_SetUserData(hButton, &i, sizeof(i));
     }
@@ -1564,7 +1564,7 @@ void Menu(void *pvParameters)
 
 	  hWinBase     = WM_CreateWindow(0,  60, xSize, 260,  WM_CF_SHOW, _cbDummy, 0);
 	  hWinViewport = WM_CreateWindowAsChild(0, 0, xSize, ySize ,               hWinBase,     WM_CF_SHOW, _cbDummy, 0);
-	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 60 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
+	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 80 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
 
 
 	while(1)
@@ -1574,9 +1574,10 @@ void Menu(void *pvParameters)
 		if(vol_up)
 		{
 //			while(vol_up){};
-			delay(100);
+//			delay(100);
 			backlight(i++);
 		}
+
 	}
 }
 

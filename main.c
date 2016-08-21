@@ -38,10 +38,13 @@
 #include "sram.h"
 ////////graphic////////////
 #include "bsp.h"
-
 #include "GUIDRV_Template.h"
 extern __IO int32_t OS_TimeMS;
 #define CHECBOX_BUTTON_SIZE 20
+////////////////////////////////////SENSOR//////////////////////////////////////
+#include <MPU5060.h>
+#include "inv_mpu.h"
+#include "inv_mpu_dmp_motion_driver.h"
 ////////////////////////////////////MUSIC////////////////////////////////////////////
 #include "vs1003.h"
 ////////////////////////////////////FreeRTOS///////////////////////////////////////////
@@ -71,13 +74,16 @@ volatile uint8_t usb_host_disconnected_flag = 0;
 #define LED_ON GPIOD->BSRRL|=GPIO_BSRR_BS_6
 #define LED_OFF GPIOD->BSRRH|=GPIO_BSRR_BS_6
 
-#define CPU_ON GPIOE->BSRRL|=GPIO_BSRR_BS_4
-#define CPU_OFF GPIOE->BSRRH|=GPIO_BSRR_BS_4
+#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
+#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
 #define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
+#define wake  	(((GPIOB->IDR) & GPIO_IDR_IDR_12))
 ///////////////////////////////////FUNCTIONS////////////////////////////////////////////////////
 void EXTI9_5_IRQHandler(void)__attribute__((interrupt));
 void TIM3_IRQHandler(void)__attribute__((interrupt));
+void TIM2_IRQHandler(void)__attribute__((interrupt));
+void RTC_Alarm_IRQHandler(void)__attribute__((interrupt));
 void RCC_cfg (void);
 void RCC_Config (void);
 void GPIO_cfg(void);
@@ -91,7 +97,9 @@ void exti_init(void);
 void delay_init(void);
 int get_random(int form,int to);
 void ADC1_Configuration(void);
+void I2C1_init(void);
 void RTC_Config(void);
+void cb(u8 i, u8 l);
 //////////////////////////////////////TASKs//////////////////////////////////////////////////////
 static void Background_Task(void * pvParameters);
 static void vTimerCallback( xTimerHandle pxTimer );
@@ -105,6 +113,13 @@ FIL fsrc;
 DIR dir;
 FATFS fs;
 FILINFO fno;
+volatile int sec=0;
+static int8_t gyro_orientation[9] = {1, 0, 0,
+				     0, 1, 0,
+				     0, 0, 1};
+int16_t gyro[3], accel[3], sensors;
+int32_t quat[4];
+uint8_t more;
 
 int main(void)
 {
@@ -112,7 +127,6 @@ int main(void)
 	  RCC_cfg();
 	  NVIC_Config();
 	  GPIO_cfg();
-	  backlight(5);
 	  LED_ON;
 	  SRAM_Init();
 	  FSMC_NAND_Init();
@@ -121,14 +135,31 @@ int main(void)
 	  RNG_Cmd(ENABLE);
 	  WM_SetCreateFlags(WM_CF_MEMDEV);
 	  GUI_Init();
-	  i2c_ini();
+	  I2C1_init();
 	  stmpe811_init();
 	  RTC_Config();
 	  f_mount(&fs,"",0);
+	  backlight(40);
+	  delay_init();
+//	  MPU6050_Init();
+//	  CPU_OFF;
+	  uint16_t dmp_features=0;
+	  mpu_init(NULL);
+	  mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL);
+	  u8 k=dmp_load_motion_driver_firmware();
+	  if(k!=0)LED_OFF;
+	  mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL);
+	  mpu_set_sample_rate(100);
+	  dmp_set_interrupt_mode(DMP_INT_GESTURE);
+	  dmp_features = DMP_FEATURE_6X_LP_QUAT|DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL |DMP_FEATURE_TAP;
+	  k=dmp_enable_feature(dmp_features);
+	  MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
+	  k=mpu_set_dmp_state(1);//)LED_OFF;
+	  if(k!=0)LED_OFF;
+	  mpu_lp_motion_interrupt(3000,1,40);
+
 //	  load_jpg(&fsrc,"0:papiez.jpg",aucLine,sizeof(aucLine));
 //	  bitmap_RGB("0:papa.rgb",0,0,226,320);
-
-//	  while(1){};
 
 	  if(vol_up)
 	  {
@@ -178,7 +209,7 @@ int main(void)
 //	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
 //	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
 //	 RCC->APB1ENR |= RCC_APB1ENR_PWREN;
-	   GPIO_InitTypeDef GPIO_InitStructure;
+//	   GPIO_InitTypeDef GPIO_InitStructure;
 //	   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
 //	   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 //	   GPIO_Init(GPIOA, &GPIO_InitStructure);
@@ -189,6 +220,7 @@ int main(void)
 //	   GPIO_Init(GPIOF, &GPIO_InitStructure);
 //	   GPIO_Init(GPIOG, &GPIO_InitStructure);
 //	  PWR_EnterSTOPMode(PWR_Regulator_LowPower, PWR_STOPEntry_WFI);
+
 //	  PWR_EnterSTANDBYMode();
 //	   __WFI();
 //	  LCD_String("blalal",100,100,1,RED,BLUE,2);
@@ -213,8 +245,6 @@ int main(void)
 //	GPIO_Init(GPIOB, &GPIO_InitStructur);
 //	ADC1_Configuration();
 
-
-
 	  xTaskCreate(Background_Task,(char const*)"Background",512,NULL, 7,&Task_Handle);
 	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,6, &Menu_Handle);
 	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
@@ -224,11 +254,16 @@ int main(void)
 //	  vTraceStart();
 	    vTaskStartScheduler();
 }
-
+void cb(u8 i, u8 l)
+{
+	u8 a=0;
+	LED_OFF;
+}
 static void vTimerCallback( xTimerHandle pxTimer )
 {
 	  taskENTER_CRITICAL();
-	  BSP_Pointer_Update();
+	  if(BSP_Pointer_Update())sec=0;
+//	  dmp_read_fifo(gyro, accel, quat, &sensors, &more);
 	  taskEXIT_CRITICAL();
 }
 void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly)
@@ -278,6 +313,11 @@ static void Background_Task(void * pvParameters)
 	  {
 		  CPU_ON;
 		  GUI_Delay(300);
+	  	  if(wake || vol_up)
+	  	  {
+	  		  CPU_OFF;
+			  while(1);
+	  	  }
 	  }
 }
 void exti_init(void)
@@ -338,7 +378,7 @@ void backlight( int pwm)
     TIM_TimeBaseStructure.TIM_Period = 99;
     TIM_TimeBaseStructure.TIM_Prescaler = 167;  //fclk = 72M/72M - 1 = 0
     TIM_TimeBaseStructure.TIM_ClockDivision = 0;    //0 = nie dzielimy zegara
-    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //tryb zliczania w górê
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up; //tryb zliczania w gÃ³rÄ™
 
     TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
 
@@ -346,7 +386,7 @@ void backlight( int pwm)
 
   // Konfiguracja kanalu 4 ktory jest wyprowadzony na PB1
     TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
-    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable; //Sygna³ z timera bêdzie wykorzystywany do sterowania kontrolerem przerwañ wiêc musi byæ Enable
+    TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable; //SygnaÅ‚ z timera bÄ™dzie wykorzystywany do sterowania kontrolerem przerwaÅ„ wiÄ™c musi byÄ‡ Enable
     TIM_OCInitStructure.TIM_Pulse = pwm; //90% PWM
     TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;   //stan wysoki
     TIM_OC4Init(TIM3, &TIM_OCInitStructure);
@@ -370,30 +410,78 @@ void IR_config(void)
 
 void delay_init(void)
 {
-	TIM3->PSC=1000;
-	TIM3->ARR= 500;
-	TIM3->DIER|= TIM_DIER_UIE;
-	TIM3->CR1|=TIM_CR1_CEN;
+	TIM2->PSC= 1680;
+	TIM2->ARR= 1000;
+	TIM2->DIER|= TIM_DIER_UIE;
+	TIM2->CR1|=TIM_CR1_CEN;
+	NVIC_EnableIRQ(TIM2_IRQn);
+}
+void TIM2_IRQHandler(void)
+{
+	sec++;
+	if(sec==500)CPU_OFF;
+	TIM2->SR = (uint16_t)~TIM_SR_UIF;
 }
 void RTC_Config(void)
 {
-	PWR_BackupAccessCmd(ENABLE);							//Wlaczenie dostepu do rejestrow Backup Domain
-	RCC_LSEConfig(RCC_LSE_ON);								//Wlaczenie oscylatora LSE
-	while(RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET);
-	RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);		//UStawienie LSE jako zrodla sygnalu zegarowego dla RTC
-	RCC_RTCCLKCmd(ENABLE);										//Wlaczenie taktowania RTC
+		PWR_BackupAccessCmd(ENABLE);							//Wlaczenie dostepu do rejestrow Backup Domain
+		RCC_LSEConfig(RCC_LSE_ON);								//Wlaczenie oscylatora LSE
+		while(RCC_GetFlagStatus(RCC_FLAG_LSERDY) == RESET);
+		RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);		//UStawienie LSE jako zrodla sygnalu zegarowego dla RTC
+		RCC_RTCCLKCmd(ENABLE);										//Wlaczenie taktowania RTC
 
-	RTC_WaitForSynchro();											//Oczekiwanie na synchronizacje
-//	RTC_WaitForLastTask();										//Oczekiwanie az rejestry RTC zostana zapisane								//Ustawienie prescalera Okres RTC = 1s = RTCCLK/RTC_PR = 32.768Hz/32767+1
-	RTC->PRER = 0x7fff;
-//	RTC_ITConfig(RTC_IT_SEC, ENABLE);
-	RCC_ClearFlag();
-	RTC_TimeTypeDef  time;
-	time.RTC_Minutes=36;
-	time.RTC_Seconds=50;
-	time.RTC_Hours=21;
-//	time.RTC_H12=1;
-	RTC_SetTime(RTC_Format_BIN,&time);
+		RTC_WaitForSynchro();											//Oczekiwanie na synchronizacje
+	//	RTC_WaitForLastTask();										//Oczekiwanie az rejestry RTC zostana zapisane								//Ustawienie prescalera Okres RTC = 1s = RTCCLK/RTC_PR = 32.768Hz/32767+1
+		RTC->PRER = 0x7fff;
+		RTC_ITConfig(RTC_Alarm_A, ENABLE);
+		RCC_ClearFlag();
+//		RTC_TimeTypeDef  time;
+//		time.RTC_Minutes=0;
+//		time.RTC_Seconds=0;
+//		time.RTC_Hours=0;
+//		RTC_SetTime(RTC_Format_BIN,&time);
+//		RTC_DateTypeDef date;
+//		date.RTC_Year=2016;
+//		date.RTC_Month=1;
+//		date.RTC_WeekDay=1;
+//		date.RTC_Date=1;
+
+	    RTC_TimeTypeDef RTC_TimeStructure;
+	    RTC_DateTypeDef RTC_DateStructure;
+	    EXTI_InitTypeDef EXTI_InitStructure;
+
+        RTC_TimeStructure.RTC_Seconds = 0;
+        RTC_TimeStructure.RTC_Minutes = 9;
+        RTC_TimeStructure.RTC_Hours = 4;
+        RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
+        RTC_SetTime(RTC_Format_BCD,&RTC_TimeStructure);
+
+        RTC_DateStructure.RTC_Date = 15;
+        RTC_DateStructure.RTC_Month = 11;
+        RTC_DateStructure.RTC_WeekDay= RTC_Weekday_Thursday;
+        RTC_DateStructure.RTC_Year = 13;
+        RTC_SetDate(RTC_Format_BCD,&RTC_DateStructure);
+
+        EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+        EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;//ä¸Šå‡æ²¿
+        EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+        EXTI_InitStructure.EXTI_Line = EXTI_Line17;
+        EXTI_Init(&EXTI_InitStructure);
+
+		RTC_AlarmTypeDef RTC_AlarmStructure;
+	    RTC_AlarmCmd(RTC_Alarm_A,DISABLE);
+	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours=1;
+	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes=1;
+	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds=5;
+	    RTC_AlarmStructure.RTC_AlarmTime.RTC_H12=RTC_H12_AM;
+	    //RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_All;
+	    RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_DateWeekDay|RTC_AlarmMask_Hours|RTC_AlarmMask_Minutes;
+
+	  RTC_SetAlarm(RTC_Format_BCD, RTC_Alarm_A, &RTC_AlarmStructure);
+	  RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
+	  RTC_ITConfig(RTC_IT_ALRA, ENABLE);
+	  RTC_ClearITPendingBit(RTC_IT_ALRA);
+	  RTC_ClearFlag(RTC_FLAG_ALRAF);
 }
 void RCC_cfg(void)
 {
@@ -441,31 +529,50 @@ void RCC_cfg(void)
 	 RCC->AHB1ENR |= RCC_AHB1Periph_DMA2;
 	 RCC->AHB3ENR |= RCC_AHB3ENR_FSMCEN;
 	 RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	 RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
 	 RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 	 RCC->AHB1ENR |= RCC_AHB1ENR_CRCEN;
 	 RCC->AHB2ENR |= RCC_AHB2ENR_RNGEN;
 	 RCC->APB2ENR |= RCC_APB2ENR_SDIOEN;
+//	 RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
 }
 
 void NVIC_Config(void)
 {
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_Init(&NVIC_InitStructure);
 
 //	NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
 //	NVIC_EnableIRQ(DMA2_Stream5_IRQn);
 //	NVIC_EnableIRQ(TIM3_IRQn);
 }
+
+
+void RTC_Alarm_IRQHandler(void)
+{
+//	CPU_OFF;
+	RTC_ClearITPendingBit(RTC_IT_ALRA);
+	EXTI_ClearITPendingBit(EXTI_Line17);
+}
+
+
 void GPIO_cfg(void)
 {
 	GPIOB->MODER=0x00000000;
 
-
 	GPIOB->MODER|=GPIO_MODER_MODER8_0;
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR8;
 	GPIOB->ODR|=GPIO_ODR_ODR_8;
-
-	GPIOE->MODER|=GPIO_MODER_MODER4_0;
-	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR4;
-	GPIOE->ODR|=GPIO_ODR_ODR_4;
 	CPU_ON;
 
 	//*****************LED_CONFIG*******************
@@ -550,6 +657,11 @@ void GPIO_cfg(void)
 	GPIOB->ODR|=GPIO_ODR_ODR_9;
 	GPIOB->BSRRL|=GPIO_BSRR_BS_9;
 
+	GPIOF->MODER|=GPIO_MODER_MODER11_0;
+	GPIOF->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR11;
+	GPIOF->ODR|=GPIO_ODR_ODR_11;
+	GPIOF->BSRRL|=GPIO_BSRR_BS_11;
+
 //	GPIOD->MODER|=GPIO_MODER_MODER7_0;
 //	GPIOD->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR7_1;
 //	GPIOD->ODR|=GPIO_ODR_ODR_7;
@@ -594,15 +706,17 @@ void GPIO_cfg(void)
 	GPIOE->PUPDR |=GPIO_PUPDR_PUPDR3_0;
 
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR12;
-	GPIOB->PUPDR |=GPIO_PUPDR_PUPDR12_1;
+//	GPIOB->PUPDR |=GPIO_PUPDR_PUPDR12_1;
 	///////////////////////I2C//////////////////////////////////////////
-	GPIOB->MODER|=GPIO_MODER_MODER10_1;
-	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR10;
-	GPIO_PinAFConfig(GPIOB,GPIO_PinSource10,GPIO_AF_I2C2);
-
-	GPIOB->MODER|=GPIO_MODER_MODER11_1;
-	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR11;
-	GPIO_PinAFConfig(GPIOB,GPIO_PinSource11,GPIO_AF_I2C2);
+//	GPIOB->MODER|=GPIO_MODER_MODER10_1;
+//	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR10;
+//	GPIOB->OTYPER|=GPIO_OTYPER_ODR_10;
+//	GPIO_PinAFConfig(GPIOB,GPIO_PinSource10,GPIO_AF_I2C2);
+////
+//	GPIOB->MODER|=GPIO_MODER_MODER11_1;
+//	GPIOB->OTYPER|=GPIO_OTYPER_ODR_11;
+//	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR11;
+//	GPIO_PinAFConfig(GPIOB,GPIO_PinSource11,GPIO_AF_I2C2);
 	///////////////////////TOUCH_INT////////////////////////////////////
 	GPIOC->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR5_0;
 //	GPIOC->OTYPER|=GPIO_OTYPER_IDR_5;
@@ -615,7 +729,6 @@ void GPIO_cfg(void)
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Init(DREQ_PORT, &GPIO_InitStructure);
 	 LED_OFF;
-
 
 
 }
@@ -650,6 +763,79 @@ void ADC1_Configuration(void)
   ADC_Cmd(ADC1, ENABLE);    //The ADC is powered on by setting the ADON bit in the ADC_CR2 register.
   //When the ADON bit is set for the first time, it wakes up the ADC from the Power-down mode.
 }
+void I2C1_init(void)
+{
+
+	GPIO_InitTypeDef GPIO_InitStruct;
+	I2C_InitTypeDef I2C_InitStruct;
+
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+
+	/* setup SCL and SDA pins
+	 * You can connect the I2C1 functions to two different
+	 * pins:
+	 * 1. SCL on PB6 or PB8
+	 * 2. SDA on PB7 or PB9
+	 */
+	 // we are going to use PB6 and PB9
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;			// set pins to alternate function
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		// set GPIO speed
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;			// set output to open drain --> the line has to be only pulled low, not driven high
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			// enable pull up resistors
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_9;
+	GPIO_Init(GPIOB, &GPIO_InitStruct);					// init GPIOB
+
+	// Connect I2C1 pins to AF
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);	// SCL
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1); // SDA
+
+    I2C_InitTypeDef i2c_init;
+    I2C_DeInit(I2C1 );       //Deinit and reset the I2C to avoid it locking up
+    I2C_SoftwareResetCmd(I2C1, ENABLE);
+    int var;
+    for ( var= 0; var < 0xff; ++var) {};
+    I2C_SoftwareResetCmd(I2C1, DISABLE);
+
+    i2c_init.I2C_ClockSpeed = 200000;
+    i2c_init.I2C_Mode = I2C_Mode_I2C;
+    i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+    i2c_init.I2C_OwnAddress1 = 0xD0;
+    i2c_init.I2C_Ack = I2C_Ack_Enable;
+    i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_Init(I2C1, &i2c_init);
+
+//    I2C_StretchClockCmd(I2C2, ENABLE);
+    I2C_Cmd(I2C1, ENABLE);
+
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;			// set pins to alternate function
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		// set GPIO speed
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_OD;			// set output to open drain --> the line has to be only pulled low, not driven high
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			// enable pull up resistors
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+	GPIO_Init(GPIOB, &GPIO_InitStruct);					// init GPIOB
+
+	// Connect I2C1 pins to AF
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_I2C2);	// SCL
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_I2C2); // SDA
+
+
+    I2C_DeInit(I2C2 );       //Deinit and reset the I2C to avoid it locking up
+    I2C_SoftwareResetCmd(I2C2, ENABLE);
+    for ( var= 0; var < 0xff; ++var) {};
+    I2C_SoftwareResetCmd(I2C2, DISABLE);
+
+    i2c_init.I2C_ClockSpeed = 400000;
+    i2c_init.I2C_Mode = I2C_Mode_I2C;
+    i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
+    i2c_init.I2C_OwnAddress1 = 0xD0;
+    i2c_init.I2C_Ack = I2C_Ack_Enable;
+    i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
+    I2C_Init(I2C2, &i2c_init);
+
+    I2C_Cmd(I2C2, ENABLE);
+}
 
 void USBH_ConnectEventCallback(void)
 {
@@ -658,11 +844,6 @@ void USBH_ConnectEventCallback(void)
 void USBH_DisconnectEventCallback(void)
 {
 	usb_host_disconnected_flag = 1;
-}
-
-void delay(unsigned int ms)
-{
-
 }
 int get_random(int from,int to)
 {
@@ -759,7 +940,12 @@ void vApplicationMallocFailedHook( void )
 {
   while (1)
   {
-	  ili9320_String_lc("MALLOC FAILED",5,10,RED,BLACK,2);
+//	  ili9320_String_lc("MALLOC FAILED",5,10,RED,BLACK,2);
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
   }
 }
 void vApplicationIdleHook(void)
@@ -767,8 +953,11 @@ void vApplicationIdleHook(void)
 //	int i=0;
 	while(1)
 	{
-
-
+		if(wake)
+		{
+			CPU_OFF;
+			while(1);
+		}
 
 //		vTaskDelay(10);
 //		i++;

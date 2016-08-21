@@ -42,7 +42,7 @@ void LCD_init()
 	for(int k=0;k<0xffff;k++);
 	LCD_WRITE_COMMAND = DISPON;//send 1 byte
 //	LCD_WRITE_COMMAND=(MADCTR);
-//	LCD_WRITE_DATA = (0x66);
+//	LCD_WRITE_DATA = (0b11001110);
 	  LCD_paint(0x00ff00);
 
 }

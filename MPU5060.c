@@ -23,7 +23,7 @@
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ OUT OF OR IN CONNECTION WITHxxx THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ================================================================================================
  */
@@ -39,12 +39,12 @@
 #include <stm32f4xx_gpio.h>
 #include <stm32f4xx_rcc.h>
 #include <stm32f4xx_i2c.h>
-#include "MPU6050.h"
+#include <MPU5060.h>
 
 /** @defgroup MPU6050_Library
  * @{
  */
-
+u8 k=1;
 /** Power on and prepare for general usage.
  * This will activate the device and take it out of sleep mode (which must be done
  * after start-up). This function also sets both the accelerometer and the gyroscope
@@ -52,21 +52,41 @@
  * the clock source to use the X Gyro for reference, which is slightly better than
  * the default internal clock source.
  */
-void MPU6050_Initialize()
+void MPU6050_Init()
 {
-    MPU6050_SetClockSource(MPU6050_CLOCK_PLL_XGYRO);
-    MPU6050_SetFullScaleGyroRange(MPU6050_GYRO_FS_250);
-    MPU6050_SetFullScaleAccelRange(MPU6050_ACCEL_FS_2);
-    MPU6050_SetSleepModeStatus(DISABLE);
+	if(MPU6050_TestConnection())
+	{
+		MPU6050_SetClockSource(MPU6050_CLOCK_PLL_XGYRO);
+		MPU6050_SetFullScaleGyroRange(MPU6050_GYRO_FS_250);
+		MPU6050_SetFullScaleAccelRange(MPU6050_ACCEL_FS_2);
+		MPU6050_SetSleepModeStatus(DISABLE);
+		MPU6050_IntEnable();
+		MPU6050_IntThreshold(20);
+		MPU6050_I2C_ByteWrite(1,MPU6050_RA_MOT_DUR);
+		MPU6050_WriteBits(MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_ACCEL_HPF_BIT, MPU6050_ACONFIG_ACCEL_HPF_LENGTH, 0b111);
+	}
+}
+
+void MPU6050_IntThreshold(uint8_t threshold)
+{
+	 MPU6050_I2C_ByteWrite(threshold,MPU6050_RA_MOT_THR);
+}
+
+void MPU6050_IntEnable(void)
+{
+	 MPU6050_WriteBit(MPU6050_RA_INT_ENABLE , MPU6050_INTERRUPT_MOT_BIT, 1);
+	 MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0); ///level high
+	 MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 6, 0); ///Pusz pull
+	 MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 5, 1); // until cleared
 }
 
 /** Verify the I2C connection.
  * Make sure the device is connected and responds as expected.
  * @return True if connection is valid, FALSE otherwise
  */
-bool MPU6050_TestConnection()
+u8 MPU6050_TestConnection()
 {
-    return MPU6050_GetDeviceID() == 0x34 ? TRUE : FALSE; //0b110100; 8-bit representation in hex = 0x34
+    return MPU6050_GetDeviceID() == 0x34 ? 1 : 0; //0b110100; 8-bit representation in hex = 0x34
 }
 // WHO_AM_I register
 
@@ -80,7 +100,7 @@ bool MPU6050_TestConnection()
 uint8_t MPU6050_GetDeviceID()
 {
     uint8_t tmp;
-    MPU6050_ReadBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, &tmp);
+    MPU6050_ReadBits(MPU6050_RA_WHO_AM_I, MPU6050_WHO_AM_I_BIT, MPU6050_WHO_AM_I_LENGTH, &tmp);
     return tmp;
 }
 
@@ -116,7 +136,7 @@ uint8_t MPU6050_GetDeviceID()
  */
 void MPU6050_SetClockSource(uint8_t source)
 {
-    MPU6050_WriteBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_LENGTH, source);
+    MPU6050_WriteBits( MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_CLKSEL_BIT, MPU6050_PWR1_CLKSEL_LENGTH, source);
 }
 
 /** Set full-scale gyroscope range.
@@ -129,7 +149,7 @@ void MPU6050_SetClockSource(uint8_t source)
  */
 void MPU6050_SetFullScaleGyroRange(uint8_t range)
 {
-    MPU6050_WriteBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, range);
+    MPU6050_WriteBits(MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, range);
 }
 
 // GYRO_CONFIG register
@@ -154,7 +174,7 @@ void MPU6050_SetFullScaleGyroRange(uint8_t range)
 uint8_t MPU6050_GetFullScaleGyroRange()
 {
     uint8_t tmp;
-    MPU6050_ReadBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, &tmp);
+    MPU6050_ReadBits( MPU6050_RA_GYRO_CONFIG, MPU6050_GCONFIG_FS_SEL_BIT, MPU6050_GCONFIG_FS_SEL_LENGTH, &tmp);
     return tmp;
 }
 
@@ -178,7 +198,7 @@ uint8_t MPU6050_GetFullScaleGyroRange()
 uint8_t MPU6050_GetFullScaleAccelRange()
 {
     uint8_t tmp;
-    MPU6050_ReadBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, &tmp);
+    MPU6050_ReadBits(MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, &tmp);
     return tmp;
 }
 
@@ -188,7 +208,7 @@ uint8_t MPU6050_GetFullScaleAccelRange()
  */
 void MPU6050_SetFullScaleAccelRange(uint8_t range)
 {
-    MPU6050_WriteBits(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, range);
+    MPU6050_WriteBits( MPU6050_RA_ACCEL_CONFIG, MPU6050_ACONFIG_AFS_SEL_BIT, MPU6050_ACONFIG_AFS_SEL_LENGTH, range);
 }
 
 /** Get sleep mode status.
@@ -202,11 +222,11 @@ void MPU6050_SetFullScaleAccelRange(uint8_t range)
  * @see MPU6050_RA_PWR_MGMT_1
  * @see MPU6050_PWR1_SLEEP_BIT
  */
-bool MPU6050_GetSleepModeStatus()
+u8 MPU6050_GetSleepModeStatus()
 {
     uint8_t tmp;
-    MPU6050_ReadBit(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, &tmp);
-    return tmp == 0x00 ? FALSE : TRUE;
+    MPU6050_ReadBit( MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, &tmp);
+    return tmp == 0x00 ? 0 : 1;
 }
 
 /** Set sleep mode status.
@@ -217,7 +237,7 @@ bool MPU6050_GetSleepModeStatus()
  */
 void MPU6050_SetSleepModeStatus(FunctionalState NewState)
 {
-    MPU6050_WriteBit(MPU6050_DEFAULT_ADDRESS, MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, NewState);
+    MPU6050_WriteBit( MPU6050_RA_PWR_MGMT_1, MPU6050_PWR1_SLEEP_BIT, NewState);
 }
 
 /** Get raw 6-axis motion sensor readings (accel/gyro).
@@ -228,7 +248,7 @@ void MPU6050_SetSleepModeStatus(FunctionalState NewState)
 void MPU6050_GetRawAccelGyro(s16* AccelGyro)
 {
     u8 tmpBuffer[14];
-    MPU6050_I2C_BufferRead(MPU6050_DEFAULT_ADDRESS, tmpBuffer, MPU6050_RA_ACCEL_XOUT_H, 14);
+    MPU6050_I2C_BufferRead(tmpBuffer, MPU6050_RA_ACCEL_XOUT_H, 14);
     /* Get acceleration */
     for (int i = 0; i < 3; i++)
         AccelGyro[i] = ((s16) ((u16) tmpBuffer[2 * i] << 8) + tmpBuffer[2 * i + 1]);
@@ -311,7 +331,7 @@ void MPU6050_ReadBits(  uint8_t regAddr, uint8_t bitStart, uint8_t length, uint8
 void MPU6050_ReadBit( uint8_t regAddr, uint8_t bitNum, uint8_t *data)
 {
     uint8_t tmp;
-    MPU6050_I2C_BufferRead(MPU6050_ADRR, &tmp, regAddr, 1);
+    MPU6050_I2C_BufferRead(&tmp, regAddr, 1);
     *data = tmp & (1 << bitNum);
 }
 
@@ -406,6 +426,7 @@ void MPU6050_I2C_BufferRead( u8* pBuffer, u8 readAddr, u16 NumByteToRead)
     I2C_AcknowledgeConfig(MPU6050_I2C, ENABLE);
     // EXT_CRT_SECTION();
 }
+
 /**
  * @}
  *//* end of group MPU6050_Library */

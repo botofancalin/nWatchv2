@@ -41,6 +41,8 @@ static TCHAR lfname[_MAX_LFN];
 ////////graphic////////////
 #include "bsp.h"
 #include "GUIDRV_Template.h"
+////////////////////////////////////SENSOR//////////////////////////////////////
+#include <MPU5060.h>
 ////////////////////////////////////MUSIC////////////////////////////////////////////
 #include "vs1003.h"
 ////////////////////////////////////FreeRTOS///////////////////////////////////////////
@@ -59,15 +61,14 @@ static TCHAR lfname[_MAX_LFN];
 ////////////////////////////////////RNG///////////////////////////////////////////
 #include "stm32f4xx_rng.h"
 
-
-
-#define CPU_ON GPIOE->BSRRL|=GPIO_BSRR_BS_4
-#define CPU_OFF GPIOE->BSRRH|=GPIO_BSRR_BS_4
+#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
+#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
 
 #define LED_ON GPIOD->BSRRL|=GPIO_BSRR_BS_6
 #define LED_OFF GPIOD->BSRRH|=GPIO_BSRR_BS_6
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
 #define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
+#define wake    (((GPIOB->IDR) & GPIO_IDR_IDR_12))
 
 xTaskHandle                   Task_Handle;
 xTaskHandle                   Heading_Handle;

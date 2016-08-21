@@ -31,7 +31,7 @@
 #include "ff.h"
 #include "portmacro.h"
 #include "ili9320.h"
-
+#include "global_inc.h"
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -45,6 +45,7 @@ int lastyyy=0;
 int prev;
 touch ts;
 touch prev_state;
+
 uint32_t BSP_Initt (void)
 {
   return 0;
@@ -86,7 +87,7 @@ static uint32_t BSP_TSC_Init(void)
   * @param  None
   * @retval None
   */
-void BSP_Pointer_Update(void)
+u8 BSP_Pointer_Update(void)
 {
   GUI_PID_STATE TS_State;
   uint16_t xDiff, yDiff;
@@ -106,9 +107,11 @@ void BSP_Pointer_Update(void)
       GUI_TOUCH_StoreStateEx(&TS_State);
       prev_state.x=ts.x;
       prev_state.y=ts.y;
+      prev=act;
+      return 1;
   }
   prev=act;
-
+  return 0;
 }
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
