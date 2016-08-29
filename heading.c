@@ -63,6 +63,17 @@ static void _cbHeading(WM_MESSAGE * pMsg)
    }
   case WM_PAINT:
   {
+//
+//	    ADC_SoftwareStartConv(ADC1);
+//	    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+//	    int result= ADC_GetConversionValue(ADC1);
+//	    result = result * 8059/10000;
+//	    float v = (float)result * 3.3f / 4096.0f;
+//	    PROGBAR_SetValue(hItem,result*100/3100);
+//	    TEXT_SetText(hText, itoa(uxTaskGetNumberOfTasks(),t,10));
+//	    GUI_DispStringHCenterAt("lala", 120, 20);
+//	    GUI_DispDecAt(result,120,20,5);
+
 		xSize = WM_GetWindowSizeX(hWin);
 		xPos = xSize;
 		GUI_SetColor(0xf8f8f8);
@@ -99,9 +110,14 @@ static void _cbHeading(WM_MESSAGE * pMsg)
 					  GUI_DispStringHCenterAt("MP3 Player", xSize / 2, 20);
 					  break;
 				  }
-//			 	 default:
-//				 GUI_DispStringHCenterAt(itoa(xPortGetFreeHeapSize(),t,10), xSize / 2, 20);
-//			 		 GUI_DispDecAt(a,160,230,5);
+			 	 default:
+
+			    ADC_SoftwareStartConv(ADC1);
+			    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+			    int result= ADC_GetConversionValue(ADC1);
+			    result = result * 8059/10000;
+				 GUI_DispStringHCenterAt(itoa(result*100/3100,t,10), xSize / 2, 20);
+//			 		 GUI_Disp(v,120,20,5);
 			 }
 			 aa=a;
 		break;
@@ -129,8 +145,8 @@ void Heading_Task( void * pvParameters)
 
 	WM_HWIN hWinHeading;
 	WM_HWIN hWinBase;     // Heading window
-	hWinBase     = WM_CreateWindow(0,  0, 240, 60,  WM_CF_SHOW, _cbDummy1, 0);
-	hWinHeading  = WM_CreateWindowAsChild(0,  0, 240, 60, hWinBase,     WM_CF_SHOW, _cbHeading, 0);
+	hWinBase     = WM_CreateWindow(0,  0, 320, 60,  WM_CF_SHOW, _cbDummy1, 0);
+	hWinHeading  = WM_CreateWindowAsChild(0,  0, 320, 60, hWinBase,     WM_CF_SHOW, _cbHeading, 0);
 
 	WM_HWIN hItem,hText;
 	WM_HWIN hButton3;
@@ -151,14 +167,7 @@ void Heading_Task( void * pvParameters)
 //		if(l<100)mem[l++]=4000-xPortGetFreeHeapSize();
 //		else l=0;
 //
-//	    ADC_SoftwareStartConv(ADC1);
-//	    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
-//	    int result= ADC_GetConversionValue(ADC1);
-//	    result = result * 8059/10000;
-//	    hItem = WM_GetDialogItem(hWinHeading, ID_PROGBAR_2);
-//	    hText = WM_GetDialogItem(hWinHeading, ID_TEXT_2);
-//	    PROGBAR_SetValue(hItem,result*100/3100);
-//	    TEXT_SetText(hText, itoa(uxTaskGetNumberOfTasks(),t,10));
+
 
 	}
 }

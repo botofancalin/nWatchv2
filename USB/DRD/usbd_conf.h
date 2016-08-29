@@ -48,7 +48,7 @@
 
 #define USBD_CFG_MAX_NUM           1
 #define USBD_ITF_MAX_NUM           1
-#define USB_MAX_STR_DESC_SIZ       64 
+#define USB_MAX_STR_DESC_SIZ       64
 
 #define USBD_SELF_POWERED               
 

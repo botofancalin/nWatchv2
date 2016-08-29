@@ -62,12 +62,13 @@ static TCHAR lfname[_MAX_LFN];
 #include "stm32f4xx_rng.h"
 
 #define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
-#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
+#define CPU_OFF cpu_off()
 
 #define LED_ON GPIOD->BSRRL|=GPIO_BSRR_BS_6
 #define LED_OFF GPIOD->BSRRH|=GPIO_BSRR_BS_6
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
 #define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
+#define vol_down  (!((GPIOG->IDR) & GPIO_IDR_IDR_14))
 #define wake    (((GPIOB->IDR) & GPIO_IDR_IDR_12))
 
 xTaskHandle                   Task_Handle;
@@ -85,5 +86,6 @@ xQueueHandle                  xQueue_men;
 char t[10];
 int mem[101];
 
+void cpu_off(void);
 
 #endif

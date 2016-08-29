@@ -37,6 +37,10 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usb_bsp.h"
 #include "usbd_conf.h"
+#include "stm32f4xx_tim.h"
+#include "misc.h"
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_rcc.h"
 
 /** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
 * @{
@@ -142,6 +146,7 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev)
   //GPIO_PinAFConfig(GPIOA,GPIO_PinSource8,GPIO_AF_OTG1_FS) ;
   GPIO_PinAFConfig(GPIOA,GPIO_PinSource11,GPIO_AF_OTG1_FS) ; 
   GPIO_PinAFConfig(GPIOA,GPIO_PinSource12,GPIO_AF_OTG1_FS) ;
+
 #ifdef VBUS_SENSING_ENABLED
   /* Configure  VBUS Pin */
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
@@ -149,7 +154,14 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev)
   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
   GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
   GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
-  GPIO_Init(GPIOA, &GPIO_InitStructure);    
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+
+//  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;
+//  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+//  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+//  GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+//  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
+//  GPIO_Init(GPIOB, &GPIO_InitStructure);
 #endif
 #if 0 // Not using ID pin.
   /* Configure ID pin */
@@ -394,7 +406,7 @@ static void USB_OTG_BSP_TimeInit ( void )
   NVIC_InitTypeDef NVIC_InitStructure;
 
   /* Set the Vector Table base address at 0x08000000 */
-  NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x00);
+//
 
   /* Configure the Priority Group to 2 bits */
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);

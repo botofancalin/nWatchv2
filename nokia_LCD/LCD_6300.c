@@ -35,15 +35,27 @@ void LCD_hard_reset()
 
 void LCD_init()
 {
+	//  MY         MX            MV            ML          RGB        1    1    0
+	//mirror y   mirror x   x y exchange  	scan order    format
+
+	//00001110   0x0E BGR colours vertical
+	//00000110   0x06 RGB colours vertical
+	//10001110   0x86 GBR colours vertical upside down
+	//10000110	 0x8E RGB colours vertical upside down
+	//01101110   0x6E BGR colours horizontal
+	//01100110   0x66 RGB colours horizontal
+	//11101110   0xEE GBR colours horizontal upside down
+	//11100110	 0xE6 RGB colours horizontal upside down
+
 	LCD_hard_reset();
 	LCD_WRITE_COMMAND = SWRESET; //send 1 byte
-	for(int k=0;k<0xffff;k++);
+	for(int k=0;k<0xfff;k++);
 	LCD_WRITE_COMMAND = SLPOUT;//send 1 byte
-	for(int k=0;k<0xffff;k++);
+	for(int k=0;k<0xfff;k++);
 	LCD_WRITE_COMMAND = DISPON;//send 1 byte
-//	LCD_WRITE_COMMAND=(MADCTR);
-//	LCD_WRITE_DATA = (0b11001110);
-	  LCD_paint(0x00ff00);
+	LCD_WRITE_COMMAND=(MADCTR);
+	LCD_WRITE_DATA = (0x66);
+//	LCD_paint(0x00ff00);
 
 }
 /*************************************************/

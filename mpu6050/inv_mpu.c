@@ -28,9 +28,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include "inv_mpu.h"
-
+#include "inv_mpu_dmp_motion_driver.h"
 #include "itoa.h"
 #include <misc.h>
+#include "MPU5060.h"
 
 #define MPU6050_I2C I2C1
 /* The following functions must be defined for this platform:
@@ -40,7 +41,21 @@
  * delay_ms(uint32_t num_ms)
  * min(int a, int b)
  */
-
+void motion_init(void)
+{
+	uint16_t dmp_features=0;
+	mpu_init(NULL);
+	mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL);
+	u8 k=dmp_load_motion_driver_firmware();
+	mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL);
+	mpu_set_sample_rate(100);
+	dmp_set_interrupt_mode(DMP_INT_GESTURE);
+	dmp_features = DMP_FEATURE_6X_LP_QUAT|DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL |DMP_FEATURE_TAP;
+	k=dmp_enable_feature(dmp_features);
+	MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
+	k=mpu_set_dmp_state(1);
+	mpu_lp_motion_interrupt(1800,6,40);
+}
 
 uint8_t cur[16], tmp[2];
 

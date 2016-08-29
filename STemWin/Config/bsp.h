@@ -36,7 +36,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "global_includes.h"
 #include "stmpe811.h"
-
+#include "ff.h"
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/
@@ -44,7 +44,7 @@
 uint32_t BSP_Initt (void);
 u8 BSP_Pointer_Update(void);
 int APP_GetData(void * p, const U8 * * ppData, unsigned NumBytesReq, U32 Off);
-
+void LCD_BMP( char *sc);
 #ifdef __cplusplus
 }
 #endif

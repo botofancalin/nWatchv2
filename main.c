@@ -16,6 +16,7 @@
 #include <stm32f4xx_rtc.h>
 #include <stm32f4xx_adc.h>
 #include <stm32f4xx_tim.h>
+#include <stm32f4xx_iwdg.h>
 #include "jpeglib.h"
 #include "decode.h"
 #include "ff.h"
@@ -34,6 +35,7 @@
 #include "stm32f4xx_pwr.h"
 ////////EXPLORER///////////
 #include "explorer.h"
+#include "clock.h"
 /////////////sram//////////////////
 #include "sram.h"
 ////////graphic////////////
@@ -59,7 +61,13 @@ extern __IO int32_t OS_TimeMS;
 #include "menu.h"
 ////////////////////////////////////RNG///////////////////////////////////////////
 #include "stm32f4xx_rng.h"
-//#include "global_inc.h"
+#include "global_inc.h"
+//////////////////////////////////////BOOTLOADER//////////////////////////////////////////////////
+#define SYSMEM_RESET_VECTOR            0x1fffC804
+#define RESET_TO_BOOTLOADER_MAGIC_CODE 0xDEADBEEF
+#define BOOTLOADER_STACK_POINTER       0x20002250
+
+uint32_t dfu_reset_to_bootloader_magic;
 /////////////////////////////////////USB///////////////////////////////////////////////////////
 __ALIGN_BEGIN USB_OTG_CORE_HANDLE    USB_OTG_Core __ALIGN_END;
 volatile uint8_t usb_host_connected_flag = 0;
@@ -74,10 +82,11 @@ volatile uint8_t usb_host_disconnected_flag = 0;
 #define LED_ON GPIOD->BSRRL|=GPIO_BSRR_BS_6
 #define LED_OFF GPIOD->BSRRH|=GPIO_BSRR_BS_6
 
-#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
-#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
+//#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
+//#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
 #define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
+#define vol_down  (!((GPIOG->IDR) & GPIO_IDR_IDR_14))
 #define wake  	(((GPIOB->IDR) & GPIO_IDR_IDR_12))
 ///////////////////////////////////FUNCTIONS////////////////////////////////////////////////////
 void EXTI9_5_IRQHandler(void)__attribute__((interrupt));
@@ -99,7 +108,10 @@ int get_random(int form,int to);
 void ADC1_Configuration(void);
 void I2C1_init(void);
 void RTC_Config(void);
+void IWDG_Config(void);
 void cb(u8 i, u8 l);
+void dfu_run_bootloader(void);
+
 //////////////////////////////////////TASKs//////////////////////////////////////////////////////
 static void Background_Task(void * pvParameters);
 static void vTimerCallback( xTimerHandle pxTimer );
@@ -113,13 +125,14 @@ FIL fsrc;
 DIR dir;
 FATFS fs;
 FILINFO fno;
-volatile int sec=0;
+volatile int sec,sec2,sec3,cpu=1;
 static int8_t gyro_orientation[9] = {1, 0, 0,
 				     0, 1, 0,
 				     0, 0, 1};
 int16_t gyro[3], accel[3], sensors;
 int32_t quat[4];
 uint8_t more;
+//unsigned char _acBuffer[512];
 
 int main(void)
 {
@@ -127,132 +140,75 @@ int main(void)
 	  RCC_cfg();
 	  NVIC_Config();
 	  GPIO_cfg();
+//	  dfu_run_bootloader();
 	  LED_ON;
+	  while(wake){};
+	  IWDG_Config();
 	  SRAM_Init();
 	  FSMC_NAND_Init();
-	  LCD_init();
-//	  ili9320_init();
 	  RNG_Cmd(ENABLE);
 	  WM_SetCreateFlags(WM_CF_MEMDEV);
-	  GUI_Init();
+//	  GUI_Init();
 	  I2C1_init();
 	  stmpe811_init();
 	  RTC_Config();
-	  f_mount(&fs,"",0);
-	  backlight(40);
 	  delay_init();
-//	  MPU6050_Init();
-//	  CPU_OFF;
-	  uint16_t dmp_features=0;
-	  mpu_init(NULL);
-	  mpu_set_sensors(INV_XYZ_GYRO | INV_XYZ_ACCEL);
-	  u8 k=dmp_load_motion_driver_firmware();
-	  if(k!=0)LED_OFF;
-	  mpu_configure_fifo(INV_XYZ_GYRO | INV_XYZ_ACCEL);
-	  mpu_set_sample_rate(100);
-	  dmp_set_interrupt_mode(DMP_INT_GESTURE);
-	  dmp_features = DMP_FEATURE_6X_LP_QUAT|DMP_FEATURE_SEND_RAW_ACCEL | DMP_FEATURE_SEND_CAL_GYRO | DMP_FEATURE_GYRO_CAL |DMP_FEATURE_TAP;
-	  k=dmp_enable_feature(dmp_features);
-	  MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
-	  k=mpu_set_dmp_state(1);//)LED_OFF;
-	  if(k!=0)LED_OFF;
-	  mpu_lp_motion_interrupt(3000,1,40);
+	  motion_init();
+	  backlight(80);
+	  f=f_mount(&fs,"",0);
 
-//	  load_jpg(&fsrc,"0:papiez.jpg",aucLine,sizeof(aucLine));
-//	  bitmap_RGB("0:papa.rgb",0,0,226,320);
-
-	  if(vol_up)
+	  if(vol_down)
 	  {
+		  f_mount(&fs,"",0);
+		  bitmap_RGB("0:papa.rgb",0,0,226,320);
 		  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
-	  	  while(1){};
+		  while(!wake)
+		  {
+			  sec=0;
+			  CPU_ON;
+			  IWDG_ReloadCounter();
+		  };
 	  }
-
 //	  vTraceInitTraceData();
-
+	  GUI_Init();
 	  WM_MOTION_Enable(1);
+//	  GUI_SetOrientation(GUI_SWAP_XY| GUI_MIRROR_Y);
 	  BUTTON_SetReactOnLevel();
 
-//	    load_jpg(&fsrc,"0:papiez.jpg",aucLine,sizeof(aucLine));
-//	  	jpeg_create_decompress(&cinfo);
-//		cinfo.err = jpeg_std_error(&jerr);
-//	    f=f_open(&fsrc,"0:papiez.jpg", FA_READ | FA_OPEN_EXISTING );
-//	    jpeg_decode(&fsrc, 320, aucLine, 0);
-//	    jpeg_finish_decompress(&cinfo);
-//
-//	    f=f_open(&fsrc,"0:big.jpg", FA_READ | FA_OPEN_EXISTING );
-//	    jpeg_decode(&fsrc, 320, _aucLine, 0);
-//	    play_video("bird19.avi");
-//	    while(1)
-//	    {
+//	  LCD_BMP(&fsrc,"0:jas.bmp");
 
-//		    f=f_open(&fsrc,"0:moje/car2.jpg", FA_READ | FA_OPEN_EXISTING );
-//			LCD_SetCursor(0,0);
-//			LCD_WriteIndex(R34);
-//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
-//		    f=f_open(&fsrc,"0:moje/car1.jpg", FA_READ | FA_OPEN_EXISTING );
-//			LCD_SetCursor(0,0);
-//			LCD_WriteIndex(R34);
-//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
-//		    f=f_open(&fsrc,"0:moje/car.jpg", FA_READ | FA_OPEN_EXISTING );
-//			LCD_SetCursor(0,0);
-//			LCD_WriteIndex(R34);
-//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
-//	    }
-//
+//	   while(1){};
 
 
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
-//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
-//	 RCC->APB1ENR |= RCC_APB1ENR_PWREN;
-//	   GPIO_InitTypeDef GPIO_InitStructure;
-//	   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
-//	   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-//	   GPIO_Init(GPIOA, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOB, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOC, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOD, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOE, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOF, &GPIO_InitStructure);
-//	   GPIO_Init(GPIOG, &GPIO_InitStructure);
-//	  PWR_EnterSTOPMode(PWR_Regulator_LowPower, PWR_STOPEntry_WFI);
-
-//	  PWR_EnterSTANDBYMode();
-//	   __WFI();
-//	  LCD_String("blalal",100,100,1,RED,BLUE,2);
-//	  GPIO_WriteBit(CS_PORT,CS_PIN,!State);
-//	  GPIO_WriteBit(XDCS_PORT,XDCS_PIN,!State);
-//	  GPIO_WriteBit(CS_PORT,CS_PIN,!State);
-//	  while(1){};
-//
-//	  GUI_Init();
-//	  GUI_CURSOR_Show();
-//	  WM_MOTION_Enable(1);
-//	  play_video("avifiles/birds_small2.avi");
+	GPIO_InitTypeDef gpio;
+	ADC_InitTypeDef adc;
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN ;
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	ADC1_Configuration();
 
 
-//	GPIO_InitTypeDef gpio;
-//	ADC_InitTypeDef adc;
-//	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-//	GPIO_InitTypeDef GPIO_InitStructur;
-//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
-//	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
-//	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN ;
-//	GPIO_Init(GPIOB, &GPIO_InitStructur);
-//	ADC1_Configuration();
 
-	  xTaskCreate(Background_Task,(char const*)"Background",512,NULL, 7,&Task_Handle);
-	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,6, &Menu_Handle);
-	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
+
+
+	  xTaskCreate(Clock,(char const*)"Clock",4096,NULL,tskIDLE_PRIORITY + 6,&Clock_Handle);
+//	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,6, &Menu_Handle);
+//	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
 //	  xTaskCreate(BSP_Task,(char const*)"BSP",1024,NULL, 6, &BSP_Handle);
-	  TouchScreenTimer = xTimerCreate ("Timer",10, pdTRUE,1, vTimerCallback);
+	  TouchScreenTimer = xTimerCreate ("Timer",20, pdTRUE,1, vTimerCallback);
+	  xTaskCreate(Background_Task,(char const*)"Background",512,NULL, 7,&Task_Handle);
 	  xTimerStart( TouchScreenTimer, 0);
 //	  vTraceStart();
 	    vTaskStartScheduler();
+}
+
+void dfu_run_bootloader()
+{
+	*((unsigned long *)0x2000FFF0) = 0xDEADBEEF;
+    NVIC_SystemReset();
 }
 void cb(u8 i, u8 l)
 {
@@ -313,11 +269,24 @@ static void Background_Task(void * pvParameters)
 	  {
 		  CPU_ON;
 		  GUI_Delay(300);
-	  	  if(wake || vol_up)
+		  IWDG_ReloadCounter();
+	  	  if(wake || !cpu)
+//		  if(!cpu)
 	  	  {
 	  		  CPU_OFF;
-			  while(1);
 	  	  }
+		  if(vol_down)
+		  {
+//			  taskENTER_CRITICAL();
+			  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
+			  while(1)
+			  {
+				  sec=0;
+				  CPU_ON;
+				  IWDG_ReloadCounter();
+			  };
+//			  taskEXIT_CRITICAL();
+		  }
 	  }
 }
 void exti_init(void)
@@ -410,7 +379,7 @@ void IR_config(void)
 
 void delay_init(void)
 {
-	TIM2->PSC= 1680;
+	TIM2->PSC= 168;
 	TIM2->ARR= 1000;
 	TIM2->DIER|= TIM_DIER_UIE;
 	TIM2->CR1|=TIM_CR1_CEN;
@@ -419,8 +388,28 @@ void delay_init(void)
 void TIM2_IRQHandler(void)
 {
 	sec++;
-	if(sec==500)CPU_OFF;
+	sec2++;
+	if(sec3>0)sec3--;
+	if(sec2==1300)sec=0;
+	if(sec==5000)
+	{
+		cpu=0;
+	}
 	TIM2->SR = (uint16_t)~TIM_SR_UIF;
+}
+void delay(unsigned int ms)
+{
+	sec3=ms;
+	while(sec3>0){};
+}
+void IWDG_Config(void)
+{
+	//konfigurowanie watchdoga IWDG
+	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);    // Zezwolenie na zapis rejestrów IWDG
+	IWDG_SetPrescaler(IWDG_Prescaler_8);             // IWDG taktowany zegarem: 40kHz/4 = 10kHz
+	IWDG_SetReload(0xFFF);                        // Przepelnienie IWDG po okolo 0,4s
+	IWDG_ReloadCounter();                           // Przeladowanie IWDG
+	IWDG_Enable();                                  // Wlaczenie IWDG i LSI
 }
 void RTC_Config(void)
 {
@@ -433,7 +422,7 @@ void RTC_Config(void)
 		RTC_WaitForSynchro();											//Oczekiwanie na synchronizacje
 	//	RTC_WaitForLastTask();										//Oczekiwanie az rejestry RTC zostana zapisane								//Ustawienie prescalera Okres RTC = 1s = RTCCLK/RTC_PR = 32.768Hz/32767+1
 		RTC->PRER = 0x7fff;
-		RTC_ITConfig(RTC_Alarm_A, ENABLE);
+//		RTC_ITConfig(RTC_Alarm_A, ENABLE);
 		RCC_ClearFlag();
 //		RTC_TimeTypeDef  time;
 //		time.RTC_Minutes=0;
@@ -447,76 +436,85 @@ void RTC_Config(void)
 //		date.RTC_Date=1;
 
 	    RTC_TimeTypeDef RTC_TimeStructure;
-	    RTC_DateTypeDef RTC_DateStructure;
-	    EXTI_InitTypeDef EXTI_InitStructure;
+//	    RTC_DateTypeDef RTC_DateStructure;
+//	    EXTI_InitTypeDef EXTI_InitStructure;
 
-        RTC_TimeStructure.RTC_Seconds = 0;
-        RTC_TimeStructure.RTC_Minutes = 9;
-        RTC_TimeStructure.RTC_Hours = 4;
-        RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
-        RTC_SetTime(RTC_Format_BCD,&RTC_TimeStructure);
+//	    RTC_TimeStructure.RTC_H12     = RTC_H12_AM;
+//	    RTC_TimeStructure.RTC_Hours   = 05;
+//	    RTC_TimeStructure.RTC_Minutes = 50;
+//	    RTC_TimeStructure.RTC_Seconds = 00;
+//	    RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
 
-        RTC_DateStructure.RTC_Date = 15;
-        RTC_DateStructure.RTC_Month = 11;
-        RTC_DateStructure.RTC_WeekDay= RTC_Weekday_Thursday;
-        RTC_DateStructure.RTC_Year = 13;
-        RTC_SetDate(RTC_Format_BCD,&RTC_DateStructure);
+	    /* Indicator for the RTC configuration */
+	    RTC_WriteBackupRegister(RTC_BKP_DR0, 0x32F2);
 
-        EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
-        EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;//上升沿
-        EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-        EXTI_InitStructure.EXTI_Line = EXTI_Line17;
-        EXTI_Init(&EXTI_InitStructure);
+//        RTC_TimeStructure.RTC_Seconds = 0;
+//        RTC_TimeStructure.RTC_Minutes = 9;
+//        RTC_TimeStructure.RTC_Hours = 4;
+//        RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
+//        RTC_SetTime(RTC_Format_BCD,&RTC_TimeStructure);
+//
+//        RTC_DateStructure.RTC_Date = 15;
+//        RTC_DateStructure.RTC_Month = 11;
+//        RTC_DateStructure.RTC_WeekDay= RTC_Weekday_Thursday;
+//        RTC_DateStructure.RTC_Year = 13;
+//        RTC_SetDate(RTC_Format_BCD,&RTC_DateStructure);
 
-		RTC_AlarmTypeDef RTC_AlarmStructure;
-	    RTC_AlarmCmd(RTC_Alarm_A,DISABLE);
-	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours=1;
-	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes=1;
-	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds=5;
-	    RTC_AlarmStructure.RTC_AlarmTime.RTC_H12=RTC_H12_AM;
-	    //RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_All;
-	    RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_DateWeekDay|RTC_AlarmMask_Hours|RTC_AlarmMask_Minutes;
+//        EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+//        EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;//上升沿
+//        EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+//        EXTI_InitStructure.EXTI_Line = EXTI_Line17;
+//        EXTI_Init(&EXTI_InitStructure);
 
-	  RTC_SetAlarm(RTC_Format_BCD, RTC_Alarm_A, &RTC_AlarmStructure);
-	  RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
-	  RTC_ITConfig(RTC_IT_ALRA, ENABLE);
-	  RTC_ClearITPendingBit(RTC_IT_ALRA);
-	  RTC_ClearFlag(RTC_FLAG_ALRAF);
+//		RTC_AlarmTypeDef RTC_AlarmStructure;
+//	    RTC_AlarmCmd(RTC_Alarm_A,DISABLE);
+//	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Hours=1;
+//	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Minutes=1;
+//	    RTC_AlarmStructure.RTC_AlarmTime.RTC_Seconds=5;
+//	    RTC_AlarmStructure.RTC_AlarmTime.RTC_H12=RTC_H12_AM;
+//	    //RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_All;
+//	    RTC_AlarmStructure.RTC_AlarmMask=RTC_AlarmMask_DateWeekDay|RTC_AlarmMask_Hours|RTC_AlarmMask_Minutes;
+
+//	  RTC_SetAlarm(RTC_Format_BCD, RTC_Alarm_A, &RTC_AlarmStructure);
+//	  RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
+//	  RTC_ITConfig(RTC_IT_ALRA, ENABLE);
+//	  RTC_ClearITPendingBit(RTC_IT_ALRA);
+//	  RTC_ClearFlag(RTC_FLAG_ALRAF);
 }
 void RCC_cfg(void)
 {
-//   /* Pin MCO taktowany z PLL, prescaler 3 - 50MHz */
-//	RCC->CFGR = RCC_CFGR_MCO1PRE_2 | RCC_CFGR_MCO1PRE_0 | RCC_CFGR_MCO1;
-//
-//	/* Uruchamiamy HSE i czekamy na gotowosc */
-//	RCC->CR |= RCC_CR_HSEON;
-//	while (!(RCC->CR & RCC_CR_HSERDY));
-//
-////		RCC->CR |= RCC_CR_HSION;
-////		while (!(RCC->CR & RCC_CR_HSIRDY))
-//
-//	/* Konfiguracja flasha */
-//	FLASH->ACR = FLASH_ACR_ICEN |       /* instruction cache                   */
-//			FLASH_ACR_DCEN |              /* data cache                          */
-//			FLASH_ACR_PRFTEN |            /* prefetch enable                     */
-//			FLASH_ACR_LATENCY_5WS;        /* 4 wait states                       */
-//
-//	/* Konfiguracja PLL HSE jako zrodlo PLL, ustawienie dzielnikow Q, M, N, P  */
-//
-//	RCC->PLLCFGR = (PLL_Q << 24) | RCC_PLLCFGR_PLLSRC_HSE |
-//			(((PLL_P >> 1) - 1) << 16) | (PLL_N << 6) | PLL_M;
-//
-//	RCC->CR |= RCC_CR_PLLON;
-//	while (!(RCC->CR & RCC_CR_PLLRDY))
-//		;
-//
-//	/* PLL jak sygnal taktowania rdzenia, psk 2 dla APB2, psk 4 dla APB1 */
-//	RCC->CFGR |= RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2 | RCC_CFGR_SW_PLL;
-//	while (!(RCC->CFGR & RCC_CFGR_SWS_PLL))
-//		;
-//
-//	/* Inicjalizacja koprocesora FPU */
-//	SCB->CPACR |= ((3 << 10*2)|(3 << 11*2));
+   /* Pin MCO taktowany z PLL, prescaler 3 - 50MHz */
+	RCC->CFGR = RCC_CFGR_MCO1PRE_2 | RCC_CFGR_MCO1PRE_0 | RCC_CFGR_MCO1;
+
+	/* Uruchamiamy HSE i czekamy na gotowosc */
+	RCC->CR |= RCC_CR_HSEON;
+	while (!(RCC->CR & RCC_CR_HSERDY));
+
+//		RCC->CR |= RCC_CR_HSION;
+//		while (!(RCC->CR & RCC_CR_HSIRDY))
+
+	/* Konfiguracja flasha */
+	FLASH->ACR = FLASH_ACR_ICEN |       /* instruction cache                   */
+			FLASH_ACR_DCEN |              /* data cache                          */
+			FLASH_ACR_PRFTEN |            /* prefetch enable                     */
+			FLASH_ACR_LATENCY_4WS;        /* 4 wait states                       */
+
+	/* Konfiguracja PLL HSE jako zrodlo PLL, ustawienie dzielnikow Q, M, N, P  */
+
+	RCC->PLLCFGR = (PLL_Q << 24) | RCC_PLLCFGR_PLLSRC_HSE |
+			(((PLL_P >> 1) - 1) << 16) | (PLL_N << 6) | PLL_M;
+
+	RCC->CR |= RCC_CR_PLLON;
+	while (!(RCC->CR & RCC_CR_PLLRDY))
+		;
+
+	/* PLL jak sygnal taktowania rdzenia, psk 2 dla APB2, psk 4 dla APB1 */
+	RCC->CFGR |= RCC_CFGR_PPRE1_DIV4 | RCC_CFGR_PPRE2_DIV2 | RCC_CFGR_SW_PLL;
+	while (!(RCC->CFGR & RCC_CFGR_SWS_PLL))
+		;
+
+	/* Inicjalizacja koprocesora FPU */
+	SCB->CPACR |= ((3 << 10*2)|(3 << 11*2));
 
 	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
@@ -539,6 +537,8 @@ void RCC_cfg(void)
 
 void NVIC_Config(void)
 {
+	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x00);
+
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
@@ -651,6 +651,7 @@ void GPIO_cfg(void)
 	GPIOB->MODER|=GPIO_MODER_MODER1_1;
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR1;
 	GPIO_PinAFConfig(GPIOB,GPIO_PinSource1,GPIO_AF_TIM3);
+	backlight(0);
 	//////////////////////////ON'y-PB9////////////////////////////////////
 	GPIOB->MODER|=GPIO_MODER_MODER9_0;
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR9_1;
@@ -705,6 +706,9 @@ void GPIO_cfg(void)
 	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR3;
 	GPIOE->PUPDR |=GPIO_PUPDR_PUPDR3_0;
 
+	GPIOG->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR14;
+	GPIOG->PUPDR |=GPIO_PUPDR_PUPDR14_0;
+
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR12;
 //	GPIOB->PUPDR |=GPIO_PUPDR_PUPDR12_1;
 	///////////////////////I2C//////////////////////////////////////////
@@ -756,7 +760,7 @@ void ADC1_Configuration(void)
 
   ADC_Init(ADC1, &ADC_InitStructure);
 
-  ADC_RegularChannelConfig(ADC1, ADC_Channel_9, 1, ADC_SampleTime_480Cycles);
+  ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_480Cycles);
 //  ADC_RegularChannelConfig(ADC1, ADC_Channel_16, 1, ADC_SampleTime_480Cycles);
   ADC_EOCOnEachRegularChannelCmd(ADC1, ENABLE);
 
@@ -941,11 +945,10 @@ void vApplicationMallocFailedHook( void )
   while (1)
   {
 //	  ili9320_String_lc("MALLOC FAILED",5,10,RED,BLACK,2);
-		if(wake)
-		{
-			CPU_OFF;
-			while(1);
-		}
+//		if(wake)
+//		{
+//			CPU_OFF;
+//		}
   }
 }
 void vApplicationIdleHook(void)
@@ -953,11 +956,11 @@ void vApplicationIdleHook(void)
 //	int i=0;
 	while(1)
 	{
-		if(wake)
-		{
-			CPU_OFF;
-			while(1);
-		}
+//		if(wake)
+//		{
+//			CPU_OFF;
+//		}
+
 
 //		vTaskDelay(10);
 //		i++;
@@ -980,4 +983,68 @@ void vApplicationIdleHook(void)
 
 
 
+//	  GUI_SelectLayer(1);
 
+//	  GUI_SelectLayer(0);
+
+//	    load_jpg(&fsrc,"0:papiez.jpg",aucLine,sizeof(aucLine));
+//	  	jpeg_create_decompress(&cinfo);
+//		cinfo.err = jpeg_std_error(&jerr);
+//	    f=f_open(&fsrc,"0:papiez.jpg", FA_READ | FA_OPEN_EXISTING );
+//	    jpeg_decode(&fsrc, 320, aucLine, 0);
+//	    jpeg_finish_decompress(&cinfo);
+//
+//	    f=f_open(&fsrc,"0:big.jpg", FA_READ | FA_OPEN_EXISTING );
+//	    jpeg_decode(&fsrc, 320, _aucLine, 0);
+//	    play_video("bird19.avi");
+//	    while(1)
+//	    {
+
+//		    f=f_open(&fsrc,"0:moje/car2.jpg", FA_READ | FA_OPEN_EXISTING );
+//			LCD_SetCursor(0,0);
+//			LCD_WriteIndex(R34);
+//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
+//		    f=f_open(&fsrc,"0:moje/car1.jpg", FA_READ | FA_OPEN_EXISTING );
+//			LCD_SetCursor(0,0);
+//			LCD_WriteIndex(R34);
+//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
+//		    f=f_open(&fsrc,"0:moje/car.jpg", FA_READ | FA_OPEN_EXISTING );
+//			LCD_SetCursor(0,0);
+//			LCD_WriteIndex(R34);
+//		    jpeg_decode(&fsrc, 320, _aucLine, 0);
+//	    }
+//
+
+
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
+//	 RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
+//	 RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+//	   GPIO_InitTypeDef GPIO_InitStructure;
+//	   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_All;
+//	   GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+//	   GPIO_Init(GPIOA, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOB, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOC, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOD, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOE, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOF, &GPIO_InitStructure);
+//	   GPIO_Init(GPIOG, &GPIO_InitStructure);
+//	  PWR_EnterSTOPMode(PWR_Regulator_LowPower, PWR_STOPEntry_WFI);
+
+//	  PWR_EnterSTANDBYMode();
+//	   __WFI();
+//	  LCD_String("blalal",100,100,1,RED,BLUE,2);
+//	  GPIO_WriteBit(CS_PORT,CS_PIN,!State);
+//	  GPIO_WriteBit(XDCS_PORT,XDCS_PIN,!State);
+//	  GPIO_WriteBit(CS_PORT,CS_PIN,!State);
+//	  while(1){};
+//
+//	  GUI_Init();
+//	  GUI_CURSOR_Show();
+//	  WM_MOTION_Enable(1);
+//	  play_video("avifiles/birds_small2.avi");

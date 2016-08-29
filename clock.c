@@ -23,18 +23,24 @@
 
 #include "DIALOG.h"
 #include "clock.h"
+#include "menu.h"
+#include "heading.h"
+//#include "Math64.c"
+
+extern volatile int sec;
+extern volatile int sec2;
 
 uint32_t auc[2048]__attribute((section(".ExRam")));
-
+extern const GUI_FONT GUI_FontAgencyFB120;
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { WINDOW_CreateIndirect, "clock", ID_WINDOW_0, 0, 0, 240, 320, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 10, 78, 84, 68, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 128, 81, 95, 66, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 102, 81, 23, 65, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "weekday", ID_TEXT_3, 15, 30, 129, 32, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "date", ID_TEXT_4, 155, 31, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 89, 159, 52, 37, 0, 0x64, 0 },
+  { WINDOW_CreateIndirect, "clock", ID_WINDOW_0, 0, 0, 320, 240, WM_CF_SHOW, 0x0, 0 },
+  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 43, 60, 95, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 178, 60, 95, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 150, 50, 10, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "weekday", ID_TEXT_3, 35, 30, 129, 32, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "date", ID_TEXT_4, 175, 31, 80, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 108, 170, 52, 37, 0, 0x64, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -58,55 +64,81 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   // USER START (Optionally insert additional variables)
   // USER END
 
-  switch (pMsg->MsgId) {
+  switch (pMsg->MsgId)
+  {
+  case WM_PAINT:
+  {
+	  RTC_TimeTypeDef time;
+	  RTC_GetTime(RTC_Format_BIN,&time);
+	  if(time.RTC_Hours>=6 && time.RTC_Hours<20)
+	  {
+		  taskENTER_CRITICAL();
+	//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
+		  LCD_BMP("0:dzien.bmp");
+		  taskEXIT_CRITICAL();
+	  }
+	  else
+	  {
+		  taskENTER_CRITICAL();
+	//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
+		  LCD_BMP("0:noc.bmp");
+		  taskEXIT_CRITICAL();
+	  }
+	  break;
+  }
   case WM_INIT_DIALOG:
     //
     // Initialization of 'clock'
     //
+	  taskENTER_CRITICAL();
+//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
+	  LCD_BMP("0:pcb.bmp");
+	  taskEXIT_CRITICAL();
+
     hItem = pMsg->hWin;
     WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
     //
     // Initialization of 'hours'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
-    TEXT_SetFont(hItem, GUI_FONT_D64);
-    TEXT_SetText(hItem, "21");
-    TEXT_SetTextColor(hItem, 0x000000FF);
+    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
+    TEXT_SetText(hItem, "");
+    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'minutes'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
-    TEXT_SetText(hItem, "37");
-    TEXT_SetFont(hItem, GUI_FONT_D64);
-    TEXT_SetTextColor(hItem, 0x000000FF);
+    TEXT_SetText(hItem, "");
+    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
+    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'Text'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
     TEXT_SetText(hItem, ":");
-    TEXT_SetFont(hItem, GUI_FONT_D48);
-    TEXT_SetTextColor(hItem, 0x000000FF);
+    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
+    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'weekday'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_3);
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "poniedzialek");
-    TEXT_SetTextColor(hItem, 0x00008000);
+    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'date'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "12.04");
-    TEXT_SetTextColor(hItem, 0x00008000);
+    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'seconds'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
     TEXT_SetFont(hItem, GUI_FONT_D32);
-    TEXT_SetText(hItem, "48");
-    TEXT_SetTextColor(hItem, 0x000000FF);
+    TEXT_SetText(hItem, "");
+    TEXT_SetTextColor(hItem, 0x001137db);
     // USER START (Optionally insert additional code for further widget initialization)
     // USER END
     break;
@@ -132,16 +164,18 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 WM_HWIN Createclock(void) {
   WM_HWIN hWin;
 
-  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_HBKWIN, 0, 0);
+  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog,WM_HBKWIN, 0, 0);
   return hWin;
 }
 
 void Clock( void * pvParameters)
 {
+	long int z=0;
 	WM_HWIN hWinclock;
+	GUI_PID_STATE stat;
 	hWinclock  = Createclock();
-	vTaskDelete(Menu_Handle);
-	vTaskDelete(Heading_Handle);
+	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
+	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
 	RTC_TimeTypeDef time;
 	GUI_SetOrientation(0);
 	FRESULT f=0;
@@ -150,41 +184,74 @@ void Clock( void * pvParameters)
 
 	while(1)
 	{
+		if(GUI_PID_IsPressed())
+		{
+			if(sec2>1000)
+			{
+				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
+				xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
+			}
+		}else
+		{
+			sec2=0;
+		}
+
 		if(vol_up)
 		{
 			  while(1){CPU_OFF;}
-			  delay(100);
 		}
 		else
 		{
 			  CPU_ON;
 		}
 		vTaskDelay(100);
+		char number[1];
 		RTC_GetTime(RTC_Format_BIN,&time);
 		WM_HWIN minutes = WM_GetDialogItem(hWinclock, ID_TEXT_1);
-		TEXT_SetText(minutes,itoa(time.RTC_Minutes,t,10));
+		sprintf(number,"%0.2d",time.RTC_Minutes);
+		TEXT_SetText(minutes,number);
 		WM_HWIN hours = WM_GetDialogItem(hWinclock, ID_TEXT_0);
-		TEXT_SetText(hours,itoa(time.RTC_Hours,t,10));
-		WM_HWIN seconds = WM_GetDialogItem(hWinclock, ID_TEXT_5);
-		TEXT_SetText(seconds,itoa(time.RTC_Seconds,t,10));
+		sprintf(number,"%0.2d",time.RTC_Hours);
+		TEXT_SetText(hours,number);
+		WM_HWIN dwu = WM_GetDialogItem(hWinclock, ID_TEXT_2);
+		if(time.RTC_Seconds%2==0)
+		{
 
-		if(time.RTC_Hours==21 && time.RTC_Minutes==37 && time.RTC_Seconds<4)
+			TEXT_SetText(dwu,"");
+		}
+		else
+		{
+			TEXT_SetText(dwu,":");
+		}
+//		WM_HWIN seconds = WM_GetDialogItem(hWinclock, ID_TEXT_5);
+//		sprintf(number,"%0.2d",time.RTC_Seconds);
+//		TEXT_SetText(seconds,number);
+
+		if(time.RTC_Hours==21 && time.RTC_Minutes==37 && time.RTC_Seconds<5)
 		{
 			taskENTER_CRITICAL();
+			bitmap_RGB("0:papa.rgb",0,0,226,320);
+			for(int l=0;l<0xfffff;l++){};
+		    taskEXIT_CRITICAL();
+		}
+
+//		else
+//		{
+//			WM_Paint(hWinclock);
+//		}
+
+	}
+}
+
+
+
+
+
+
+
 //			jpeg_create_decompress(&cinfo);
 //			cinfo.err = jpeg_std_error(&jerr);
 //		    f=f_open(&fsrc,"0:papiez.jpg", FA_READ | FA_OPEN_EXISTING );
 //		    jpeg_decode(&fsrc, 320, auc, 0);
 //		    jpeg_finish_decompress(&cinfo);
 //		    jpeg_destroy_decompress(&cinfo);
-			bitmap_RGB("0:papa.rgb",0,0,226,320);
-			for(int l=0;l<0xfffff;l++){};
-		    taskEXIT_CRITICAL();
-		}
-		else{
-			WM_Paint(hWinclock);
-
-		}
-
-	}
-}

@@ -208,8 +208,20 @@ static void SetSysClock(void);
   * @param  None
   * @retval None
   */
+
+void (*SysMemBootJump)(void);
+
 void SystemInit(void)
 {
+	if ( *((unsigned long *)0x2000FFF0) == 0xDEADBEEF )
+	{
+	       *((unsigned long *)0x2000FFF0) =  0xCAFEFEED; // Reset our trigger
+	      __set_MSP(0x20002250);
+	                                                     // 0x1fffC800 is "System Memory" start address for STM32 F0xx
+	      SysMemBootJump = (void (*)(void)) (*((uint32_t *) 0x1fff0004)); // Point the PC to the System Memory reset vector (+4)
+	      SysMemBootJump();
+	      while (1);
+	  }
   /* FPU settings ------------------------------------------------------------*/
   #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
     SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */

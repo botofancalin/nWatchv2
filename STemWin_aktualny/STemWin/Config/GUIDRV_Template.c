@@ -59,6 +59,7 @@ Purpose     : Template driver, could be used as starting point for new
 #include "LCD_ConfDefaults.h"
 #include "LCD_6300.h"
 #include "ili9320.h"
+#include "stm32f4xx_iwdg.h"
 
 /*********************************************************************
 *
@@ -160,6 +161,7 @@ static void _SetPixelIndex(GUI_DEVICE * pDevice, int x, int y, int PixelIndex) {
     	int g = ( PixelIndex & 0x07e0 ) << 5;
     	int b = ( PixelIndex & 0x001f ) << 3;
     	LCD_pixel(x,y,r|g|b); //nokia
+    	IWDG_ReloadCounter();
 //    	LCD_pixel(x,y,PixelIndex);
 //    	ili9320_Pixel(x,y,PixelIndex); //ili9320
     }

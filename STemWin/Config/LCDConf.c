@@ -64,8 +64,8 @@ Purpose     : Display controller configuration (single layer)
 //
 // Physical display size
 //
-#define XSIZE_PHYS  240 // To be adapted to x-screen size
-#define YSIZE_PHYS  320 // To be adapted to y-screen size
+#define XSIZE_PHYS  320 // To be adapted to x-screen size
+#define YSIZE_PHYS  240 // To be adapted to y-screen size
 #define LCD_BITSPERPIXEL 16
 
 /*********************************************************************
@@ -172,7 +172,7 @@ void LCD_X_Config(void) {
   //
   LCD_SetSizeEx (0, XSIZE_PHYS , YSIZE_PHYS);
 //  LCD_SetVSizeEx(0, VXSIZE_PHYS, VYSIZE_PHYS);
-  LCD_SetVSizeEx(0, 240, 320);
+  LCD_SetVSizeEx(0, 320, 240);
   //
   // Orientation
   //
@@ -217,6 +217,9 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
     // to be adapted by the customer...
     //
     // ...
+
+	  LCD_init();
+
     return 0;
   }
   default:

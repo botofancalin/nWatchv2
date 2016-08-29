@@ -31,7 +31,7 @@
 
 /* Includes ------------------------------------------------------------------*/
  #include "usb_conf.h"
-
+#include "stm32f4xx.h"
 
 /** @addtogroup USB_OTG_DRIVER
   * @{

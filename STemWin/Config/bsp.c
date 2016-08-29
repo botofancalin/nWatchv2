@@ -39,7 +39,7 @@
 /* Private function prototypes -----------------------------------------------*/
 static uint32_t BSP_TSC_Init(void);
 /* Private functions ---------------------------------------------------------*/
-u8 _acBuffer[8192]__attribute((section(".ExRam")));;
+u8 _acBuffer[8192];//__attribute((section(".ExRam")));;
 FIL pFile;
 int lastyyy=0;
 int prev;
@@ -51,6 +51,14 @@ uint32_t BSP_Initt (void)
   return 0;
 }
 
+void LCD_BMP( char *sc)
+{
+	  if(f_open(&pFile, sc , FA_READ | FA_OPEN_EXISTING)==FR_OK)
+	  {
+		 GUI_BMP_DrawEx(APP_GetData, &pFile, 0, 0);
+	  }
+	  f_close(&pFile);
+}
 
 
 int APP_GetData(void * p, const U8 * * ppData, unsigned NumBytesReq, U32 Off)

@@ -68,7 +68,7 @@ void stmpe811_init(void)
 	   I2C_Write_Byte (0x4B,  0x01);
 	   I2C_Write_Byte (0x4B,  0x00);
 
-	   I2C_Write_Byte(0x56,  0x07);////0x07
+	   I2C_Write_Byte(0x56,  0x04);////0x07
 	   I2C_Write_Byte(0x58,  0x01);
 	   I2C_Write_Byte(0x40,  0x03);////0x01
 	   I2C_Write_Byte(0x0B,  0xFF);
@@ -364,13 +364,13 @@ u8 touch_reg(touch *pressed)
 		prevx=pressed->x;
 		prevy=pressed->y;
 
-		pressed->y=((ya-600)*320)/(3200); ///TP_Y=((TP_Y-CAL_Y_0)*320)/(CAL_Y-CAL_Y_0);
-		pressed->x=((xa-450)*240)/(3000); ///TP_X=((TP_X-511)*240)/(CAL_X_0-CAL_X);
-		pressed->x=240-pressed->x;
-		pressed->y=320-pressed->y;
+//		pressed->y=((ya-600)*320)/(3200); ///TP_Y=((TP_Y-CAL_Y_0)*320)/(CAL_Y-CAL_Y_0);
+//		pressed->x=((xa-450)*240)/(3000); ///TP_X=((TP_X-511)*240)/(CAL_X_0-CAL_X);
+//		pressed->x=240-pressed->x;
+//		pressed->y=320-pressed->y;
 
-//		pressed->y=((ya-450)*240)/(3000); ///TP_Y=((TP_Y-CAL_Y_0)*320)/(CAL_Y-CAL_Y_0);
-//		pressed->x=((xa-600)*320)/(3200); ///TP_X=((TP_X-511)*240)/(CAL_X_0-CAL_X);
+		pressed->x=((ya-450)*240)/(3000); ///TP_Y=((TP_Y-CAL_Y_0)*320)/(CAL_Y-CAL_Y_0);
+		pressed->y=((xa-600)*320)/(3200); ///TP_X=((TP_X-511)*240)/(CAL_X_0-CAL_X);
 //		pressed->y=240-pressed->y;
 
 

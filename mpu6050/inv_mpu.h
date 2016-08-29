@@ -56,6 +56,8 @@ struct int_param_s
 #define MPU_INT_STATUS_DMP_4            (0x1000)
 #define MPU_INT_STATUS_DMP_5            (0x2000)
 
+void motion_init(void);
+
 /* Set up APIs */
 uint8_t mpu_init(struct int_param_s *int_param);
 uint8_t mpu_set_bypass(uint8_t bypass_on);

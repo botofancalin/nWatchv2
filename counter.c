@@ -23,32 +23,14 @@
 
 #include "DIALOG.h"
 #include "counter.h"
+#include "clock.h"
+#include "menu.h"
+#include "heading.h"
 
-/*********************************************************************
-*
-*       Defines
-*
-**********************************************************************
-*/
+extern volatile int sec;
+extern volatile int sec2;
 
 
-// USER START (Optionally insert additional defines)
-// USER END
-
-/*********************************************************************
-*
-*       Static data
-*
-**********************************************************************
-*/
-
-// USER START (Optionally insert additional static data)
-// USER END
-
-/*********************************************************************
-*
-*       _aDialogCreate
-*/
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] =
 {
 		  { FRAMEWIN_CreateIndirect, "counter", ID_FRAMEWIN_0, 0, 0, 240, 320, 0, 0x0, 0 },
@@ -187,12 +169,10 @@ void Counter( void * pvParameters)
 {
 	WM_HWIN hWincounter;
 	hWincounter  = Createcounter();
-
-	vTaskDelete(Menu_Handle);
-	vTaskDelete(Heading_Handle);
+	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
+	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
 	GUI_SetOrientation(0);
 	int i=0;
-
 
 	WM_HWIN hGraph;
 
@@ -200,14 +180,23 @@ void Counter( void * pvParameters)
 	_ahData = GRAPH_DATA_YT_Create(GUI_BLUE, 500 , 0, 0);
 	GRAPH_AttachData(hGraph, _ahData);
 
-
-
 	while(1)
 	{
+		if(GUI_PID_IsPressed())
+		{
+			if(sec2>1000)
+			{
+				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
+				xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
+			}
+		}else
+		{
+			sec2=0;
+		}
+
 		if(vol_up)
 		{
 			  while(1){CPU_OFF;}
-			  delay(100);
 		}
 		else
 		{

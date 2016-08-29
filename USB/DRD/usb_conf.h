@@ -29,10 +29,12 @@
 #ifndef __USB_CONF__H__
 #define __USB_CONF__H__
 
+#define USE_STM32F4_DISCOVERY
+
 /* Includes ------------------------------------------------------------------*/
 #if defined (USE_STM32F4_DISCOVERY)
- #include "stm32f4_discovery.h"
- #include "stm32f4_discovery_sdio_sd.h"
+ #include "sdio_stm32f4.h"
+// #include "fatfs_sd_sdio.h"
 #elif defined (USE_STM322xG_EVAL)
  #include "stm322xg_eval.h"
  #include "stm322xg_eval_lcd.h"
@@ -83,7 +85,7 @@
 *  when FS core is used.
 *******************************************************************************/
 #ifndef USE_USB_OTG_FS
- #define USE_USB_OTG_FS
+#define USE_USB_OTG_FS
 #endif /* USE_USB_OTG_FS */
 
 #ifdef USE_USB_OTG_FS
@@ -196,7 +198,7 @@
 #endif
 
 /****************** USB OTG MISC CONFIGURATION ********************************/
-#define VBUS_SENSING_ENABLED
+//#define VBUS_SENSING_ENABLED
 
 /****************** USB OTG MODE CONFIGURATION ********************************/
 #define USE_HOST_MODE

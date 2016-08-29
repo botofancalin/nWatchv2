@@ -1479,7 +1479,17 @@ static void _cbMenu(WM_MESSAGE * pMsg)
     	}
     	else if(a==7)
     	{
-    		xTaskCreate(Clock,(char const*)"Clock",4096,NULL,tskIDLE_PRIORITY + 6,&Clock_Handle);
+    		xTaskCreate(Clock,(char const*)"Clock",512,NULL,tskIDLE_PRIORITY + 6,&Clock_Handle);
+    	}
+    	else if(a==8)
+    	{
+//    	    RTC_TimeTypeDef RTC_TimeStructure;
+//            RTC_TimeStructure.RTC_Seconds = 0;
+//            RTC_TimeStructure.RTC_Minutes = 1;
+//            RTC_TimeStructure.RTC_Hours = 13;
+//            RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
+//            RTC_SetTime(RTC_Format_BIN,&RTC_TimeStructure);
+    		dfu_run_bootloader();
     	}
         IsPressed = 0;
       }
@@ -1555,10 +1565,18 @@ void Menu(void *pvParameters)
 	  WM_HWIN hWinMenu;     // Menu window moveable within viewport window
 	  WM_HWIN hWinBase;
 
-//	  xSize = LCD_GetXSize();
-//	  ySize = LCD_GetYSize();
-	  xSize=240;
-	  ySize=320;
+	 if( Clock_Handle != NULL )
+	 {
+		 vTaskDelete(Clock_Handle);
+	 }
+	 if( Counter_Handle != NULL )
+	 {
+		 vTaskDelete(Counter_Handle);
+	 }
+	  xSize = LCD_GetXSize();
+	  ySize = LCD_GetYSize();
+//	  xSize=240;
+//	  ySize=320;
 	  WM_SetSize(WM_HBKWIN, xSize, ySize);
 	  WM_HWIN hButton;
 

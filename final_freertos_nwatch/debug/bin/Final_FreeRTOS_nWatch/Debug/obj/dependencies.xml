@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dependencies>
-   <includePath signature="/I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_boot /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\sram /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\mpu6050 /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\inc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\libjpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\ff /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\elements /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\nokia_LCD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\jpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\ConfigurationTemplate /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\DRD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\Include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\NucleoF401-USB-HOST-DEVICE-master /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC\ARM_CM4F /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\touch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC">
+   <includePath signature="/I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_boot /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\sram /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\mpu6050 /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\OTG_driver /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\DRD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\inc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\DEVICE_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\libjpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\ff /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\elements /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\HOST_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\nokia_LCD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\jpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\ConfigurationTemplate /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\Include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC\ARM_CM4F /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\touch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC">
       <source file="..\..\..\..\..\..\jpeg\bsp_jpg.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -16,6 +16,14 @@
       <source file="..\..\..\..\..\..\libjpeg\jdtrans.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
       </source>
       <source file="..\..\..\..\..\..\jpeg\bsp_jpg.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\jpeg\bsp_jpg.h"/>
@@ -42,9 +50,6 @@
       </source>
       <source file="..\..\..\..\..\..\cmsis\core_cmInstr.h" lastModified="1524d54c860">
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-      </source>
       <source file="..\..\..\..\..\..\libjpeg\jdapistd.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
@@ -57,11 +62,6 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\elements\textbox.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -77,16 +77,24 @@
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbd_desc.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
+      </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\projdefs.h" lastModified="1524d54c090">
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdmerge.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h"/>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbd_desc.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_desc.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_regs.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelHooks.h" lastModified="1524d54c090">
       </source>
@@ -94,11 +102,14 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_ConfDefaults.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\Global.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_mem.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\CHOOSECOLOR.h" lastModified="14e91698300">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\misc.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
@@ -106,15 +117,15 @@
       <source file="..\..\..\..\..\..\counter.h" lastModified="15322fa6ab0">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_mem.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.h"/>
+      <source file="..\..\..\..\..\..\USB\DRD\usbd_usr.c" lastModified="151716c9ff8">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h"/>
       </source>
-      <source file="..\..\..\..\..\..\counter.c" lastModified="1568829a891">
+      <source file="..\..\..\..\..\..\counter.c" lastModified="156d56a8c85">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\counter.h"/>
+         <include file="..\..\..\..\..\..\clock.h"/>
+         <include file="..\..\..\..\..\..\menu.h"/>
+         <include file="..\..\..\..\..\..\heading.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jutils.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -134,7 +145,13 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_hcs.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\jversion.h" lastModified="1524d54c090">
+      </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_hcs.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_hcs.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\croutine.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -173,13 +190,14 @@
       </source>
       <source file="..\..\..\..\..\..\STemWin\Config\GUIConf.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="1524d54e7a0">
+      <source file="..\..\..\..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="1524d54e3b8">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_flash.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h"/>
@@ -192,23 +210,6 @@
       </source>
       <source file="..\..\..\..\..\..\ff\integer.h" lastModified="1524d54c860">
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h" lastModified="14f4007b0d0">
-         <include file="..\..\..\..\..\..\ff\sdio_stm32f4.h"/>
-         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h"/>
-      </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcHardwarePort.h" lastModified="1524d54d800">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\ConfigurationTemplate\trcConfig.h"/>
       </source>
@@ -216,12 +217,16 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_regs.h"/>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbh_conf.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbh_msc_usr.h" lastModified="151716c9ff8">
+         <include file="..\..\..\..\..\..\ff\ff.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jmemsys.h" lastModified="1524d54c478">
       </source>
@@ -229,11 +234,24 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\mp3.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_hcs.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbh_msc_usr.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbh_msc_usr.c" lastModified="151716c9ff8">
+         <include file="..\..\..\..\..\..\USB\DRD\usbh_msc_usr.h"/>
+         <include file="..\..\..\..\..\..\ff\ff.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\jccoefct.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.h" lastModified="1524d54c860">
+      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.h" lastModified="156d09f2dce">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\ff\diskio.h"/>
       </source>
@@ -246,6 +264,9 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_sdio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_mem.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\SLIDER.h" lastModified="14e91698300">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -263,17 +284,20 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usb_bsp.c" lastModified="156d200320c">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Debug.h" lastModified="14e916986e8">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
       </source>
-      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.h" lastModified="156a33d2c0c">
+      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.h" lastModified="156adba26ad">
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_regs.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_defines.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.c" lastModified="156a478bed6">
+      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.c" lastModified="156d77d9dc5">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
@@ -282,22 +306,12 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
          <include file="..\..\..\..\..\..\mpu6050\inv_mpu.h"/>
+         <include file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\itoa.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\..\..\..\MPU5060.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_msc_usr.h" lastModified="14a0f652ea8">
-         <include file="..\..\..\..\..\..\ff\ff.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_msc_usr.c" lastModified="14a0f652ea8">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_msc_usr.h"/>
-         <include file="..\..\..\..\..\..\ff\ff.h"/>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_otg.h" lastModified="151716c9c10">
       </source>
       <source file="..\..\..\..\..\..\sram\sram.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -309,8 +323,17 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
       </source>
-      <source file="..\..\..\..\..\..\sram\sram.c" lastModified="15689fe991d">
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_otg.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_defines.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_regs.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_otg.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\sram\sram.c" lastModified="156d636e9db">
          <include file="..\..\..\..\..\..\sram\sram.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_data.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -350,15 +373,8 @@
       </source>
       <source file="..\..\..\..\..\..\cmsis\core_cm4_simd.h" lastModified="1524d54c860">
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_data.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_data.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_data.h"/>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_data.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_data.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h" lastModified="14e9169b1e0">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM_Intern.h"/>
@@ -370,6 +386,11 @@
       </source>
       <source file="..\..\..\..\..\..\MPU5060.h" lastModified="1569a5582f7">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\explorer.h" lastModified="1524d54c090">
       </source>
@@ -388,6 +409,13 @@
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernel.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
+      </source>
       <source file="..\..\..\..\..\..\explorer.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
@@ -400,14 +428,17 @@
          <include file="..\..\..\..\..\..\explorer.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
          <include file="..\..\..\..\..\..\elements\textbox.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_usr.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_desc.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jaricom.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\FRAMEWIN.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -426,18 +457,22 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\StackMacros.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
+      </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\RVDS\ARM_CM3\portmacro.h" lastModified="1524d54c090">
       </source>
       <source file="..\..\..\..\..\..\nokia_LCD\itoa.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\bsp.h" lastModified="156a858dabe">
+      <source file="..\..\..\..\..\..\STemWin\Config\bsp.h" lastModified="156d6686067">
          <include file="..\..\..\..\..\..\STemWin\Config\global_includes.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
+         <include file="..\..\..\..\..\..\ff\ff.h"/>
       </source>
       <source file="..\..\..\..\..\..\nokia_LCD\itoa.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\nokia_LCD\itoa.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="156a85a2678">
+      <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="156d6686040">
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
@@ -445,21 +480,27 @@
          <include file="..\..\..\..\..\..\ili9320.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LISTVIEW.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\ICONVIEW.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\HEADER.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h"/>
+      </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\croutine.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\list.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\ConfigurationTemplate\trcConfig.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_regs.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
       </source>
       <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h" lastModified="1531e55ba00">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -472,13 +513,7 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="156aabdd5b6">
+      <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="156d636e976">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
@@ -489,9 +524,6 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h"/>
-      </source>
       <source file="..\..\..\..\..\..\STemWin\Config\GUI_X_FreeRTOS.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -499,21 +531,15 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\semphr.h"/>
       </source>
+      <source file="..\..\..\..\..\..\AgencyFB120.c" lastModified="156d7e9f5c2">
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_ConfDefaults.h" lastModified="14e9169b1e0">
          <include file="..\..\..\..\..\..\STemWin\Config\GUIConf.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jcsample.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h" lastModified="14a0f652ac0">
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_Private.h" lastModified="14e9169b1e0">
          <include file="..\..\..\..\..\..\STemWin\Config\LCDConf.h"/>
@@ -551,13 +577,22 @@
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_ConfDefaults.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin\Config\LCDConf.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\LCDConf.c" lastModified="15679cfac0e">
+      <source file="..\..\..\..\..\..\STemWin\Config\LCDConf.c" lastModified="156d54bf344">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\GUIDRV_Template.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_regs.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_defines.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcHardwarePort.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcHardwarePort.h"/>
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_core.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdinput.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -579,6 +614,8 @@
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcKernelPortFreeRTOS.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbh_conf.h" lastModified="151716c9c10">
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdmarker.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -605,9 +642,6 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\manager.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\SIMConf.c" lastModified="14e91692d10">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_SIM.h"/>
       </source>
@@ -622,21 +656,12 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_mem.h"/>
-      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\MULTIEDIT.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h" lastModified="15324dfebc0">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\list.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
       </source>
       <source file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.h" lastModified="156a03de6ba">
       </source>
@@ -648,9 +673,6 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\queue.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\croutine.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\ICONVIEW.h" lastModified="14e9169b1e0">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -672,13 +694,22 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_sdio.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\jcinit.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_regs.h" lastModified="14f3bf42c30">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usbd_storage_msd.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_mem.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -695,21 +726,11 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_conf.h" lastModified="14a0f652ac0">
-      </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_syscfg.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdct.h" lastModified="1524d54c090">
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_bsp.c" lastModified="14f3c6842f0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_spi.h"/>
@@ -719,13 +740,31 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.c" lastModified="15680e956a6">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_req.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_desc.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LISTWHEEL.h" lastModified="14e91698300">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_defines.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h"/>
@@ -735,15 +774,11 @@
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h"/>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jconfig.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\ff.h"/>
@@ -755,28 +790,17 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_defines.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.h"/>
-      </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcBase.c" lastModified="1524d54c860">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcBase.h"/>
       </source>
       <source file="..\..\..\..\..\..\heading.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.h"/>
-      </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\heading.c" lastModified="1568578e6b6">
+      <source file="..\..\..\..\..\..\heading.c" lastModified="156d34d1060">
          <include file="..\..\..\..\..\..\heading.h"/>
          <include file="..\..\..\..\..\..\menu.h"/>
       </source>
@@ -796,16 +820,19 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
+      <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="156af63b199">
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM_Intern.h" lastModified="14e91698300">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Private.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h"/>
       </source>
       <source file="..\..\..\..\..\..\ff\ff.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\integer.h"/>
@@ -819,6 +846,20 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DRD\usb_conf.h" lastModified="156d1619142">
+         <include file="..\..\..\..\..\..\ff\sdio_stm32f4.h"/>
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_hcs.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h"/>
+      </source>
       <source file="..\..\..\..\..\..\ff\ff.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\ff\ff.h"/>
          <include file="..\..\..\..\..\..\ff\diskio.h"/>
@@ -830,25 +871,17 @@
       <source file="..\..\..\..\..\..\clock.h" lastModified="156881a9068">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\clock.c" lastModified="1568f4ee8a4">
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\clock.c" lastModified="156d8021733">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\clock.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\menu.h"/>
+         <include file="..\..\..\..\..\..\heading.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jcapistd.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -856,9 +889,6 @@
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\event_groups.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_usr.c" lastModified="14a0f652ea8">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_usr.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -925,22 +955,14 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\queue.h" lastModified="1524d54c090">
       </source>
       <source file="..\..\..\..\..\..\list1.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_req.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
       </source>
       <source file="..\..\..\..\..\..\list1.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -956,12 +978,18 @@
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+      </source>
       <source file="..\..\..\..\..\..\mpu6050\dmpmap.h" lastModified="14bbdd77120">
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_conf.h"/>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM_GUI.h" lastModified="14e91699a70">
       </source>
@@ -969,15 +997,6 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\projdefs.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\portable.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_bsp.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_hcs.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbh_msc_usr.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_fsmc.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
@@ -991,7 +1010,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
-      <source file="..\..\..\..\..\..\menu.c" lastModified="156aab3f7e1">
+      <source file="..\..\..\..\..\..\menu.c" lastModified="156d5d11e4e">
          <include file="..\..\..\..\..\..\menu.h"/>
          <include file="..\..\..\..\..\..\mp3.h"/>
          <include file="..\..\..\..\..\..\counter.h"/>
@@ -1018,6 +1037,10 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Debug.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_regs.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\jfdctflt.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
@@ -1028,9 +1051,18 @@
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Version.h" lastModified="14e9169b1e0">
       </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\main.h" lastModified="1524d54c860">
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\decode.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jcapimin.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -1039,10 +1071,17 @@
       <source file="..\..\..\..\..\..\STemWin\OS\GUI_X.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
       </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_scsi.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_def.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_ioreq.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_mem.h"/>
+      </source>
       <source file="..\..\..\..\..\..\ff\diskio.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\integer.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_otg.h" lastModified="14a0f652ac0">
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\CHECKBOX.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -1052,11 +1091,11 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h" lastModified="15676bd2b1e">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_otg.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_defines.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_regs.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_otg.h"/>
+      <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_scsi.c" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_scsi.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_mem.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_data.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_rng.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h"/>
@@ -1070,19 +1109,10 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_scsi.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-      </source>
       <source file="..\..\..\..\..\..\libjpeg\jmorecfg.h" lastModified="1531e3cbb90">
       </source>
       <source file="..\..\..\..\..\..\ili9320.h" lastModified="155e3b3d6e4">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_scsi.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_mem.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_data.h"/>
       </source>
       <source file="..\..\..\..\..\..\ili9320.c" lastModified="155e4e0eb3d">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
@@ -1099,16 +1129,19 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_flash.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
+      <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h" lastModified="156af63b177">
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcTypes.h" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\ConfigurationTemplate\trcConfig.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis\core_cm4.h" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\cmsis\core_cmInstr.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cmFunc.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4_simd.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_defines.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcKernel.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernel.h"/>
@@ -1130,36 +1163,28 @@
       <source file="..\..\..\..\..\..\vs1003.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\vs1003.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_usr.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_defines.h" lastModified="14f3c4c75c0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-      </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h" lastModified="1524d54c090">
+      </source>
+      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h" lastModified="15689e6276a">
+         <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jddctmgr.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jdct.h"/>
       </source>
-      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h" lastModified="15689e6276a">
-         <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_mem.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_def.h"/>
-      </source>
       <source file="..\..\..\..\..\..\elements\button.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.c" lastModified="15685761ccf">
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.c" lastModified="156af755293">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_Private.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Private.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_ConfDefaults.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h"/>
          <include file="..\..\..\..\..\..\ili9320.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jerror.h" lastModified="1524d54c090">
       </source>
@@ -1186,7 +1211,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
       </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1531a36cb80">
+      <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="156c43b3c28">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\decode.h" lastModified="1531e158480">
@@ -1230,6 +1255,9 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
+      <source file="..\..\..\..\..\..\Math64.c" lastModified="156d7d16aa0">
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
+      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
       </source>
@@ -1243,11 +1271,6 @@
       <source file="..\..\..\..\..\..\ff\ccsbcs.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\ff.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_storage_msd.c" lastModified="14f401341c0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_mem.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
-      </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcUser.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
       </source>
@@ -1256,6 +1279,10 @@
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\StackMacros.h" lastModified="1524d54c090">
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_regs.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -1270,19 +1297,11 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_stdreq.h"/>
+      <source file="..\..\..\..\..\..\USB\DRD\usbd_conf.h" lastModified="156d176d4af">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\touch\stmpe811.h" lastModified="15697b5c2ae">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_scsi.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_msc_bot.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_spi.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -1293,7 +1312,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Debug.h"/>
       </source>
-      <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="1569a5903e6">
+      <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="156d3bf6f2a">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
@@ -1317,10 +1336,10 @@
       </source>
       <source file="..\..\..\..\..\..\main.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="156a8340a67">
+      <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="156d62d3d10">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\main.c" lastModified="156aada753f">
+      <source file="..\..\..\..\..\..\main.c" lastModified="156d65910fd">
          <include file="..\..\..\..\..\..\main.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
@@ -1338,23 +1357,25 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rtc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_adc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\decode.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
          <include file="..\..\..\..\..\..\jpeg\tjpgd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_usr.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_desc.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\BUTTON.h"/>
          <include file="..\..\..\..\..\..\list1.h"/>
          <include file="..\..\..\..\..\..\elements\textbox.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
          <include file="..\..\..\..\..\..\explorer.h"/>
+         <include file="..\..\..\..\..\..\clock.h"/>
          <include file="..\..\..\..\..\..\sram\sram.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
-         <include file="..\..\..\..\..\..\STemWin\Config\GUIDRV_Template.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h"/>
          <include file="..\..\..\..\..\..\MPU5060.h"/>
          <include file="..\..\..\..\..\..\mpu6050\inv_mpu.h"/>
          <include file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.h"/>
@@ -1368,8 +1389,9 @@
          <include file="..\..\..\..\..\..\heading.h"/>
          <include file="..\..\..\..\..\..\menu.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h"/>
+         <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\global_inc.h" lastModified="156a853dc47">
+      <source file="..\..\..\..\..\..\global_inc.h" lastModified="156d17f1f70">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
@@ -1388,10 +1410,10 @@
          <include file="..\..\..\..\..\..\libjpeg\decode.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
          <include file="..\..\..\..\..\..\jpeg\tjpgd.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_msc_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_usr.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usbd_desc.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usbd_desc.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\BUTTON.h"/>
          <include file="..\..\..\..\..\..\list1.h"/>
@@ -1400,7 +1422,7 @@
          <include file="..\..\..\..\..\..\explorer.h"/>
          <include file="..\..\..\..\..\..\sram\sram.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
-         <include file="..\..\..\..\..\..\STemWin\Config\GUIDRV_Template.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h"/>
          <include file="..\..\..\..\..\..\MPU5060.h"/>
          <include file="..\..\..\..\..\..\vs1003.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -1415,7 +1437,7 @@
       </source>
       <source file="..\..\..\..\..\..\stm32f4xx_it.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jcmarker.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -1424,24 +1446,26 @@
       <source file="..\..\..\..\..\..\jpeg\tjpgd.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\integer.h"/>
       </source>
-      <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="156a748d830">
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h" lastModified="14e91699a70">
+      </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h" lastModified="151716c9c10">
+      </source>
+      <source file="..\..\..\..\..\..\global_inc.c" lastModified="156d5e6a38e">
+         <include file="..\..\..\..\..\..\global_inc.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="156d04d0043">
          <include file="..\..\..\..\..\..\stm32f4xx_it.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DEVICE_lib\usbd_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_hcd_int.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\OTG_driver\usb_dcd_int.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
       <source file="..\..\..\..\..\..\jpeg\tjpgd.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\jpeg\tjpgd.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\DRD\usb_conf.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_core.h"/>
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_def.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdatadst.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -1450,9 +1474,6 @@
       </source>
       <source file="..\..\..\..\..\..\elements\list1.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.c" lastModified="14a0f652ac0">
-         <include file="..\..\..\..\..\..\..\NucleoF401-USB-HOST-DEVICE-master\USB\HOST_lib\usbh_ioreq.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -1466,6 +1487,15 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jdct.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
+         <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
       </source>
    </includePath>
 </dependencies>
