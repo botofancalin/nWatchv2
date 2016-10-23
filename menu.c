@@ -2,6 +2,9 @@
 #include "mp3.h"
 #include "counter.h"
 #include "clock.h"
+#include "notepad.h"
+#include "global_inc.h"
+#include "calc.h"
 
 #define RECOMMENDED_MEMORY (1024L * 200)
 
@@ -1346,7 +1349,7 @@ const struct MENU_ITEM {
   const GUI_BITMAP * pBm;
   const char * pText;
 } _aMenu[] = {
-  { 0x552dff, &bm0, "Passcode" },
+  { 0x552dff, &bm0, "Calculator" },
   { 0x552dff, &bm1, "Mail" },
   { 0x552dff, &bm9, "Music" },
   { 0x938e8e, &bm3, "Counter" },
@@ -1401,8 +1404,9 @@ static int _ButtonSkin(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
     //
     // Draw background color depending on state
     //
+
     if (IsPressed) {
-      Color = 0xCCCCCC;
+      Color = 0x00aaaaaa;
     } else {
       Color = GUI_WHITE;
     }
@@ -1412,25 +1416,25 @@ static int _ButtonSkin(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
     // Draw antialiased rounded rectangle as background for image
     //
 //    GUI_SetColor(_aMenu[Index].Color);
-    GUI_SetColor(GUI_RED);
-    GUI_FillRoundedRect(15, 40, 47 + 15, 47 + 40, 12);
+//    GUI_SetColor(GUI_RED);
+//    GUI_FillRoundedRect(15, 30, 47 + 15, 47 + 40, 12);
     //
     // Draw compressed alpha bitmap
     //
-    GUI_SetColor(GUI_WHITE);
-    GUI_DrawBitmap(_aMenu[Index].pBm, 23, 48);
+//    GUI_SetColor(GUI_WHITE);
+//    GUI_DrawBitmap(_aMenu[Index].pBm, 23, 48);
     //
     // Draw button text
     //
     GUI_SetColor(GUI_BLACK);
-    GUI_SetFont(&GUI_FontComic24B_ASCII);
-    GUI_SetTextAlign( GUI_TA_RIGHT|GUI_TA_HCENTER);
-    GUI_DispStringAt(_aMenu[Index].pText, 90, 30);
+    GUI_SetFont(&GUI_Font32B_ASCII);
+    GUI_SetTextAlign( GUI_TA_HCENTER);
+    GUI_DispStringAt(_aMenu[Index].pText, 160, 11);
     //
     // Draw small separator line
     //
     GUI_SetColor(0xFFFFFF);
-    GUI_DrawHLine(ySize - 1, 240, xSize - 1);
+    GUI_DrawHLine(ySize - 1, 320, xSize - 1);
     //
     // Draw arrow at the right
     //
@@ -1466,37 +1470,53 @@ static void _cbMenu(WM_MESSAGE * pMsg)
 
     	if(a==1)
     	{
-    		xTaskCreate(Manager,(char const*)"Manager",512,NULL,tskIDLE_PRIORITY + 6,&Manager_Handle);
+    		xTaskCreate(Manager,(char const*)"Manager",512,NULL,tskIDLE_PRIORITY + 7,&Manager_Handle);
+    	}
+    	else if(a==0)
+    	{
+    		xTaskCreate(Calc,(char const*)"Calc",4096,NULL,tskIDLE_PRIORITY + 6,&Calc_Handle);
     	}
     	else if(a==2)
     	{
-    		xTaskCreate(MP3_player,(char const*)"MP3_player",512,NULL,tskIDLE_PRIORITY + 6,&MP3_Handle);
+    		xTaskCreate(MP3_player,(char const*)"MP3_player",1024,NULL,tskIDLE_PRIORITY + 6,&MP3_Handle);
     	}
     	else if(a==3)
     	{
 //    		vTraceStart();
-    		xTaskCreate(Counter,(char const*)"Counter",512,NULL,tskIDLE_PRIORITY + 6,&Counter_Handle);
+    		xTaskCreate(Counter,(char const*)"Counter",512,NULL,tskIDLE_PRIORITY + 7,&Counter_Handle);
+    	}
+    	else if(a==4)
+    	{
+//    		vTraceStart();
+    		xTaskCreate(Notepad,(char const*)"Notepad",1024,NULL,tskIDLE_PRIORITY + 7,&Notepad_Handle);
     	}
     	else if(a==7)
     	{
-    		xTaskCreate(Clock,(char const*)"Clock",512,NULL,tskIDLE_PRIORITY + 6,&Clock_Handle);
+    		xTaskCreate(Clock,(char const*)"Clock",1024,NULL,tskIDLE_PRIORITY + 7,&Clock_Handle);
     	}
     	else if(a==8)
     	{
+//  		  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
+//  		  while(!wake)
+//  		  {
+//  			  sec=0;
+//  			  CPU_ON;
+//  			  IWDG_ReloadCounter();
+//  		  };
 //    	    RTC_TimeTypeDef RTC_TimeStructure;
 //            RTC_TimeStructure.RTC_Seconds = 0;
 //            RTC_TimeStructure.RTC_Minutes = 1;
 //            RTC_TimeStructure.RTC_Hours = 13;
 //            RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
 //            RTC_SetTime(RTC_Format_BIN,&RTC_TimeStructure);
-    		dfu_run_bootloader();
+//    		dfu_run_bootloader();
     	}
         IsPressed = 0;
       }
 
       break;
     case WM_NOTIFICATION_MOVED_OUT:
-        IsPressed = 0;
+//        IsPressed = 0;
       break;
     }
     break;
@@ -1525,7 +1545,7 @@ static void _cbMenu(WM_MESSAGE * pMsg)
 
     for (i = 0; (unsigned)i <=GUI_COUNTOF(_aMenu); i++)
     {
-      hButton = BUTTON_CreateUser(0, i * 80, xSize, 80, hWin, WM_CF_SHOW, 0, GUI_ID_BUTTON0 + i, sizeof(i));
+      hButton = BUTTON_CreateUser(0, i * 45, 320, 45, hWin, WM_CF_SHOW, 0, GUI_ID_BUTTON0 + i, sizeof(i));
       BUTTON_SetSkin(hButton, _ButtonSkin);
       BUTTON_SetUserData(hButton, &i, sizeof(i));
     }
@@ -1569,9 +1589,25 @@ void Menu(void *pvParameters)
 	 {
 		 vTaskDelete(Clock_Handle);
 	 }
-	 if( Counter_Handle != NULL )
+	 else if( Counter_Handle != NULL )
 	 {
 		 vTaskDelete(Counter_Handle);
+	 }
+	 else if( Notepad_Handle != NULL )
+	 {
+		 vTaskDelete(Notepad_Handle);
+	 }
+	 else if( Manager_Handle != NULL )
+	 {
+		 vTaskDelete(Manager_Handle);
+	 }
+	 else if( MP3_Handle != NULL )
+	 {
+		 vTaskDelete(MP3_Handle);
+	 }
+	 else if( Calc_Handle != NULL )
+	 {
+		 vTaskDelete(MP3_Handle);
 	 }
 	  xSize = LCD_GetXSize();
 	  ySize = LCD_GetYSize();
@@ -1582,20 +1618,12 @@ void Menu(void *pvParameters)
 
 	  hWinBase     = WM_CreateWindow(0,  60, xSize, 260,  WM_CF_SHOW, _cbDummy, 0);
 	  hWinViewport = WM_CreateWindowAsChild(0, 0, xSize, ySize ,               hWinBase,     WM_CF_SHOW, _cbDummy, 0);
-	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 80 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
+	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 45 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
 
 
 	while(1)
 	{
 		GUI_Exec();
-
-		if(vol_up)
-		{
-//			while(vol_up){};
-//			delay(100);
-			backlight(i++);
-		}
-
 	}
 }
 

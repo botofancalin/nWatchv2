@@ -212,19 +212,19 @@ static unsigned int _GetPixelIndex(GUI_DEVICE * pDevice, int x, int y) {
 ////		  for(int y=0;y<150;y++);
 //		  PixelIndex= ((RR&0x0ff)<<16)|((GG&0x0ff)<<8)|(BB&0x0ff);
 //    	PixelIndex=0;
-		  u8 RR=0x00,BB=0x00,GG=0x00;
-		  LCD_area(x,y,x,y);
-		  LCD_WRITE_COMMAND=(RAMRD);
-		  GG=LCD_WRITE_DATA;
-		  GG=LCD_WRITE_DATA;
+//		  u8 RR=0x00,BB=0x00,GG=0x00;
+//		  LCD_area(x,y,x,y);
+//		  LCD_WRITE_COMMAND=(RAMRD);
+//		  GG=LCD_WRITE_DATA;
+//		  GG=LCD_WRITE_DATA;
 //		  for(int y=0;y<20;y++);
-		  GG=LCD_WRITE_DATA;
+//		  GG=LCD_WRITE_DATA;
 //		  for(int y=0;y<20;y++);
-		  RR=LCD_WRITE_DATA;
+//		  RR=LCD_WRITE_DATA;
 //		  for(int y=0;y<20;y++);
-		  BB=LCD_WRITE_DATA;
+//		  BB=LCD_WRITE_DATA;
 //		  for(int y=0;y<20;y++);
-		  PixelIndex= ((RR&0x0ff)<<16)|((GG&0x0ff)<<8)|(BB&0x0ff);
+//		  PixelIndex= ((RR&0x0ff)<<16)|((GG&0x0ff)<<8)|(BB&0x0ff);
     }
     #if (LCD_MIRROR_X == 0) && (LCD_MIRROR_Y == 0) && (LCD_SWAP_XY == 0)
       #undef xPhys
@@ -237,7 +237,8 @@ static unsigned int _GetPixelIndex(GUI_DEVICE * pDevice, int x, int y) {
 *
 *       _XorPixel
 */
-static void _XorPixel(GUI_DEVICE * pDevice, int x, int y) {
+static void _XorPixel(GUI_DEVICE * pDevice, int x, int y)
+{
   LCD_PIXELINDEX PixelIndex;
   LCD_PIXELINDEX IndexMask;
 
@@ -255,18 +256,28 @@ static void _FillRect(GUI_DEVICE * pDevice, int x0, int y0, int x1, int y1) {
   int x;
 
   PixelIndex = LCD__GetColorIndex();
-  if (GUI_pContext->DrawMode & LCD_DRAWMODE_XOR) {
-    for (; y0 <= y1; y0++) {
-      for (x = x0; x <= x1; x++) {
+  if (GUI_pContext->DrawMode & LCD_DRAWMODE_XOR)
+  {
+    for (; y0 <= y1; y0++)
+    {
+      for (x = x0; x <= x1; x++)
+      {
         _XorPixel(pDevice, x, y0);
       }
     }
-  } else {
-    for (; y0 <= y1; y0++) {
-      for (x = x0; x <= x1; x++) {
-        _SetPixelIndex(pDevice, x, y0, PixelIndex);
-      }
-    }
+  } else
+  {
+	  	int r = ( PixelIndex & 0xf800 ) << 8; ///565 bit to 888
+  		int g = ( PixelIndex & 0x07e0 ) << 5;
+  		int b = ( PixelIndex & 0x001f ) << 3;
+  		LCD_box(x0,y0,x1,y1,r|g|b,1);
+//    for (; y0 <= y1; y0++)
+//    {
+//      for (x = x0; x <= x1; x++)
+//      {
+//        _SetPixelIndex(pDevice, x, y0, PixelIndex);
+//      }
+//    }
   }
 }
 

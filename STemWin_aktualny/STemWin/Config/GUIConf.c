@@ -63,7 +63,7 @@ Purpose     : Display controller initialization
 // Define the available number of bytes available for the GUI
 //
 #define GUI_BUFFER_IN_EXT_RAM                  //comment this to run from internal RAM
-#define GUI_NUMBYTES  ((1024) *  510)
+#define GUI_NUMBYTES  ((1024) *  2048)
 #ifdef GUI_BUFFER_IN_EXT_RAM
 #endif
 
@@ -81,10 +81,12 @@ Purpose     : Display controller initialization
 *   Called during the initialization process in order to set up the
 *   available memory for the GUI.
 */
-void GUI_X_Config(void) {
+void GUI_X_Config(void)
+{
   //
   // 32 bit aligned memory area
   //
+
 #ifdef GUI_BUFFER_IN_EXT_RAM
     static U32 aMemory[GUI_NUMBYTES / 4]__attribute((section(".ExRam")));
 #else

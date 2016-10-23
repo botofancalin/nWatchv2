@@ -17,6 +17,7 @@
 #include <stm32f4xx_adc.h>
 #include <stm32f4xx_tim.h>
 #include <stm32f4xx_iwdg.h>
+#include <stm32f4xx_usart.h>
 #include "jpeglib.h"
 #include "decode.h"
 #include "ff.h"
@@ -36,6 +37,7 @@
 ////////EXPLORER///////////
 #include "explorer.h"
 #include "clock.h"
+#include "AB0805.h"
 /////////////sram//////////////////
 #include "sram.h"
 ////////graphic////////////
@@ -72,6 +74,9 @@ uint32_t dfu_reset_to_bootloader_magic;
 __ALIGN_BEGIN USB_OTG_CORE_HANDLE    USB_OTG_Core __ALIGN_END;
 volatile uint8_t usb_host_connected_flag = 0;
 volatile uint8_t usb_host_disconnected_flag = 0;
+
+#define MAX_STRLEN 12 // this is the maximum string length of our string in characters
+volatile char received_string[12]; // this will hold the recieved string
 ///////////////////////////////////////RCC//////////////////////////////////////////////////////////
 #define PLL_Q	7			/* Dzielnik dla USB, SDIO, RND - 48MHz */
 #define PLL_M	16
@@ -85,14 +90,15 @@ volatile uint8_t usb_host_disconnected_flag = 0;
 //#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
 //#define CPU_OFF GPIOB->BSRRH|=GPIO_BSRR_BS_8
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
-#define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
-#define vol_down  (!((GPIOG->IDR) & GPIO_IDR_IDR_14))
+#define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_6))
+#define vol_down  (!((GPIOA->IDR) & GPIO_IDR_IDR_1))
 #define wake  	(((GPIOB->IDR) & GPIO_IDR_IDR_12))
 ///////////////////////////////////FUNCTIONS////////////////////////////////////////////////////
 void EXTI9_5_IRQHandler(void)__attribute__((interrupt));
 void TIM3_IRQHandler(void)__attribute__((interrupt));
 void TIM2_IRQHandler(void)__attribute__((interrupt));
 void RTC_Alarm_IRQHandler(void)__attribute__((interrupt));
+void USART6_IRQHandler(void)__attribute__((interrupt));
 void RCC_cfg (void);
 void RCC_Config (void);
 void GPIO_cfg(void);
@@ -111,53 +117,84 @@ void RTC_Config(void);
 void IWDG_Config(void);
 void cb(u8 i, u8 l);
 void dfu_run_bootloader(void);
+void USART_puts( volatile char *s);
 
 //////////////////////////////////////TASKs//////////////////////////////////////////////////////
 static void Background_Task(void * pvParameters);
 static void vTimerCallback( xTimerHandle pxTimer );
 static void BSP_Task(void * pvParameters);
 void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly);
-uint8_t pagebuff[100]__attribute((section(".ExRam")));
-uint8_t buffe[230400]__attribute((section(".ExRam")));
-uint8_t aucLine[2048];//__attribute((section(".ExRam")));
+uint8_t pagebuff[10]__attribute((section(".ExRam")));
+uint8_t buffe[23]__attribute((section(".ExRam")));
+uint8_t aucLine[2048]__attribute((section(".ExRam")));
 FRESULT f=0;
 FIL fsrc;
 DIR dir;
 FATFS fs;
 FILINFO fno;
+volatile uint8_t update=0;
 volatile int sec,sec2,sec3,cpu=1;
-static int8_t gyro_orientation[9] = {1, 0, 0,
-				     0, 1, 0,
-				     0, 0, 1};
 int16_t gyro[3], accel[3], sensors;
 int32_t quat[4];
 uint8_t more;
-//unsigned char _acBuffer[512];
+int s2=0;
+touch ts;
+
 
 int main(void)
 {
 	  SystemInit();
 	  RCC_cfg();
-	  NVIC_Config();
+	  delay_init();
+	  init_USART(9600);
 	  GPIO_cfg();
+	  RNG_Cmd(ENABLE);
+	  NVIC_Config();
 //	  dfu_run_bootloader();
-	  LED_ON;
 	  while(wake){};
+	  LED_ON;
+	  backlight(50);
 	  IWDG_Config();
 	  SRAM_Init();
 	  FSMC_NAND_Init();
-	  RNG_Cmd(ENABLE);
 	  WM_SetCreateFlags(WM_CF_MEMDEV);
-//	  GUI_Init();
 	  I2C1_init();
+	  MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
 	  stmpe811_init();
-	  RTC_Config();
-	  delay_init();
-	  motion_init();
-	  backlight(80);
+	  AB0805_initialize();
+	  AB0805_WriteBit(devAddr, 0x0f,2,0);
+	  AB0805_writeByte(devAddr, AB0805_RA_CONTROL1, 0x75);
+//	  AB0805_setDateTime24(2016,10,12,23,35,0);
+//	  AB0805_setDayOfWeek(7);
+	  GPIOG->BSRRH|=GPIO_BSRR_BS_6;
+	  GPIOG->BSRRH|=GPIO_BSRR_BS_8;
+	  USART_puts("TTM:RST-SYSTEMRESET");
+	  delay(50);
+	  USART_puts("TTM:REN-nWATCH");
 	  f=f_mount(&fs,"",0);
+	  LED_OFF;
 
-	  if(vol_down)
+//	  while(1)
+//	  {
+//		  IWDG_ReloadCounter();
+//
+//	  };
+//	  VS1003_Config();
+//	  Mp3Reset();
+//	  VS1053_Start();
+//	  VsSineTest();
+//	  	f=f_open(&fsrc,"0:log.txt",FA_WRITE|FA_OPEN_EXISTING);
+//	  	f=f_lseek(&fsrc,f_size(&fsrc));
+//
+//		f=f_write(&fsrc,itoa(time.RTC_Hours,t,10),2,&s2);
+//		f=f_write(&fsrc,":",1,&s2);
+//		f=f_write(&fsrc,itoa(time.RTC_Minutes,t,10),2,&s2);
+//		f=f_write(&fsrc,":",1,&s2);
+//		f=f_write(&fsrc,itoa(time.RTC_Seconds,t,10),2,&s2);
+//		f_puts("\n", &fsrc);
+//		f=f_close(&fsrc);
+
+	  if(vol_up)
 	  {
 		  f_mount(&fs,"",0);
 		  bitmap_RGB("0:papa.rgb",0,0,226,320);
@@ -172,13 +209,19 @@ int main(void)
 //	  vTraceInitTraceData();
 	  GUI_Init();
 	  WM_MOTION_Enable(1);
-//	  GUI_SetOrientation(GUI_SWAP_XY| GUI_MIRROR_Y);
 	  BUTTON_SetReactOnLevel();
-
+//	  GUI_SetColor(GUI_RED);
+//	  GUI_DispStringAt("dziala",20,20);
+//	   {
+//		   IWDG_ReloadCounter();
+//		   if(touch_reg(&ts))
+//		   {
+//		   GUI_DispDecAt(ts.x,10,10,5);
+//		   GUI_DispDecAt(ts.y,10,40,5);
+//		   }
+//		   delay(100);
+//	   };
 //	  LCD_BMP(&fsrc,"0:jas.bmp");
-
-//	   while(1){};
-
 
 	GPIO_InitTypeDef gpio;
 	ADC_InitTypeDef adc;
@@ -190,19 +233,15 @@ int main(void)
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	ADC1_Configuration();
 
-
-
-
-
-	  xTaskCreate(Clock,(char const*)"Clock",4096,NULL,tskIDLE_PRIORITY + 6,&Clock_Handle);
-//	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,6, &Menu_Handle);
+	  xTaskCreate(Clock,(char const*)"Clock",1024,NULL,7,&Clock_Handle);
+//	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,7, &Menu_Handle);
 //	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
 //	  xTaskCreate(BSP_Task,(char const*)"BSP",1024,NULL, 6, &BSP_Handle);
-	  TouchScreenTimer = xTimerCreate ("Timer",20, pdTRUE,1, vTimerCallback);
-	  xTaskCreate(Background_Task,(char const*)"Background",512,NULL, 7,&Task_Handle);
+	  TouchScreenTimer = xTimerCreate ("Timer",15, pdTRUE,1, vTimerCallback);
+	  xTaskCreate(Background_Task,(char const*)"Background",1024,NULL, 7,&Task_Handle);
 	  xTimerStart( TouchScreenTimer, 0);
-//	  vTraceStart();
-	    vTaskStartScheduler();
+
+	  vTaskStartScheduler();
 }
 
 void dfu_run_bootloader()
@@ -219,7 +258,6 @@ static void vTimerCallback( xTimerHandle pxTimer )
 {
 	  taskENTER_CRITICAL();
 	  if(BSP_Pointer_Update())sec=0;
-//	  dmp_read_fifo(gyro, accel, quat, &sensors, &more);
 	  taskEXIT_CRITICAL();
 }
 void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly)
@@ -229,6 +267,7 @@ void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly)
 	  int s1=0;
 	  int BUF=2048;
 	  LCD_area(x,y,x+lx-1,y+ly-1);
+//	  LCD_area(y,x,y+ly-1,x+lx-1);
 
 	  while(read>0)
 	  {
@@ -248,15 +287,7 @@ static void BSP_Task(void * pvParameters)
 
 	  while(1)
 	  {
-//			taskENTER_CRITICAL();
-//			jpeg_create_decompress(&cinfo);
-//			cinfo.err = jpeg_std_error(&jerr);
-//		    f=f_open(&fsrc,"0:papiez.jpg", FA_READ | FA_OPEN_EXISTING );
-//		    jpeg_decode(&fsrc, 320, auc, 0);
-//		    jpeg_finish_decompress(&cinfo);
-//		    jpeg_destroy_decompress(&cinfo);
-			load_jpg(&fsrc,"0:papiez.jpg",aucLine,sizeof(aucLine));
-//		    taskEXIT_CRITICAL();
+		  GUI_Exec();
 	  }
 }
 static void Background_Task(void * pvParameters)
@@ -268,25 +299,25 @@ static void Background_Task(void * pvParameters)
 	  while(1)
 	  {
 		  CPU_ON;
-		  GUI_Delay(300);
+		  GUI_Delay(100);
+//		  GUI_Exec();
 		  IWDG_ReloadCounter();
 	  	  if(wake || !cpu)
-//		  if(!cpu)
 	  	  {
 	  		  CPU_OFF;
 	  	  }
-		  if(vol_down)
-		  {
-//			  taskENTER_CRITICAL();
-			  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
-			  while(1)
-			  {
-				  sec=0;
-				  CPU_ON;
-				  IWDG_ReloadCounter();
-			  };
-//			  taskEXIT_CRITICAL();
-		  }
+//		  if(vol_down)
+//		  {
+////			  taskENTER_CRITICAL();
+//			  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
+//			  while(!wake)
+//			  {
+//				  sec=0;
+//				  CPU_ON;
+//				  IWDG_ReloadCounter();
+//			  };
+////			  taskEXIT_CRITICAL();
+//		  }
 	  }
 }
 void exti_init(void)
@@ -406,7 +437,7 @@ void IWDG_Config(void)
 {
 	//konfigurowanie watchdoga IWDG
 	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);    // Zezwolenie na zapis rejestrów IWDG
-	IWDG_SetPrescaler(IWDG_Prescaler_8);             // IWDG taktowany zegarem: 40kHz/4 = 10kHz
+	IWDG_SetPrescaler(IWDG_Prescaler_16);             // IWDG taktowany zegarem: 40kHz/4 = 10kHz
 	IWDG_SetReload(0xFFF);                        // Przepelnienie IWDG po okolo 0,4s
 	IWDG_ReloadCounter();                           // Przeladowanie IWDG
 	IWDG_Enable();                                  // Wlaczenie IWDG i LSI
@@ -435,31 +466,32 @@ void RTC_Config(void)
 //		date.RTC_WeekDay=1;
 //		date.RTC_Date=1;
 
-	    RTC_TimeTypeDef RTC_TimeStructure;
-//	    RTC_DateTypeDef RTC_DateStructure;
-//	    EXTI_InitTypeDef EXTI_InitStructure;
 
+
+	    RTC_TimeTypeDef RTC_TimeStructure;
+	    RTC_DateTypeDef RTC_DateStructure;
+//	    EXTI_InitTypeDef EXTI_InitStructure;
+//
 //	    RTC_TimeStructure.RTC_H12     = RTC_H12_AM;
-//	    RTC_TimeStructure.RTC_Hours   = 05;
-//	    RTC_TimeStructure.RTC_Minutes = 50;
+//	    RTC_TimeStructure.RTC_Hours   = 19;
+//	    RTC_TimeStructure.RTC_Minutes = 1;
 //	    RTC_TimeStructure.RTC_Seconds = 00;
 //	    RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
 
-	    /* Indicator for the RTC configuration */
-	    RTC_WriteBackupRegister(RTC_BKP_DR0, 0x32F2);
-
-//        RTC_TimeStructure.RTC_Seconds = 0;
-//        RTC_TimeStructure.RTC_Minutes = 9;
-//        RTC_TimeStructure.RTC_Hours = 4;
-//        RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
-//        RTC_SetTime(RTC_Format_BCD,&RTC_TimeStructure);
+//	    /* Indicator for the RTC configuration */
+//	    RTC_WriteBackupRegister(RTC_BKP_DR0, 0x32F2);
 //
-//        RTC_DateStructure.RTC_Date = 15;
-//        RTC_DateStructure.RTC_Month = 11;
+////        RTC_TimeStructure.RTC_Seconds = 0;
+////        RTC_TimeStructure.RTC_Minutes = 9;
+////        RTC_TimeStructure.RTC_Hours = 4;
+////        RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
+////        RTC_SetTime(RTC_Format_BCD,&RTC_TimeStructure);
+////
+//        RTC_DateStructure.RTC_Date = 22;
+//        RTC_DateStructure.RTC_Month = 9;
 //        RTC_DateStructure.RTC_WeekDay= RTC_Weekday_Thursday;
-//        RTC_DateStructure.RTC_Year = 13;
-//        RTC_SetDate(RTC_Format_BCD,&RTC_DateStructure);
-
+//        RTC_DateStructure.RTC_Year = 16;
+//        RTC_SetDate(RTC_Format_BIN,&RTC_DateStructure);
 //        EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 //        EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;//上升沿
 //        EXTI_InitStructure.EXTI_LineCmd = ENABLE;
@@ -569,10 +601,11 @@ void RTC_Alarm_IRQHandler(void)
 void GPIO_cfg(void)
 {
 	GPIOB->MODER=0x00000000;
+	GPIOG->MODER=0x00000000;
 
-	GPIOB->MODER|=GPIO_MODER_MODER8_0;
-	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR8;
-	GPIOB->ODR|=GPIO_ODR_ODR_8;
+	GPIOD->MODER|=GPIO_MODER_MODER3_0;
+	GPIOD->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR3;
+	GPIOD->ODR|=GPIO_ODR_ODR_3;
 	CPU_ON;
 
 	//*****************LED_CONFIG*******************
@@ -636,12 +669,6 @@ void GPIO_cfg(void)
 	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR10;
 	GPIO_PinAFConfig(GPIOE,GPIO_PinSource10, GPIO_AF_FSMC);
 
-	GPIOA->MODER|=GPIO_MODER_MODER1_0;
-	GPIOA->OTYPER|=GPIO_OTYPER_ODR_1;
-	GPIOA->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR1;     ////lcd CS
-	GPIOA->ODR|=GPIO_ODR_ODR_1;
-	GPIOA->BSRRH|=GPIO_BSRR_BS_1;
-
 	GPIOA->MODER|=GPIO_MODER_MODER2_0;
 	GPIOA->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR2;     ////lcd RST
 	GPIOA->ODR|=GPIO_ODR_ODR_2;
@@ -663,6 +690,11 @@ void GPIO_cfg(void)
 	GPIOF->ODR|=GPIO_ODR_ODR_11;
 	GPIOF->BSRRL|=GPIO_BSRR_BS_11;
 
+	GPIOB->MODER|=GPIO_MODER_MODER14_0;
+	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR14;
+	GPIOB->ODR|=GPIO_ODR_ODR_14;
+	GPIOB->BSRRL|=GPIO_BSRR_BS_14;
+
 //	GPIOD->MODER|=GPIO_MODER_MODER7_0;
 //	GPIOD->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR7_1;
 //	GPIOD->ODR|=GPIO_ODR_ODR_7;
@@ -683,17 +715,15 @@ void GPIO_cfg(void)
 	GPIOF->ODR|=GPIO_ODR_ODR_9;
 	GPIOF->BSRRH|=GPIO_BSRR_BS_9;
 	//////////////////////////BLUETOOTH//////////////////////////////////
+	GPIOG->MODER|=GPIO_MODER_MODER8_0;         ///////////////////ENABLE PIN
+	GPIOG->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR8;
+	GPIOG->ODR|=GPIO_ODR_ODR_8;
+	GPIOG->BSRRH|=GPIO_BSRR_BS_8;
 
-	GPIOE->MODER|=GPIO_MODER_MODER2_0;         ///////////////////ENABLE PIN
-	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR2_1;
-	GPIOE->ODR|=GPIO_ODR_ODR_2;
-	GPIO_WriteBit(GPIOE,GPIO_PinSource2,0);
-
-	GPIOC->MODER|=GPIO_MODER_MODER3_0;         ///////////////////BRTS
-	GPIOC->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR3_1;
-	GPIOC->ODR|=GPIO_ODR_ODR_3;
-	GPIOC->BSRRH|=GPIO_BSRR_BS_3;
-
+	GPIOG->MODER|=GPIO_MODER_MODER6_0;         ///////////////////BRTS
+	GPIOG->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR6_1;
+	GPIOG->ODR|=GPIO_ODR_ODR_6;
+	GPIOG->BSRRL|=GPIO_BSRR_BS_6;
 	//////////////////////////TSOP-PB14///////////////////////////////////
 //	GPIOB->MODER
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR14;
@@ -703,24 +733,14 @@ void GPIO_cfg(void)
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR6;
 	GPIO_PinAFConfig(GPIOB,GPIO_PinSource6,GPIO_AF_TIM4);
 	/////////////////////// button///////////////////////////////////////
-	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR3;
-	GPIOE->PUPDR |=GPIO_PUPDR_PUPDR3_0;
+	GPIOE->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR6;
+	GPIOE->PUPDR |=GPIO_PUPDR_PUPDR6_0;
 
-	GPIOG->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR14;
-	GPIOG->PUPDR |=GPIO_PUPDR_PUPDR14_0;
+	GPIOA->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR1;
+	GPIOA->PUPDR |=GPIO_PUPDR_PUPDR1_0;
 
 	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR12;
 //	GPIOB->PUPDR |=GPIO_PUPDR_PUPDR12_1;
-	///////////////////////I2C//////////////////////////////////////////
-//	GPIOB->MODER|=GPIO_MODER_MODER10_1;
-//	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR10;
-//	GPIOB->OTYPER|=GPIO_OTYPER_ODR_10;
-//	GPIO_PinAFConfig(GPIOB,GPIO_PinSource10,GPIO_AF_I2C2);
-////
-//	GPIOB->MODER|=GPIO_MODER_MODER11_1;
-//	GPIOB->OTYPER|=GPIO_OTYPER_ODR_11;
-//	GPIOB->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR11;
-//	GPIO_PinAFConfig(GPIOB,GPIO_PinSource11,GPIO_AF_I2C2);
 	///////////////////////TOUCH_INT////////////////////////////////////
 	GPIOC->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR5_0;
 //	GPIOC->OTYPER|=GPIO_OTYPER_IDR_5;
@@ -761,7 +781,6 @@ void ADC1_Configuration(void)
   ADC_Init(ADC1, &ADC_InitStructure);
 
   ADC_RegularChannelConfig(ADC1, ADC_Channel_8, 1, ADC_SampleTime_480Cycles);
-//  ADC_RegularChannelConfig(ADC1, ADC_Channel_16, 1, ADC_SampleTime_480Cycles);
   ADC_EOCOnEachRegularChannelCmd(ADC1, ENABLE);
 
   ADC_Cmd(ADC1, ENABLE);    //The ADC is powered on by setting the ADON bit in the ADC_CR2 register.
@@ -801,7 +820,7 @@ void I2C1_init(void)
     for ( var= 0; var < 0xff; ++var) {};
     I2C_SoftwareResetCmd(I2C1, DISABLE);
 
-    i2c_init.I2C_ClockSpeed = 200000;
+    i2c_init.I2C_ClockSpeed = 400000;
     i2c_init.I2C_Mode = I2C_Mode_I2C;
     i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
     i2c_init.I2C_OwnAddress1 = 0xD0;
@@ -830,10 +849,10 @@ void I2C1_init(void)
     for ( var= 0; var < 0xff; ++var) {};
     I2C_SoftwareResetCmd(I2C2, DISABLE);
 
-    i2c_init.I2C_ClockSpeed = 400000;
+    i2c_init.I2C_ClockSpeed = 200000;
     i2c_init.I2C_Mode = I2C_Mode_I2C;
     i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
-    i2c_init.I2C_OwnAddress1 = 0xD0;
+    i2c_init.I2C_OwnAddress1 = 0x69;
     i2c_init.I2C_Ack = I2C_Ack_Enable;
     i2c_init.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
     I2C_Init(I2C2, &i2c_init);
@@ -978,6 +997,121 @@ void vApplicationIdleHook(void)
 
 	}
 }
+void vApplicationStackOverflowHook (void)
+{
+
+	while(1)
+	{
+		LED_OFF;
+	}
+}
+void init_USART(uint32_t baudrate){
+
+	/* This is a concept that has to do with the libraries provided by ST
+	 * to make development easier the have made up something similar to
+	 * classes, called TypeDefs, which actually just define the common
+	 * parameters that every peripheral needs to work correctly
+	 *
+	 * They make our life easier because we don't have to mess around with
+	 * the low level stuff of setting bits in the correct registers
+	 */
+	GPIO_InitTypeDef GPIO_InitStruct; // this is for the GPIO pins used as TX and RX
+	USART_InitTypeDef USART_InitStruct; // this is for the USART1 initilization
+	NVIC_InitTypeDef NVIC_InitStructure; // this is used to configure the NVIC (nested vector interrupt controller)
+
+	/* enable APB2 peripheral clock for USART1
+	 * note that only USART1 and USART6 are connected to APB2
+	 * the other USARTs are connected to APB1
+	 */
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
+
+	/* enable the peripheral clock for the pins used by
+	 * USART1, PB6 for TX and PB7 for RX
+	 */
+
+	/* This sequence sets up the TX and RX pins
+	 * so they work correctly with the USART1 peripheral
+	 */
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7; // Pins 6 (TX) and 7 (RX) are used
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF; 			// the pins are configured as alternate function so the USART peripheral has access to them
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;		// this defines the IO speed and has nothing to do with the baudrate!
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;			// this defines the output type as push pull mode (as opposed to open drain)
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;			// this activates the pullup resistors on the IO pins
+	GPIO_Init(GPIOC, &GPIO_InitStruct);					// now all the values are passed to the GPIO_Init() function which sets the GPIO registers
+
+	/* The RX and TX pins are now connected to their AF
+	 * so that the USART1 can take over control of the
+	 * pins
+	 */
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_USART6); //
+	GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_USART6);
+
+	/* Now the USART_InitStruct is used to define the
+	 * properties of USART1
+	 */
+	USART_InitStruct.USART_BaudRate = baudrate;				// the baudrate is set to the value we passed into this init function
+	USART_InitStruct.USART_WordLength = USART_WordLength_8b;// we want the data frame size to be 8 bits (standard)
+	USART_InitStruct.USART_StopBits = USART_StopBits_1;		// we want 1 stop bit (standard)
+	USART_InitStruct.USART_Parity = USART_Parity_No;		// we don't want a parity bit (standard)
+	USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None; // we don't want flow control (standard)
+	USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx; // we want to enable the transmitter and the receiver
+	USART_Init(USART6, &USART_InitStruct);					// again all the properties are passed to the USART_Init function which takes care of all the bit setting
+
+
+	/* Here the USART1 receive interrupt is enabled
+	 * and the interrupt controller is configured
+	 * to jump to the USART1_IRQHandler() function
+	 * if the USART1 receive interrupt occurs
+	 */
+	USART_ITConfig(USART6, USART_IT_RXNE, ENABLE); // enable the USART1 receive interrupt
+
+	NVIC_InitStructure.NVIC_IRQChannel = USART6_IRQn;		 // we want to configure the USART1 interrupts
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;// this sets the priority group of the USART1 interrupts
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		 // this sets the subpriority inside the group
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			 // the USART1 interrupts are globally enabled
+	NVIC_Init(&NVIC_InitStructure);							 // the properties are passed to the NVIC_Init function which takes care of the low level stuff
+
+	// finally this enables the complete USART1 peripheral
+	USART_Cmd(USART6, ENABLE);
+}
+void USART_puts( volatile char *s)
+{
+
+	while(*s)
+	{
+		// wait until data register is empty
+		while( !(USART6->SR & 0x00000040) );
+		USART_SendData(USART6, *s);
+		*s++;
+	}
+}
+void USART6_IRQHandler(void)
+{
+
+	// check if the USART1 receive interrupt flag was set
+	if( USART_GetITStatus(USART6, USART_IT_RXNE) )
+	{
+		static uint8_t cnt = 0; // this counter is used to determine the string length
+		char t = USART6->DR; // the character from the USART1 data register is saved in t
+		if(t=='*')cnt=0;
+		else if(t=='!')
+		{
+			AB0805_WriteBit(devAddr, AB0805_RA_CONTROL1, AB0805_CONTROL_WRTC, 1);
+			AB0805_setMonth((received_string[0]-'0')*10+(received_string[1]-'0'));
+			AB0805_setDay((received_string[2]-'0')*10+(received_string[3]-'0'));
+			AB0805_setDayOfWeek((received_string[4]-'0'));
+			AB0805_setHours24((received_string[5]-'0')*10+(received_string[6]-'0'));
+			AB0805_setMinutes((received_string[7]-'0')*10+(received_string[8]-'0'));
+			AB0805_setSeconds((received_string[9]-'0')*10+(received_string[10]-'0'));
+			AB0805_WriteBit(devAddr, AB0805_RA_CONTROL1, AB0805_CONTROL_WRTC, 0);
+		}
+		else
+		{
+			received_string[cnt] = t;
+			cnt++;
+		}
+	}
+}
 //	  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
 //	  while(1){};
 
@@ -1048,3 +1182,24 @@ void vApplicationIdleHook(void)
 //	  GUI_CURSOR_Show();
 //	  WM_MOTION_Enable(1);
 //	  play_video("avifiles/birds_small2.avi");
+
+
+//f=f_open(&fsrc,"0:jas.rgb",FA_READ|FA_OPEN_EXISTING);
+//
+//LCD_area(0,0,239,319);
+//
+//for(int i=0;i<450;i++)
+//{
+//	   f=f_read(&fsrc,aucLine,512,&s2);
+////		   DMA_Config(512,aucLine);
+////		   while(!(DMA2->LISR & DMA_LISR_TCIF0)){};
+////		   DMA2->LISR=0x00000000;
+//	   SRAM_WriteBuffer(aucLine,i*512+0x00500000,512);
+//}
+//for(int i=0;i<450;i++)
+//{
+//	   SRAM_ReadBuffer(aucLine,i*512+0x00500000,512);
+//	   DMA_Config(512,aucLine);
+//	   while(!(DMA2->LISR & DMA_LISR_TCIF0)){};
+//	   DMA2->LISR=0x00000000;
+//}

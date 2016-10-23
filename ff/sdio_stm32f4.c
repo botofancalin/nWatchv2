@@ -768,7 +768,7 @@ SD_Error SD_PowerON(void)
 												  SD_SDXC_S18R_REGULAR_VOLT	| \
 												  SDType;
 			SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SD_APP_OP_COND;
-			SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+			SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;/////////////////
 			SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
 			SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
 			SDIO_SendCommand(&SDIO_CmdInitStructure);
@@ -776,7 +776,7 @@ SD_Error SD_PowerON(void)
 			errorstatus = CmdResp3Error();
 			if (errorstatus != SD_OK)
 			{
-			return(errorstatus);
+				return(errorstatus);
 			}
 
 			response = SDIO_GetResponse(SDIO_RESP1);

@@ -68,6 +68,8 @@ Purpose     : Display controller configuration (single layer)
 #define YSIZE_PHYS  240 // To be adapted to y-screen size
 #define LCD_BITSPERPIXEL 16
 
+#define COLOR_CONVERSION GUICC_8888
+
 /*********************************************************************
 *
 *       Configuration checking
@@ -167,19 +169,15 @@ void LCD_X_Config(void) {
   // Set display driver and color conversion
   //
   pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_TEMPLATE, GUI_COLOR_CONV_565, 0, 0);
+//  pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_TEMPLATE, GUI_COLOR_CONV_8888, 0, 0);
   //
   // Display driver configuration, required for Lin-driver
   //
   LCD_SetSizeEx (0, XSIZE_PHYS , YSIZE_PHYS);
 //  LCD_SetVSizeEx(0, VXSIZE_PHYS, VYSIZE_PHYS);
+//  LCD_SetVRAMAddrEx(0, (void *)0x00300000);
   LCD_SetVSizeEx(0, 320, 240);
-  //
-  // Orientation
-  //
-//  Config.Orientation = GUI_SWAP_XY | GUI_MIRROR_Y;
-  //
-  // Set controller and operation mode
-  //
+
 }
 
 /*********************************************************************
@@ -209,14 +207,8 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
   (void) pData;
   
   switch (Cmd) {
-  case LCD_X_INITCONTROLLER: {
-    //
-    // Called during the initialization process in order to set up the
-    // display controller and put it into operation. If the display
-    // controller is not initialized by any external routine this needs
-    // to be adapted by the customer...
-    //
-    // ...
+  case LCD_X_INITCONTROLLER:
+  {
 
 	  LCD_init();
 

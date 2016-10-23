@@ -227,13 +227,13 @@ void SRAM_Init(void)
   GPIO_Init(GPIOG, &GPIO_InitStructure);
 
 /*-- FSMC Configuration ------------------------------------------------------*/
-  p.FSMC_AddressSetupTime = 1; ////3////1
-  p.FSMC_AddressHoldTime = 1; ////2///0
-  p.FSMC_DataSetupTime = 2; ///4//2
-  p.FSMC_BusTurnAroundDuration = 0; ///0
-  p.FSMC_CLKDivision = 0;////0///0
-  p.FSMC_DataLatency = 0;///2//0
-  p.FSMC_AccessMode = FSMC_AccessMode_A;
+  p.FSMC_AddressSetupTime = 3; ////3////1
+  p.FSMC_AddressHoldTime = 2; ////2///0
+  p.FSMC_DataSetupTime = 4; ///4//2
+//  p.FSMC_BusTurnAroundDuration = 0; ///0
+//  p.FSMC_CLKDivision = 0;////0///0
+//  p.FSMC_DataLatency = 2;///2//0
+//  p.FSMC_AccessMode = FSMC_AccessMode_A;
 
   FSMC_NORSRAMInitStructure.FSMC_Bank = FSMC_Bank1_NORSRAM3;
   FSMC_NORSRAMInitStructure.FSMC_DataAddressMux = FSMC_DataAddressMux_Disable;

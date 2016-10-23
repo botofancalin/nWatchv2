@@ -66,8 +66,8 @@
    Nemuisan dear to set direct clock and falling edge when change into SD highspeedmode. 
    Of cource this procedure is irregal situation,but works almost SDHC cards!. 
 //*/
-//#define SD_NS_MODE
-#define SD_HS_MODE
+#define SD_NS_MODE
+//#define SD_HS_MODE
 
 /* Uncomment the following line to Disable Incert detection */  
 /*#define SDIO_INS_DETECT	*/						/* Enable SDIO Incert Detection */

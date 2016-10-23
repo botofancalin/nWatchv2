@@ -58,7 +58,7 @@ Purpose     : Configures emWins abilities, fonts etc.
 *
 *       Multi layer/display support
 */
-#define GUI_NUM_LAYERS            2    // Maximum number of available layers
+#define GUI_NUM_LAYERS            3    // Maximum number of available layers
 
 /*********************************************************************
 *
@@ -70,7 +70,7 @@ Purpose     : Configures emWins abilities, fonts etc.
  #define GUI_OS                    (1)
 #endif
 
-#define GUI_MAX_TASK               4
+#define GUI_MAX_TASK               5 ///4
 /*********************************************************************
 *
 *       Configuration of touch support

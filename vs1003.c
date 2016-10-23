@@ -88,8 +88,7 @@ u8 SPIGetChar(void)
 *******************************************************************************/
 void Mp3SoftReset(void)
 {
-
-	Mp3WriteRegister (SPI_MODE, 0x08, 0x20);
+	Mp3WriteRegister(SPI_MODE, 0x08, 0x20);
 	while(DREQ);
     Mp3WriteRegister(SPI_CLOCKF,0x8B,0xE8);
     Mp3WriteRegister(SPI_BASS,0x08,0x00);
@@ -119,7 +118,7 @@ void Mp3Reset(void)
 	SCI_ChipSelect(RESET); 							//xCS = 1
 	SDI_ChipSelect(RESET);     								//xDCS = 1
 	ControlReset(RESET);								//xRESET = 1
-	Delay(10);	           								//ÑÓÊ¹100ms
+	Delay(100);	           								//ÑÓÊ¹100ms
 	while(DREQ);	//¾È´ýDREQÎª¸ß
     Delay(10);
     Mp3SoftReset();										//vs1003Èí¸´Î
@@ -137,7 +136,8 @@ void VS1053_Start()
         Mp3SoftReset();
         Delay(100);
 
-        while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+//        while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+        while(DREQ);
 //
 //        Mp3WriteRegister(SPI_MODE,0x08,0x00);
 //        Mp3WriteRegister(SPI_CLOCKF,0x98,0x00);
@@ -154,9 +154,12 @@ void VS1053_Start()
         Mp3WriteRegister(SPI_BASS,0x08,0x00);
         Mp3WriteRegister(SPI_VOL,0x6f,0x6f);
 
+        int z=Mp3ReadRegister(SPI_CLOCKF);
+
 //    	while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
 
-        while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+//        while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+        while(DREQ);
 }
 
 /*******************************************************************************
@@ -292,13 +295,14 @@ void VsRamTest(void)
 void Mp3WriteRegister(unsigned char addressbyte, unsigned char highbyte, unsigned char lowbyte)
 {
 	SDI_ChipSelect(RESET);
-	while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+	while(DREQ);
 	SCI_ChipSelect(SET);
 	SPIPutChar(VS_WRITE_COMMAND);
 	SPIPutChar(addressbyte);
 	SPIPutChar(highbyte);
 	SPIPutChar(lowbyte);
-	while(GPIO_ReadInputDataBit(DREQ_PORT,DREQ_PIN) == 0);
+	SCI_ChipSelect(RESET);
+	while(DREQ);
 	SCI_ChipSelect(RESET);
 
 }
@@ -376,7 +380,7 @@ void VS1003_Config(void)
 //		SCI_ChipSelect(RESET);
 //	}
 
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+//	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6 | GPIO_Pin_5;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
@@ -426,7 +430,7 @@ void VS1003_Config(void)
 //  SPI_Cmd(SPI1, ENABLE);
 
 
-//  GPIOB->BSRRL|=GPIO_BSRR_BR_3; /////w³acznie uk³¹du
+	GPIOB->BSRRH|=GPIO_BSRR_BS_14;
 
 }
 

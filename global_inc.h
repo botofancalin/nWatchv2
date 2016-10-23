@@ -55,23 +55,26 @@ static TCHAR lfname[_MAX_LFN];
 /////////////////////////////////////APPS//////////////////////////////////////////////
 #include "mp3.h"
 #include "manager.h"
+#include "notepad.h"
+#include "calc.h"
 //#include "bar.h"
 //#include "heading.h"
 //#include "menu.h"
 ////////////////////////////////////RNG///////////////////////////////////////////
 #include "stm32f4xx_rng.h"
 
-#define CPU_ON GPIOB->BSRRL|=GPIO_BSRR_BS_8
+#define CPU_ON GPIOD->BSRRL|=GPIO_BSRR_BS_3
 #define CPU_OFF cpu_off()
 
 #define LED_ON GPIOD->BSRRL|=GPIO_BSRR_BS_6
 #define LED_OFF GPIOD->BSRRH|=GPIO_BSRR_BS_6
 ////////////////////////////////////BUTTONS///////////////////////////////////////////////////////
-#define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_3))
-#define vol_down  (!((GPIOG->IDR) & GPIO_IDR_IDR_14))
+#define vol_up  (!((GPIOE->IDR) & GPIO_IDR_IDR_6))
+#define vol_down  (!((GPIOA->IDR) & GPIO_IDR_IDR_1))
 #define wake    (((GPIOB->IDR) & GPIO_IDR_IDR_12))
 
 xTaskHandle                   Task_Handle;
+xTaskHandle        			  Calc_Handle;
 xTaskHandle                   Heading_Handle;
 xTaskHandle                   Counter_Handle;
 xTaskHandle                   Clock_Handle;
@@ -79,6 +82,7 @@ xTaskHandle                   MP3_Handle;
 xTaskHandle                   Menu_Handle;
 xTaskHandle                   Manager_Handle;
 xTaskHandle        			  BSP_Handle;
+xTaskHandle        			  Notepad_Handle;
 xTimerHandle                  TouchScreenTimer;
 
 xQueueHandle                  xQueue_men;

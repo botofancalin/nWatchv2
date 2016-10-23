@@ -25,41 +25,216 @@
 #include "clock.h"
 #include "menu.h"
 #include "heading.h"
+#include "global_inc.h"
 //#include "Math64.c"
 
 extern volatile int sec;
 extern volatile int sec2;
+extern volatile uint8_t update;
+extern volatile char received_string[12];
+int kk=0;
+u8 jed=1;
+uint8_t auc[500];//__attribute((section(".ExRam")));
+extern const GUI_FONT GUI_FontSolidEdgeStencil118;
+uint8_t month, day, dow, hours, minutes, seconds, weekday;
 
-uint32_t auc[2048]__attribute((section(".ExRam")));
-extern const GUI_FONT GUI_FontAgencyFB120;
-
-static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
-  { WINDOW_CreateIndirect, "clock", ID_WINDOW_0, 0, 0, 320, 240, WM_CF_SHOW, 0x0, 0 },
-  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 43, 60, 95, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 178, 60, 95, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 150, 50, 10, 120, 0, 0x64, 0 },
+static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] =
+{
+  { WINDOW_CreateIndirect, "clock", ID_WINDOW_0, 0, 0, 320, 240, WM_CF_SHOW, 0x0, 0},
+  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 43, 60, 120, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 178, 60, 120, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 150, 50, 15, 120, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "weekday", ID_TEXT_3, 35, 30, 129, 32, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "date", ID_TEXT_4, 175, 31, 80, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 108, 170, 52, 37, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "date", ID_TEXT_4, 175, 31, 40, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "month", ID_TEXT_7, 210, 31, 40, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 108, 170, 150, 37, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "till", ID_TEXT_6, 100, 190, 120, 50, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "lesson", ID_TEXT_8, 180, 190, 120, 50, 0, 0x0, 0 },
+};
+
+static const GUI_WIDGET_CREATE_INFO _aDialogCreate2[] = {
+  { WINDOW_CreateIndirect, "plan", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "dzien", ID_TEXT_0, 51, 2, 222, 25, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "plan", ID_TEXT_1, 22, 21, 276, 190, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "od", ID_TEXT_2, 59, 220, 80, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "do", ID_TEXT_3, 208, 220, 80, 23, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "OD", ID_TEXT_4, 18, 220, 31, 20, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "DO", ID_TEXT_5, 168, 220, 30, 20, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
 
-/*********************************************************************
-*
-*       Static code
-*
-**********************************************************************
-*/
+static const GUI_WIDGET_CREATE_INFO _aDialogCreate3[] = {
+  { WINDOW_CreateIndirect, "Alarm", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 10, 90, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_1, 10, 151, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_2, 248, 90, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_3, 248, 151, 60, 50, 0, 0x0, 0 },
+  { CHECKBOX_CreateIndirect, "Checkbox", ID_CHECKBOX_0, 137, 194, 86, 40, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 82, 107, 70, 80, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_1, 163, 107, 70, 80, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 76, 16, 184, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "Text", ID_TEXT_3, 13, 50, 293, 20, 0, 0x0, 0 },
+  // USER START (Optionally insert additional widgets)
+  // USER END
+};
 
-// USER START (Optionally insert additional static code)
-// USER END
+static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;
+  int     NCode;
+  int     Id;
+  char number[2];
+  // USER START (Optionally insert additional variables)
+  // USER END
 
-/*********************************************************************
-*
-*       _cbDialog
-*/
-static void _cbDialog(WM_MESSAGE * pMsg) {
+  switch (pMsg->MsgId)
+  {
+  case WM_PAINT:
+  {
+  	  taskENTER_CRITICAL();
+  	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+  	  weekday=AB0805_getDayOfWeek();
+  	  taskEXIT_CRITICAL();
+
+  	  if(hours>=6 && hours<20)
+  	  {
+  		  taskENTER_CRITICAL();
+  		  LCD_BMP("0:dzien.bmp");
+  		  taskEXIT_CRITICAL();
+  	  }
+  	  else
+  	  {
+  		  taskENTER_CRITICAL();
+  		  LCD_BMP("0:noc.bmp");
+  		  taskEXIT_CRITICAL();
+  	  }
+  	  break;
+    }
+  case WM_INIT_DIALOG:
+  {
+	  taskENTER_CRITICAL();
+	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  taskEXIT_CRITICAL();
+
+	    hItem = pMsg->hWin;
+	    WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_CHECKBOX_0);
+    CHECKBOX_SetText(hItem, "");
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+    TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+    TEXT_SetFont(hItem, &GUI_FontD36x48);
+    sprintf(number,"%0.2d",hours);
+	TEXT_SetText(hItem,number);
+	TEXT_SetTextColor(hItem,GUI_WHITE);
+    //
+    // Initialization of 'Text'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+    TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+    TEXT_SetFont(hItem, &GUI_FontD36x48);
+    sprintf(number,"%0.2d",minutes);
+	TEXT_SetText(hItem,number);
+	TEXT_SetTextColor(hItem,GUI_WHITE);
+    //
+    // Initialization of 'Text'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
+    TEXT_SetText(hItem, "ALARM");
+    TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+
+    break;
+  }
+  case WM_NOTIFY_PARENT:
+
+    Id    = WM_GetId(pMsg->hWinSrc);
+    NCode = pMsg->Data.v;
+    switch(Id)
+    {
+    case ID_BUTTON_0: // Notifications sent by 'Button'
+      switch(NCode)
+      {
+		  case WM_NOTIFICATION_CLICKED:
+		  {
+			  hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+			  TEXT_GetText(hItem,auc,500);
+			  int k=atoi(auc);
+			  k++;
+			  sprintf(number,"%0.2d",k);
+			  TEXT_SetText(hItem,number);
+			  break;
+		  }
+      }
+      break;
+    case ID_BUTTON_1: // Notifications sent by 'Button'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+
+		  hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+		  TEXT_GetText(hItem,auc,500);
+		  int k=atoi(auc);
+		  k--;
+		  sprintf(number,"%0.2d",k);
+		  TEXT_SetText(hItem,number);
+
+        break;
+      }
+      break;
+    case ID_BUTTON_2: // Notifications sent by 'Button'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+		  hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+		  TEXT_GetText(hItem,auc,500);
+		  int k=atoi(auc);
+		  k++;
+		  sprintf(number,"%0.2d",k);
+		  TEXT_SetText(hItem,number);
+        break;
+      }
+      break;
+    case ID_BUTTON_3: // Notifications sent by 'Button'
+      switch(NCode) {
+      case WM_NOTIFICATION_CLICKED:
+		  hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+		  TEXT_GetText(hItem,auc,500);
+		  int k=atoi(auc);
+		  k--;
+		  sprintf(number,"%0.2d",k);
+		  TEXT_SetText(hItem,number);
+        break;
+      }
+      break;
+    case ID_CHECKBOX_0: // Notifications sent by 'Checkbox'
+      switch(NCode)
+      {
+      case WM_NOTIFICATION_VALUE_CHANGED:
+      {
+
+    	    AB0805_writeByte(0xD2, 0x18, 0b00010000);
+    	    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+  		  	TEXT_GetText(hItem,auc,500);
+    	    AB0805_setHours24_Alarm(atoi(auc));
+    	    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+    	    TEXT_GetText(hItem,auc,500);
+    	    AB0805_setMinutes_Alarm(atoi(auc));
+    	    AB0805_setSeconds_Alarm(00);
+      }
+
+        break;
+      }
+      break;
+   }
+    break;
+
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
+
+static void _cbDialog(WM_MESSAGE * pMsg)
+{
   WM_HWIN hItem;
   // USER START (Optionally insert additional variables)
   // USER END
@@ -68,9 +243,12 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   {
   case WM_PAINT:
   {
-	  RTC_TimeTypeDef time;
-	  RTC_GetTime(RTC_Format_BIN,&time);
-	  if(time.RTC_Hours>=6 && time.RTC_Hours<20)
+	  taskENTER_CRITICAL();
+	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  weekday=AB0805_getDayOfWeek();
+	  taskEXIT_CRITICAL();
+
+	  if(hours>=6 && hours<20)
 	  {
 		  taskENTER_CRITICAL();
 	//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
@@ -84,63 +262,87 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
 		  LCD_BMP("0:noc.bmp");
 		  taskEXIT_CRITICAL();
 	  }
+
 	  break;
   }
   case WM_INIT_DIALOG:
-    //
-    // Initialization of 'clock'
-    //
-	  taskENTER_CRITICAL();
-//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
-	  LCD_BMP("0:pcb.bmp");
-	  taskEXIT_CRITICAL();
+
+	  if(AB0805_getMinutes()==AB0805_getMinutes_Alarm() &&  AB0805_getHours24()==AB0805_getHours24_Alarm())
+	  {
+		  while(!GUI_PID_IsPressed() && sec2<4000)
+		  {
+			  LED_ON;
+			  delay(500);
+			  LED_OFF;
+			  delay(300);
+			  IWDG_ReloadCounter();
+		  }
+	  }
+	  jed=1;
 
     hItem = pMsg->hWin;
     WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
-    //
-    // Initialization of 'hours'
-    //
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
-    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
+    TEXT_SetFont(hItem, &GUI_FontSolidEdgeStencil118);
     TEXT_SetText(hItem, "");
-    TEXT_SetTextColor(hItem, 0x001137db);
     //
     // Initialization of 'minutes'
     //
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
     TEXT_SetText(hItem, "");
-    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
-    TEXT_SetTextColor(hItem, 0x001137db);
-    //
-    // Initialization of 'Text'
-    //
+    TEXT_SetFont(hItem, &GUI_FontSolidEdgeStencil118);
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
     TEXT_SetText(hItem, ":");
-    TEXT_SetFont(hItem, &GUI_FontAgencyFB120);
-    TEXT_SetTextColor(hItem, 0x001137db);
-    //
-    // Initialization of 'weekday'
-    //
+    TEXT_SetFont(hItem, &GUI_FontSolidEdgeStencil118);
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_3);
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
-    TEXT_SetText(hItem, "poniedzialek");
-    TEXT_SetTextColor(hItem, 0x001137db);
-    //
-    // Initialization of 'date'
-    //
+    TEXT_SetText(hItem, "");
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
-    TEXT_SetText(hItem, "12.04");
-    TEXT_SetTextColor(hItem, 0x001137db);
-    //
-    // Initialization of 'seconds'
-    //
+    TEXT_SetText(hItem, "");
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_7);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
+    TEXT_SetText(hItem, "");
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
     TEXT_SetFont(hItem, GUI_FONT_D32);
     TEXT_SetText(hItem, "");
-    TEXT_SetTextColor(hItem, 0x001137db);
-    // USER START (Optionally insert additional code for further widget initialization)
-    // USER END
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_6);
+    TEXT_SetFont(hItem, &GUI_Font32B_ASCII);
+    TEXT_SetText(hItem, "");
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_8);
+    TEXT_SetFont(hItem, &GUI_Font24B_ASCII);
+    TEXT_SetText(hItem, "");
+
+
+    u8 dzien;
+    char number[2];
+
+	  taskENTER_CRITICAL();
+	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  weekday=AB0805_getDayOfWeek();
+	  taskEXIT_CRITICAL();
+
+	if(hours>=6 && hours<20)dzien=1;
+	else dzien=0;
+	WM_HWIN minute = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+	sprintf(number,"%0.2d",minutes);
+	TEXT_SetText(minute,number);
+	if(dzien)TEXT_SetTextColor(minute,GUI_BLACK);
+	else TEXT_SetTextColor(minute,GUI_WHITE);
+	WM_HWIN hour = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+	sprintf(number,"%0.2d",hours);
+	TEXT_SetText(hour,number);
+	if(dzien)TEXT_SetTextColor(hour,GUI_BLACK);
+	else TEXT_SetTextColor(hour,GUI_WHITE);
+
     break;
   // USER START (Optionally insert additional message handling)
   // USER END
@@ -150,53 +352,233 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
   }
 }
 
-/*********************************************************************
-*
-*       Public code
-*
-**********************************************************************
-*/
-/*********************************************************************
-*
-*       Createclock
-*/
+static void _cbDummy(WM_MESSAGE * pMsg) {
+  WM_HWIN hItem;
+  FIL fsrc;
+  RTC_DateTypeDef datea;
 
-WM_HWIN Createclock(void) {
+  switch (pMsg->MsgId)
+  {
+  case WM_INIT_DIALOG:
+
+//	    hItem = pMsg->hWin;
+//	    WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
+
+	  taskENTER_CRITICAL();
+//	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  weekday=AB0805_getDayOfWeek();
+	  taskEXIT_CRITICAL();
+    //
+    // Initialization of 'dzien'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+    TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
+    TEXT_SetFont(hItem, GUI_FONT_32B_ASCII);
+    TEXT_SetText(hItem, "");
+    switch(weekday)
+	{
+		case 1:
+		{
+			TEXT_SetText(hItem,"Monday");
+			break;
+		}
+		case 2:
+		{
+			TEXT_SetText(hItem,"Tuesday");
+			break;
+		}
+		case 3:
+		{
+			TEXT_SetText(hItem,"Wednesday");
+			break;
+		}
+		case 4:
+		{
+			TEXT_SetText(hItem,"Thursday");
+			break;
+		}
+		case 5:
+		{
+			TEXT_SetText(hItem,"Friday");
+			break;
+		}
+		case 6:
+		{
+			TEXT_SetText(hItem,"Saturday");
+			break;
+		}
+		case 7:
+		{
+			TEXT_SetText(hItem,"Sunday");
+			break;
+		}
+	}
+    //
+    // Initialization of 'plan'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
+//    TEXT_SetText(hItem, "");
+
+    taskENTER_CRITICAL();
+
+	switch(weekday)
+			{
+				case 1:
+				{
+					f_open(&fsrc,"0:plan/pon.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 2:
+				{
+					f_open(&fsrc,"0:plan/wt.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 3:
+				{
+					f_open(&fsrc,"0:plan/sr.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 4:
+				{
+					f_open(&fsrc,"0:plan/czw.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 5:
+				{
+					f_open(&fsrc,"0:plan/pt.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 6:
+				{
+					f_open(&fsrc,"0:plan/so.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 7:
+				{
+					f_open(&fsrc,"0:plan/nie.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+			}
+//	f_open(&fsrc,"0:plan/pon.txt",FA_OPEN_EXISTING|FA_READ);
+//	u8 aucc[f_size(&fsrc)];
+	f_read(&fsrc,auc,f_size(&fsrc),&kk);
+	TEXT_SetText(hItem, auc);
+	taskEXIT_CRITICAL();
+
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_2);
+    TEXT_SetFont(hItem, GUI_FONT_20B_ASCII);
+    TEXT_SetText(hItem, "");
+    //
+    // Initialization of 'do'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_3);
+    TEXT_SetFont(hItem, GUI_FONT_20B_ASCII);
+    TEXT_SetText(hItem, "");
+    //
+    // Initialization of 'OD'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
+    TEXT_SetFont(hItem, GUI_FONT_20B_ASCII);
+    //
+    // Initialization of 'DO'
+    //
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
+    TEXT_SetFont(hItem, GUI_FONT_20B_ASCII);
+    // USER START (Optionally insert additional code for further widget initialization)
+    // USER END
+    break;
+  case WM_PAINT:
+  {
+	  taskENTER_CRITICAL();
+	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  taskEXIT_CRITICAL();
+
+	  if(hours>=6 && hours<20)
+	  {
+		  taskENTER_CRITICAL();
+		  LCD_BMP("0:dzien.bmp");
+		  taskEXIT_CRITICAL();
+	  }
+	  else
+	  {
+		  taskENTER_CRITICAL();
+		  LCD_BMP("0:noc.bmp");
+		  taskEXIT_CRITICAL();
+	  }
+	  break;
+  }
+  default:
+    WM_DefaultProc(pMsg);
+    break;
+  }
+}
+
+
+
+
+WM_HWIN Createplan(void)
+{
   WM_HWIN hWin;
 
-  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog,WM_HBKWIN, 0, 0);
+  hWin = GUI_CreateDialogBox(_aDialogCreate2, GUI_COUNTOF(_aDialogCreate2), _cbDummy, WM_HBKWIN, 0, 0);
   return hWin;
 }
+
+WM_HWIN Createclock(void)
+{
+  WM_HWIN hWin,hWinBase;
+  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_CF_SHOW, 0, 0);
+  return hWin;
+}
+
+WM_HWIN CreateAlarm(void)
+{
+  WM_HWIN hWin;
+
+  hWin = GUI_CreateDialogBox(_aDialogCreate3, GUI_COUNTOF(_aDialogCreate3), _cbDialog_alarm, WM_HBKWIN, 0, 0);
+  return hWin;
+}
+
 
 void Clock( void * pvParameters)
 {
 	long int z=0;
-	WM_HWIN hWinclock;
+	WM_HWIN hWinclock,hWinplan=0,hWinBase;
 	GUI_PID_STATE stat;
-	hWinclock  = Createclock();
+
+	 hWinclock = Createclock();
+
 	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
 	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
 	RTC_TimeTypeDef time;
+	RTC_DateTypeDef datea;
 	GUI_SetOrientation(0);
 	FRESULT f=0;
 	FIL fsrc;
 	FATFS fs;
+	int tre=0;
+	u16 data[6];
+	u8 dzien=1;
 
 	while(1)
 	{
-		if(GUI_PID_IsPressed())
+		vTaskDelay(50);
+
+		if(GUI_PID_IsPressed() && hWinplan==0)
 		{
-			if(sec2>1000)
+			if(sec2>400)
 			{
+//				hWinplan=Createplan();
 				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
 				xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
 			}
-		}else
+		}
+		else
 		{
 			sec2=0;
 		}
-
-		if(vol_up)
+		if(wake)
 		{
 			  while(1){CPU_OFF;}
 		}
@@ -204,36 +586,284 @@ void Clock( void * pvParameters)
 		{
 			  CPU_ON;
 		}
-		vTaskDelay(100);
-		char number[1];
-		RTC_GetTime(RTC_Format_BIN,&time);
-		WM_HWIN minutes = WM_GetDialogItem(hWinclock, ID_TEXT_1);
-		sprintf(number,"%0.2d",time.RTC_Minutes);
-		TEXT_SetText(minutes,number);
-		WM_HWIN hours = WM_GetDialogItem(hWinclock, ID_TEXT_0);
-		sprintf(number,"%0.2d",time.RTC_Hours);
-		TEXT_SetText(hours,number);
-		WM_HWIN dwu = WM_GetDialogItem(hWinclock, ID_TEXT_2);
-		if(time.RTC_Seconds%2==0)
-		{
 
+		if(vol_up)
+		{
+//			WM_HWIN hFrame = FRAMEWIN_CreateEx(0, 0, 320, 240, WM_HBKWIN, WM_CF_HIDE, 0, 0, "Notepad", 0);
+//			GUI_MEMDEV_ShiftInWindow(hWinclock,500,GUI_MEMDEV_EDGE_LEFT);
+//			WM_MOTION_SetMovement(hWinclock,GUI_COORD_X,240,240);
+//			hWinViewport = WM_CreateWindow(0, 0, 320, 240 ,WM_HBKWIN, _cbDummy, 0);
+//			hWinplan=Createplan();
+			hWinplan=CreateAlarm();
+		}
+		else if(vol_down)
+		{
+			MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 1);
+			hWinplan=Createplan();
+		}
+
+		char number[3];
+
+		  taskENTER_CRITICAL();
+		  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+		  weekday=AB0805_getDayOfWeek();
+		  taskEXIT_CRITICAL();
+//		  hours = seconds;
+
+		if(hours>=6 && hours<20)dzien=1;
+		else dzien=0;
+		WM_HWIN date = WM_GetDialogItem(hWinclock, ID_TEXT_4);
+		sprintf(number,"%0.2d",day );
+		strcat(number,".");
+		TEXT_SetText(date,number);
+		WM_HWIN mont = WM_GetDialogItem(hWinclock, ID_TEXT_7);
+		sprintf(number,"%0.2d", month);
+		if(dzien)TEXT_SetTextColor(mont,GUI_BLACK);
+		else TEXT_SetTextColor(mont,GUI_WHITE);
+		TEXT_SetText(mont,number);
+		if(dzien)TEXT_SetTextColor(date,GUI_BLACK);
+		else TEXT_SetTextColor(date,GUI_WHITE);
+		WM_HWIN weekd = WM_GetDialogItem(hWinclock, ID_TEXT_3);
+		if(dzien)TEXT_SetTextColor(weekd,GUI_BLACK);
+		else TEXT_SetTextColor(weekd,GUI_WHITE);
+		switch(weekday)
+		{
+			case 1:
+			{
+				TEXT_SetText(weekd,"Monday");
+				break;
+			}
+			case 2:
+			{
+				TEXT_SetText(weekd,"Tuesday");
+				break;
+			}
+			case 3:
+			{
+				TEXT_SetText(weekd,"Wednesday");
+				break;
+			}
+			case 4:
+			{
+				TEXT_SetText(weekd,"Thursday");
+				break;
+			}
+			case 5:
+			{
+				TEXT_SetText(weekd,"Friday");
+				break;
+			}
+			case 6:
+			{
+				TEXT_SetText(weekd,"Saturday");
+				break;
+			}
+			case 7:
+			{
+				TEXT_SetText(weekd,"Sunday");
+				break;
+			}
+		}
+
+		WM_HWIN minute = WM_GetDialogItem(hWinclock, ID_TEXT_1);
+		sprintf(number,"%0.2d",minutes);
+		TEXT_SetText(minute,number);
+		if(dzien)TEXT_SetTextColor(minute,GUI_BLACK);
+		else TEXT_SetTextColor(minute,GUI_WHITE);
+		WM_HWIN hour = WM_GetDialogItem(hWinclock, ID_TEXT_0);
+		sprintf(number,"%0.2d",hours);
+		TEXT_SetText(hour,number);
+		if(dzien)TEXT_SetTextColor(hour,GUI_BLACK);
+		else TEXT_SetTextColor(hour,GUI_WHITE);
+		WM_HWIN dwu = WM_GetDialogItem(hWinclock, ID_TEXT_2);
+		if(seconds%2==0)
+		{
 			TEXT_SetText(dwu,"");
 		}
 		else
 		{
 			TEXT_SetText(dwu,":");
 		}
-//		WM_HWIN seconds = WM_GetDialogItem(hWinclock, ID_TEXT_5);
-//		sprintf(number,"%0.2d",time.RTC_Seconds);
-//		TEXT_SetText(seconds,number);
+		if(dzien)TEXT_SetTextColor(dwu,GUI_BLACK);
+		else TEXT_SetTextColor(dwu,GUI_WHITE);
 
-		if(time.RTC_Hours==21 && time.RTC_Minutes==37 && time.RTC_Seconds<5)
+		WM_HWIN till = WM_GetDialogItem(hWinclock, ID_TEXT_6);
+		if(dzien)TEXT_SetTextColor(till,GUI_BLACK);
+		else TEXT_SetTextColor(till,GUI_WHITE);
+
+		char lekcja='-';
+
+		if((hours<8)||(hours==8 && minutes<=15))
+		{
+			TEXT_SetText(till,"8:15");
+			lekcja='1';
+		}
+		else if((hours==8 && minutes>15) || (hours==9 && minutes==0))
+		{
+			TEXT_SetText(till,"9:00");
+			lekcja='2';
+		}
+		else if(hours==9 && minutes<=10)
+		{
+			TEXT_SetText(till,"9:10");
+			lekcja='2';
+		}
+		else if(hours==9 && minutes<=55)
+		{
+			TEXT_SetText(till,"9:55");
+			lekcja='3';
+		}
+		else if((hours==10 && minutes<=5)||(hours==9 && minutes>55))
+		{
+			TEXT_SetText(till,"10:05");
+			lekcja='3';
+		}
+		else if(hours==10 && minutes<=50)
+		{
+			TEXT_SetText(till,"10:50");
+			lekcja='4';
+		}
+		else if((hours==11 && minutes<=10) || (hours==10 && minutes>50))
+		{
+			TEXT_SetText(till,"11:10");
+			lekcja='4';
+		}
+		else if(hours==11 && minutes<=50)
+		{
+			TEXT_SetText(till,"11:55");
+			lekcja='5';
+		}
+		else if((hours==12 && minutes<=5) || (hours==11 && minutes>50))
+		{
+			TEXT_SetText(till,"12:05");
+			lekcja='5';
+		}
+		else if(hours==12 && minutes<=50)
+		{
+			TEXT_SetText(till,"12:50");
+			lekcja='6';
+		}
+		else if((hours==12 && minutes>50)||(hours==13 && minutes==0))
+		{
+			TEXT_SetText(till,"13:00");
+			lekcja='6';
+		}
+		else if(hours==13 && minutes<=45)
+		{
+			TEXT_SetText(till,"13:45");
+			lekcja='7';
+		}
+		else if(hours==13 && minutes<=55)
+		{
+			TEXT_SetText(till,"13:55");
+			lekcja='7';
+		}
+		else if((hours==13 && minutes>55) || (hours==14 && minutes<=40))
+		{
+			TEXT_SetText(till,"14:40");
+			lekcja='8';
+		}
+		else if(hours==14 && minutes<=50)
+		{
+			TEXT_SetText(till,"14:50");
+			lekcja='8';
+		}
+		else if((hours==14 && minutes>50)||(hours==15 && minutes<=35))
+		{
+			TEXT_SetText(till,"15:35");
+			lekcja='9';
+		}
+		else
+		{
+			TEXT_SetText(till,"--:--");
+		}
+
+		if(jed && lekcja!='-')
+		{
+
+
+			taskENTER_CRITICAL();
+			switch(weekday)
+					{
+						case 1:
+						{
+							f_open(&fsrc,"0:plan/pon.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 2:
+						{
+							f_open(&fsrc,"0:plan/wt.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 3:
+						{
+							f_open(&fsrc,"0:plan/sr.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 4:
+						{
+							f_open(&fsrc,"0:plan/czw.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 5:
+						{
+							f_open(&fsrc,"0:plan/pt.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 6:
+						{
+							f_open(&fsrc,"0:plan/so.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+						case 7:
+						{
+							f_open(&fsrc,"0:plan/nie.txt",FA_OPEN_EXISTING|FA_READ);
+							break;
+						}
+					}
+			char aucc[f_size(&fsrc)];
+			f_read(&fsrc,aucc,f_size(&fsrc),&kk);
+//			GUI_DispDecAt(sizeof(&fsrc),220,220,5);
+
+			int i=0;
+			while(aucc[i]!=lekcja || aucc[i+1]!='.')
+			{
+				i++;
+				if(i>=f_size(&fsrc))break;
+			}
+			WM_HWIN lesson = WM_GetDialogItem(hWinclock, ID_TEXT_8);
+			if(dzien)TEXT_SetTextColor(lesson,GUI_BLACK);
+			else TEXT_SetTextColor(lesson,GUI_WHITE);
+			u8 lk=0;
+			char less[20];
+			while(aucc[i]!='\n')
+			{
+				less[lk++]=aucc[i++];
+			}
+			TEXT_SetText(lesson,less);
+			jed=0;
+			taskEXIT_CRITICAL();
+		}
+
+		if(hours==21 && minutes==37 && time.RTC_Seconds<10)
 		{
 			taskENTER_CRITICAL();
 			bitmap_RGB("0:papa.rgb",0,0,226,320);
 			for(int l=0;l<0xfffff;l++){};
 		    taskEXIT_CRITICAL();
 		}
+
+//		if(update==1)
+//		{
+//
+//		}
+//		  GPIOG->BSRRL|=GPIO_BSRR_BS_6;
+//		  delay(10);
+//		  taskENTER_CRITICAL();
+//		  USART_puts("dziala");
+//		  taskEXIT_CRITICAL();
+//		  GPIOG->BSRRH|=GPIO_BSRR_BS_6;
+
 
 //		else
 //		{
@@ -242,12 +872,6 @@ void Clock( void * pvParameters)
 
 	}
 }
-
-
-
-
-
-
 
 //			jpeg_create_decompress(&cinfo);
 //			cinfo.err = jpeg_std_error(&jerr);

@@ -43,7 +43,7 @@ void button_destroy(Button *but)
 	Buttons[id].used=0;
 
 }
-void update(Button *but)
+void update1(Button *but)
 {
 	u8 id= but->id;
 	Buttons[id].x=but->x;

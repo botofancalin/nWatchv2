@@ -54,7 +54,12 @@ void motion_init(void)
 	k=dmp_enable_feature(dmp_features);
 	MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
 	k=mpu_set_dmp_state(1);
-	mpu_lp_motion_interrupt(1800,6,40);
+	mpu_lp_motion_interrupt(1600,20,40);
+//	dmp_set_shake_reject_thresh(2000,1900);
+//	dmp_set_shake_reject_time(1000);
+//	dmp_set_tap_thresh(1,100);
+//	dmp_set_tap_axes(1);
+//	dmp_set_tap_count(1);
 }
 
 uint8_t cur[16], tmp[2];

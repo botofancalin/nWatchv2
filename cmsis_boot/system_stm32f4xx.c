@@ -450,6 +450,8 @@ static void SetSysClock(void)
   */
 void SystemInit_ExtMemCtl(void)
 {
+
+	SRAM_Init();
 ///*-- GPIOs Configuration -----------------------------------------------------*/
 ///*
 // +-------------------+--------------------+------------------+------------------+

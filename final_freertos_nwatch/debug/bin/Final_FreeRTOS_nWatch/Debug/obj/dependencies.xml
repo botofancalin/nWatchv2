@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dependencies>
-   <includePath signature="/I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_boot /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\sram /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\mpu6050 /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\OTG_driver /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\DRD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\inc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\DEVICE_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\libjpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\ff /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\elements /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB\HOST_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\USB /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\nokia_LCD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\cmsis /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\jpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\ConfigurationTemplate /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\GenericRecorderLibSrc\Include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin_aktualny\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC\ARM_CM4F /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\touch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch\FreeRTOS\Source\portable\GCC">
+   <includePath signature="/I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\cmsis /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS\Source /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\jpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\cmsis_boot /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin_aktualny\STemWin /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS\Source\portable\GCC\ARM_CM4F /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin_aktualny\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS\Source\portable\GCC /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS\Source\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\nokia_LCD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\cmsis_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin\Config /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\mpu6050 /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\GenericRecorderLibSrc\Include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\cmsis_lib\include /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\USB\DEVICE_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\touch /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\GenericRecorderLibSrc\ConfigurationTemplate /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\USB\HOST_lib /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin_aktualny /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\USB /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\libjpeg /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\FreeRTOS\Source\portable /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\GenericRecorderLibSrc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin_aktualny\STemWin\inc /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\USB\OTG_driver /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\elements /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\sram /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\ff /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\USB\DRD /I..\..\..\..\..\Users\UMB\Desktop\coocox_workspace\workspace\Final_FreeRTOS_nWatch_ZG\STemWin">
       <source file="..\..\..\..\..\..\jpeg\bsp_jpg.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -120,7 +120,7 @@
       <source file="..\..\..\..\..\..\USB\DRD\usbd_usr.c" lastModified="151716c9ff8">
          <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_usr.h"/>
       </source>
-      <source file="..\..\..\..\..\..\counter.c" lastModified="156d56a8c85">
+      <source file="..\..\..\..\..\..\counter.c" lastModified="1572e8a2120">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\counter.h"/>
          <include file="..\..\..\..\..\..\clock.h"/>
@@ -188,9 +188,7 @@
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\mpu_wrappers.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\GUIConf.h" lastModified="1524d54c090">
-      </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="1524d54e3b8">
+      <source file="..\..\..\..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="1524d54dfd0">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_exti.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_flash.h"/>
@@ -206,6 +204,7 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_spi.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_syscfg.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
       </source>
       <source file="..\..\..\..\..\..\ff\integer.h" lastModified="1524d54c860">
@@ -230,7 +229,7 @@
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jmemsys.h" lastModified="1524d54c478">
       </source>
-      <source file="..\..\..\..\..\..\mp3.c" lastModified="15688731e9c">
+      <source file="..\..\..\..\..\..\mp3.c" lastModified="15795f360b5">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\mp3.h"/>
       </source>
@@ -247,17 +246,17 @@
          <include file="..\..\..\..\..\..\USB\DRD\usbh_msc_usr.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
       </source>
+      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.h" lastModified="157613b80b3">
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\..\..\..\ff\diskio.h"/>
+      </source>
       <source file="..\..\..\..\..\..\libjpeg\jccoefct.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
-      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.h" lastModified="156d09f2dce">
-         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\..\..\..\ff\diskio.h"/>
+      <source file="..\..\..\..\..\..\ff\ffconf.h" lastModified="156da5b4825">
       </source>
-      <source file="..\..\..\..\..\..\ff\ffconf.h" lastModified="1524d54c090">
-      </source>
-      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.c" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\ff\sdio_stm32f4.c" lastModified="15761300c37">
          <include file="..\..\..\..\..\..\ff\sdio_stm32f4.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -281,6 +280,9 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
+      <source file="..\..\..\..\..\..\notepad.h" lastModified="156dd386cd4">
+         <include file="..\..\..\..\..\..\global_inc.h"/>
+      </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rtc.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -295,9 +297,18 @@
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Debug.h" lastModified="14e916986e8">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
       </source>
+      <source file="..\..\..\..\..\..\notepad.c" lastModified="156e7bd2061">
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
+         <include file="..\..\..\..\..\..\counter.h"/>
+         <include file="..\..\..\..\..\..\clock.h"/>
+         <include file="..\..\..\..\..\..\menu.h"/>
+         <include file="..\..\..\..\..\..\heading.h"/>
+         <include file="..\..\..\..\..\..\notepad.h"/>
+         <include file="..\..\..\..\..\..\global_inc.h"/>
+      </source>
       <source file="..\..\..\..\..\..\mpu6050\inv_mpu.h" lastModified="156adba26ad">
       </source>
-      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.c" lastModified="156d77d9dc5">
+      <source file="..\..\..\..\..\..\mpu6050\inv_mpu.c" lastModified="15745fd3b9a">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
@@ -317,7 +328,7 @@
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
-         <include file="..\..\..\..\..\..\libjpeg\main.h"/>
+         <include file="..\..\..\..\..\..\main.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -329,7 +340,7 @@
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_otg.h"/>
       </source>
-      <source file="..\..\..\..\..\..\sram\sram.c" lastModified="156d636e9db">
+      <source file="..\..\..\..\..\..\sram\sram.c" lastModified="1575d3fb04d">
          <include file="..\..\..\..\..\..\sram\sram.h"/>
       </source>
       <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_data.h" lastModified="151716c9c10">
@@ -472,7 +483,7 @@
       <source file="..\..\..\..\..\..\nokia_LCD\itoa.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\nokia_LCD\itoa.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="156d6686040">
+      <source file="..\..\..\..\..\..\STemWin\Config\bsp.c" lastModified="157d9b2bbf2">
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
@@ -482,6 +493,10 @@
       </source>
       <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_scsi.h" lastModified="151716c9c10">
          <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_stdreq.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="157a56f7402">
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LISTVIEW.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -513,7 +528,7 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="156d636e976">
+      <source file="..\..\..\..\..\..\nokia_LCD\LCD_6300.c" lastModified="157d9aa8793">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
          <include file="..\..\..\..\..\..\nokia_LCD\LCD_6300.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
@@ -531,11 +546,8 @@
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\semphr.h"/>
       </source>
-      <source file="..\..\..\..\..\..\AgencyFB120.c" lastModified="156d7e9f5c2">
-         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
-      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_ConfDefaults.h" lastModified="14e9169b1e0">
-         <include file="..\..\..\..\..\..\STemWin\Config\GUIConf.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jcsample.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -577,7 +589,7 @@
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_ConfDefaults.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin\Config\LCDConf.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin\Config\LCDConf.c" lastModified="156d54bf344">
+      <source file="..\..\..\..\..\..\STemWin\Config\LCDConf.c" lastModified="157e3361b44">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\GUIDRV_Template.h"/>
       </source>
@@ -638,6 +650,9 @@
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jdct.h"/>
       </source>
+      <source file="..\..\..\..\..\..\SolidEdgeStencil118.c" lastModified="156dac512cc">
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
+      </source>
       <source file="..\..\..\..\..\..\manager.c" lastModified="156a01b3eb6">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
          <include file="..\..\..\..\..\..\manager.h"/>
@@ -647,7 +662,7 @@
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Type.h" lastModified="14e9169b1e0">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD.h"/>
-         <include file="..\..\..\..\..\..\STemWin\Config\GUIConf.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin\Config\GUIDRV_Template.h" lastModified="1524d54c090">
       </source>
@@ -660,7 +675,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
       </source>
-      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h" lastModified="15324dfebc0">
+      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h" lastModified="156e0e31747">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\list.h"/>
       </source>
       <source file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.h" lastModified="156a03de6ba">
@@ -732,6 +747,8 @@
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jdct.h" lastModified="1524d54c090">
       </source>
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.h" lastModified="157de9bb851">
+      </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_spi.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -745,7 +762,7 @@
          <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
          <include file="..\..\..\..\..\..\USB\DRD\usbd_conf.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.c" lastModified="15680e956a6">
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIConf.c" lastModified="157e333c72d">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
       </source>
       <source file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h" lastModified="151716c9c10">
@@ -766,16 +783,27 @@
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_defines.h"/>
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd_int.h"/>
       </source>
+      <source file="..\..\..\..\..\..\AB0805.h" lastModified="157ab955911">
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM4F\portmacro.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h"/>
       </source>
-      <source file="..\..\..\..\..\..\nokia_LCD\FONT8x8.h" lastModified="1531edfc1f0">
+      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h" lastModified="151716c9c10">
+         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\AB0805.c" lastModified="157ce30529a">
+         <include file="..\..\..\..\..\..\AB0805.h"/>
+         <include file="..\..\..\..\..\..\mpu6050\inv_mpu.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h" lastModified="151716c9c10">
-         <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd.h"/>
+         <include file="..\..\..\..\..\..\nokia_LCD\itoa.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\misc.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
       </source>
       <source file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.c" lastModified="151716c9c10">
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_dcd_int.h"/>
@@ -793,18 +821,18 @@
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcBase.c" lastModified="1524d54c860">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcBase.h"/>
       </source>
-      <source file="..\..\..\..\..\..\heading.h" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\heading.h" lastModified="157deb92b3c">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\heading.c" lastModified="156d34d1060">
+      <source file="..\..\..\..\..\..\heading.c" lastModified="157deb92b86">
          <include file="..\..\..\..\..\..\heading.h"/>
          <include file="..\..\..\..\..\..\menu.h"/>
       </source>
-      <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\MemMang\heap_4.c" lastModified="1524d54c478">
+      <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\MemMang\heap_4.c" lastModified="1572f72b4e6">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\task.h"/>
       </source>
@@ -868,7 +896,7 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_dma.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_sdio.h"/>
       </source>
-      <source file="..\..\..\..\..\..\clock.h" lastModified="156881a9068">
+      <source file="..\..\..\..\..\..\clock.h" lastModified="157e308e7c3">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
       <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_core.c" lastModified="151716c9c10">
@@ -877,18 +905,15 @@
          <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_msc_bot.h"/>
          <include file="..\..\..\..\..\..\USB\HOST_lib\usbh_core.h"/>
       </source>
-      <source file="..\..\..\..\..\..\clock.c" lastModified="156d8021733">
-         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
-         <include file="..\..\..\..\..\..\clock.h"/>
-         <include file="..\..\..\..\..\..\menu.h"/>
-         <include file="..\..\..\..\..\..\heading.h"/>
-      </source>
       <source file="..\..\..\..\..\..\libjpeg\jcapistd.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\include\event_groups.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\timers.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_usart.h" lastModified="157a56f73f9">
+         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -931,6 +956,14 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Type.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM_GUI.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\calc.h" lastModified="1572000b591">
+      </source>
+      <source file="..\..\..\..\..\..\calc.c" lastModified="157350481d1">
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG.h"/>
+         <include file="..\..\..\..\..\..\calc.h"/>
+         <include file="..\..\..\..\..\..\menu.h"/>
+         <include file="..\..\..\..\..\..\heading.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jctrans.c" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
@@ -1010,11 +1043,14 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
-      <source file="..\..\..\..\..\..\menu.c" lastModified="156d5d11e4e">
+      <source file="..\..\..\..\..\..\menu.c" lastModified="157df133209">
          <include file="..\..\..\..\..\..\menu.h"/>
          <include file="..\..\..\..\..\..\mp3.h"/>
          <include file="..\..\..\..\..\..\counter.h"/>
          <include file="..\..\..\..\..\..\clock.h"/>
+         <include file="..\..\..\..\..\..\notepad.h"/>
+         <include file="..\..\..\..\..\..\global_inc.h"/>
+         <include file="..\..\..\..\..\..\calc.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GRAPH.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
@@ -1056,10 +1092,6 @@
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_hcd.h"/>
          <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_bsp.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\libjpeg\main.h" lastModified="1524d54c860">
-         <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
-         <include file="..\..\..\..\..\..\libjpeg\decode.h"/>
       </source>
       <source file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_msc_bot.h" lastModified="151716c9c10">
          <include file="..\..\..\..\..\..\USB\DEVICE_lib\usbd_core.h"/>
@@ -1114,18 +1146,6 @@
       <source file="..\..\..\..\..\..\ili9320.h" lastModified="155e3b3d6e4">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\ili9320.c" lastModified="155e4e0eb3d">
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
-         <include file="..\..\..\..\..\..\ili9320.h"/>
-         <include file="..\..\..\..\..\..\global_inc.h"/>
-         <include file="..\..\..\..\..\..\nokia_LCD\FONT8x8.h"/>
-         <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
-         <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_fsmc.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-      </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_flash.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -1146,7 +1166,7 @@
       <source file="..\..\..\..\..\..\GenericRecorderLibSrc\trcKernel.c" lastModified="1524d54c478">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernel.h"/>
       </source>
-      <source file="..\..\..\..\..\..\vs1003.h" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\vs1003.h" lastModified="1579b442462">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -1160,12 +1180,12 @@
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_adc.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\..\..\vs1003.c" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\vs1003.c" lastModified="1579b32117b">
          <include file="..\..\..\..\..\..\vs1003.h"/>
       </source>
       <source file="..\..\..\..\..\..\FreeRTOS\Source\portable\GCC\ARM_CM3\portmacro.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h" lastModified="15689e6276a">
+      <source file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOSConfig_template.h" lastModified="157ded6c036">
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcKernelPortFreeRTOS.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jddctmgr.c" lastModified="1524d54c090">
@@ -1173,12 +1193,14 @@
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jdct.h"/>
       </source>
-      <source file="..\..\..\..\..\..\elements\button.h" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.h" lastModified="14e91692d10">
+      </source>
+      <source file="..\..\..\..\..\..\elements\button.h" lastModified="157b5146b7a">
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.c" lastModified="156af755293">
+      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.c" lastModified="157e3361f7a">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_Private.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Private.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\LCD_ConfDefaults.h"/>
@@ -1188,7 +1210,7 @@
       </source>
       <source file="..\..\..\..\..\..\libjpeg\jerror.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\elements\button.c" lastModified="1524d54c090">
+      <source file="..\..\..\..\..\..\elements\button.c" lastModified="157b5146b0b">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
@@ -1211,7 +1233,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
       </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="156c43b3c28">
+      <source file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1572efba5e4">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
       <source file="..\..\..\..\..\..\libjpeg\decode.h" lastModified="1531e158480">
@@ -1255,9 +1277,6 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
       </source>
-      <source file="..\..\..\..\..\..\Math64.c" lastModified="156d7d16aa0">
-         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI.h"/>
-      </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\DIALOG_Intern.h" lastModified="14e91699a70">
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WM.h"/>
       </source>
@@ -1300,8 +1319,11 @@
       <source file="..\..\..\..\..\..\USB\DRD\usbd_conf.h" lastModified="156d176d4af">
          <include file="..\..\..\..\..\..\USB\DRD\usb_conf.h"/>
       </source>
-      <source file="..\..\..\..\..\..\touch\stmpe811.h" lastModified="15697b5c2ae">
+      <source file="..\..\..\..\..\..\touch\stmpe811.h" lastModified="157a4ec3c54">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\..\..\..\MOTION_IconSlide.h" lastModified="157deb92bd6">
+         <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_spi.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -1312,7 +1334,7 @@
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\WIDGET.h"/>
          <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUI_Debug.h"/>
       </source>
-      <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="156d3bf6f2a">
+      <source file="..\..\..\..\..\..\touch\stmpe811.c" lastModified="157a4fa9471">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
@@ -1323,7 +1345,7 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_i2c.h"/>
          <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
-         <include file="..\..\..\..\..\..\elements\list1.h"/>
+         <include file="..\..\..\..\..\..\list1.h"/>
          <include file="..\..\..\..\..\..\elements\textbox.h"/>
       </source>
       <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\CALENDAR.h" lastModified="14e91698300">
@@ -1336,10 +1358,10 @@
       </source>
       <source file="..\..\..\..\..\..\main.h" lastModified="1524d54c090">
       </source>
-      <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="156d62d3d10">
+      <source file="..\..\..\..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="157ded545cb">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\main.c" lastModified="156d65910fd">
+      <source file="..\..\..\..\..\..\main.c" lastModified="157df133567">
          <include file="..\..\..\..\..\..\main.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
@@ -1358,6 +1380,7 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_adc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_tim.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
+         <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\decode.h"/>
          <include file="..\..\..\..\..\..\ff\ff.h"/>
@@ -1373,9 +1396,10 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h"/>
          <include file="..\..\..\..\..\..\explorer.h"/>
          <include file="..\..\..\..\..\..\clock.h"/>
+         <include file="..\..\..\..\..\..\AB0805.h"/>
          <include file="..\..\..\..\..\..\sram\sram.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
-         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.h"/>
          <include file="..\..\..\..\..\..\MPU5060.h"/>
          <include file="..\..\..\..\..\..\mpu6050\inv_mpu.h"/>
          <include file="..\..\..\..\..\..\mpu6050\inv_mpu_dmp_motion_driver.h"/>
@@ -1391,7 +1415,7 @@
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h"/>
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\global_inc.h" lastModified="156d17f1f70">
+      <source file="..\..\..\..\..\..\global_inc.h" lastModified="157633bda1b">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\system_stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\cmsis\core_cm4.h"/>
@@ -1422,7 +1446,7 @@
          <include file="..\..\..\..\..\..\explorer.h"/>
          <include file="..\..\..\..\..\..\sram\sram.h"/>
          <include file="..\..\..\..\..\..\STemWin\Config\bsp.h"/>
-         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h"/>
+         <include file="..\..\..\..\..\..\STemWin_aktualny\STemWin\Config\GUIDRV_Template.h"/>
          <include file="..\..\..\..\..\..\MPU5060.h"/>
          <include file="..\..\..\..\..\..\vs1003.h"/>
          <include file="..\..\..\..\..\..\FreeRTOS\Source\include\FreeRTOS.h"/>
@@ -1433,6 +1457,8 @@
          <include file="..\..\..\..\..\..\GenericRecorderLibSrc\Include\trcUser.h"/>
          <include file="..\..\..\..\..\..\mp3.h"/>
          <include file="..\..\..\..\..\..\manager.h"/>
+         <include file="..\..\..\..\..\..\notepad.h"/>
+         <include file="..\..\..\..\..\..\calc.h"/>
          <include file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_rng.h"/>
       </source>
       <source file="..\..\..\..\..\..\stm32f4xx_it.h" lastModified="1524d54c090">
@@ -1446,14 +1472,12 @@
       <source file="..\..\..\..\..\..\jpeg\tjpgd.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\ff\integer.h"/>
       </source>
-      <source file="..\..\..\..\..\..\STemWin_aktualny\STemWin\inc\GUIDRV_Template.h" lastModified="14e91699a70">
-      </source>
       <source file="..\..\..\..\..\..\USB\HOST_lib\usbh_def.h" lastModified="151716c9c10">
       </source>
-      <source file="..\..\..\..\..\..\global_inc.c" lastModified="156d5e6a38e">
+      <source file="..\..\..\..\..\..\global_inc.c" lastModified="157ce3052ef">
          <include file="..\..\..\..\..\..\global_inc.h"/>
       </source>
-      <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="156d04d0043">
+      <source file="..\..\..\..\..\..\stm32f4xx_it.c" lastModified="1575d3c7e6f">
          <include file="..\..\..\..\..\..\stm32f4xx_it.h"/>
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\..\..\..\USB\OTG_driver\usb_core.h"/>
@@ -1471,9 +1495,6 @@
          <include file="..\..\..\..\..\..\libjpeg\jinclude.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jpeglib.h"/>
          <include file="..\..\..\..\..\..\libjpeg\jerror.h"/>
-      </source>
-      <source file="..\..\..\..\..\..\elements\list1.h" lastModified="1524d54c090">
-         <include file="..\..\..\..\..\..\touch\stmpe811.h"/>
       </source>
       <source file="..\..\..\..\..\..\cmsis_lib\include\stm32f4xx_pwr.h" lastModified="1524d54c090">
          <include file="..\..\..\..\..\..\cmsis_boot\stm32f4xx.h"/>

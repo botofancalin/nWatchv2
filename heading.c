@@ -1,5 +1,6 @@
 #include "heading.h"
 #include "menu.h"
+//#include "MOTION_IconSlide.c"
 
 int aa=-1;
 
@@ -114,9 +115,9 @@ static void _cbHeading(WM_MESSAGE * pMsg)
 
 			    ADC_SoftwareStartConv(ADC1);
 			    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
-			    int result= ADC_GetConversionValue(ADC1);
-			    result = result * 8059/10000;
-				 GUI_DispStringHCenterAt(itoa(result*100/3100,t,10), xSize / 2, 20);
+			    float result= ADC_GetConversionValue(ADC1);
+			    float volt = result /4095 * 240;
+				 GUI_DispStringHCenterAt(itoa(volt,t,10), xSize / 2, 20);
 //			 		 GUI_Disp(v,120,20,5);
 			 }
 			 aa=a;

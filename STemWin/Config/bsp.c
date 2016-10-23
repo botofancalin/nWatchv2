@@ -58,6 +58,7 @@ void LCD_BMP( char *sc)
 		 GUI_BMP_DrawEx(APP_GetData, &pFile, 0, 0);
 	  }
 	  f_close(&pFile);
+
 }
 
 
@@ -100,12 +101,15 @@ u8 BSP_Pointer_Update(void)
   GUI_PID_STATE TS_State;
   uint16_t xDiff, yDiff;
 
+//  taskDISABLE_INTERRUPTS();
   int act=touch_reg(&ts);
+//  taskENABLE_INTERRUPTS();
 
   xDiff = (prev_state.x > ts.x) ? (prev_state.x - ts.x) : (ts.x - prev_state.x);
   yDiff = (prev_state.y > ts.y) ? (prev_state.y - ts.y) : (ts.y - prev_state.y);
 //
-  if((xDiff > 7 ) || (yDiff > 7) || act!=prev)
+
+  if((xDiff > 6 ) || (yDiff > 6) || act!=prev)
   {
 	  prev=act;
       TS_State.Layer = 0;
@@ -116,6 +120,7 @@ u8 BSP_Pointer_Update(void)
       prev_state.x=ts.x;
       prev_state.y=ts.y;
       prev=act;
+      LCD_circle(ts.x,ts.y,5,0xff00ff,1);
       return 1;
   }
   prev=act;

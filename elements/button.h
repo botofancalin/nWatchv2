@@ -34,6 +34,6 @@ void button_show(u8 id);
 u8 button_clicked(touch *pressed);
 void button_destroy(Button *but);
 void button_on(u8 id, u8 on);
-void update(Button *but);
+void update1(Button *but);
 
 #endif

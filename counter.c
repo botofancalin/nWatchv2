@@ -171,7 +171,7 @@ void Counter( void * pvParameters)
 	hWincounter  = Createcounter();
 	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
 	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
-	GUI_SetOrientation(0);
+//	GUI_SetOrientation(0);
 	int i=0;
 
 	WM_HWIN hGraph;

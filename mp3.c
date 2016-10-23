@@ -25,9 +25,9 @@
 #include "mp3.h"
 
 
-char name[107]__attribute((section(".ExRam")));
-u8 rand[250]__attribute((section(".ExRam")));
-u8 buffez[1024]__attribute((section(".ExRam")));
+char name[107];//__attribute((section(".ExRam")));
+u8 rand[250];//__attribute((section(".ExRam")));
+u8 buffez[1024];//__attribute((section(".ExRam")));
 
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] =
@@ -252,8 +252,6 @@ void MP3_player(void *pvParameters)
 	while(1)
 	{
 
-
-
 //		hText1 = WM_GetDialogItem(hWin, ID_TEXT_1);
 		hText = WM_GetDialogItem(hWin, ID_TEXT_0);
 		hSlider = WM_GetDialogItem(hWin, ID_SLIDER_0);
@@ -308,7 +306,7 @@ void MP3_player(void *pvParameters)
 			{
 				GPIOB->BSRRH|=GPIO_BSRR_BS_9;
 //				vTaskResume(TouchScreenTimer);
-				LCD_init();
+//				LCD_init();
 				on=1;
 			}
 
@@ -330,7 +328,7 @@ void MP3_player(void *pvParameters)
 			while(BUTTON_IsPressed(hButton1)){};
 			fin=1;
 			next-=2;
-			vTraceStart();
+//			vTraceStart();
 		}
 //
 
