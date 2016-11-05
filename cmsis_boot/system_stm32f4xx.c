@@ -246,6 +246,12 @@ void SystemInit(void)
   /* Disable all interrupts */
   RCC->CIR = 0x00000000;
 
+//
+//  RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
+//	GPIOD->MODER|=GPIO_MODER_MODER3_0;
+//	GPIOD->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR3;
+//	GPIOD->ODR|=GPIO_ODR_ODR_3;
+//	GPIOD->BSRRL|=GPIO_BSRR_BS_3;
 
 
 #ifdef DATA_IN_ExtSRAM

@@ -227,9 +227,9 @@ void SRAM_Init(void)
   GPIO_Init(GPIOG, &GPIO_InitStructure);
 
 /*-- FSMC Configuration ------------------------------------------------------*/
-  p.FSMC_AddressSetupTime = 3; ////3////1
-  p.FSMC_AddressHoldTime = 2; ////2///0
-  p.FSMC_DataSetupTime = 4; ///4//2
+  p.FSMC_AddressSetupTime = 1; ////3////1
+  p.FSMC_AddressHoldTime = 1; ////2///0
+  p.FSMC_DataSetupTime = 3; ///4//2
 //  p.FSMC_BusTurnAroundDuration = 0; ///0
 //  p.FSMC_CLKDivision = 0;////0///0
 //  p.FSMC_DataLatency = 2;///2//0

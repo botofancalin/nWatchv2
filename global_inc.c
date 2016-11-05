@@ -2,6 +2,22 @@
 
 inline void cpu_off(void)
 {
+//	USART_puts("TTM:RST-SYSTEMRESET");
+
+	GPIOG->BSRRL|=GPIO_BSRR_BS_6;
+	GPIOG->BSRRL|=GPIO_BSRR_BS_8;
+
+	GPIOC->MODER|=GPIO_MODER_MODER7_0;
+	GPIOC->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR7;
+	GPIOC->ODR|=GPIO_ODR_ODR_7;
+
+	GPIOC->MODER|=GPIO_MODER_MODER6_0;
+	GPIOC->OSPEEDR|=GPIO_OSPEEDER_OSPEEDR6;
+	GPIOC->ODR|=GPIO_ODR_ODR_6;
+
+	GPIOC->BSRRH|=GPIO_BSRR_BS_6;
+	GPIOC->BSRRH|=GPIO_BSRR_BS_7;
+
 //	vTaskEndScheduler();
 	taskENTER_CRITICAL();
 //	motion_init();
@@ -22,6 +38,7 @@ inline void cpu_off(void)
 
 	while(1)
 	{
+//		GPIOD->BSRRH|=GPIO_BSRR_BS_3;
 //		AB0805_WriteBit(0xD2, 0x0f,2,0);
 	};
 	taskEXIT_CRITICAL();

@@ -1293,56 +1293,6 @@ GUI_CONST_STORAGE GUI_BITMAP bm9 = {
   GUI_DRAW_RLEALPHA
 };
 
-/*********************************************************************
-*
-*       bmArrowRigth_15x24
-*/
-static GUI_CONST_STORAGE GUI_COLOR _ColorsArrowRigth_15x24[] = {
-  0xFFFFFF, 0xccc7c7
-};
-
-static GUI_CONST_STORAGE GUI_LOGPALETTE _PalArrowRigth_15x24 = {
-  2,  // Number of entries
-  1,  // Has transparency
-  &_ColorsArrowRigth_15x24[0]
-};
-
-static GUI_CONST_STORAGE unsigned char _acArrowRigth_15x24[] = {
-  ___X____, ________,
-  __XXX___, ________,
-  _XXXXX__, ________,
-  XXXXXXX_, ________,
-  _XXXXXXX, ________,
-  __XXXXXX, X_______,
-  ___XXXXX, XX______,
-  ____XXXX, XXX_____,
-  _____XXX, XXXX____,
-  ______XX, XXXXX___,
-  _______X, XXXXXX__,
-  ________, XXXXXXX_,
-  ________, XXXXXXX_,
-  _______X, XXXXXX__,
-  ______XX, XXXXX___,
-  _____XXX, XXXX____,
-  ____XXXX, XXX_____,
-  ___XXXXX, XX______,
-  __XXXXXX, X_______,
-  _XXXXXXX, ________,
-  XXXXXXX_, ________,
-  _XXXXX__, ________,
-  __XXX___, ________,
-  ___X____, ________
-};
-
-GUI_CONST_STORAGE GUI_BITMAP bmArrowRigth_15x24 = {
-  15, // xSize
-  24, // ySize
-  2, // BytesPerLine
-  1, // BitsPerPixel
-  _acArrowRigth_15x24,  // Pointer to picture data (indices)
-  &_PalArrowRigth_15x24   // Pointer to palette
-};
-
 
 const struct MENU_ITEM {
   GUI_COLOR Color;
@@ -1453,73 +1403,75 @@ static void _cbMenu(WM_MESSAGE * pMsg)
   static int IsPressed;
   int a=-1;
   hWin = pMsg->hWin;
-  switch (pMsg->MsgId) {
+  switch (pMsg->MsgId)
+  {
   case WM_NOTIFY_PARENT:
     Id    = WM_GetId(pMsg->hWinSrc);      // Id of widget
     NCode = pMsg->Data.v;                 // Notification code
-    switch (NCode) {
-    case WM_NOTIFICATION_CLICKED:
-      IsPressed = 1;
-      break;
-    case WM_NOTIFICATION_RELEASED:
-      if (IsPressed)
-      {
-    	a=Id - GUI_ID_BUTTON0;
+		switch (NCode)
+		{
+		case WM_NOTIFICATION_CLICKED:
+		  IsPressed = 1;
+		  break;
+		case WM_NOTIFICATION_RELEASED:
+		  if (IsPressed)
+		  {
+			a=Id - GUI_ID_BUTTON0;
 
-    	xQueueSend(xQueue_men, (void *) &a, (portTickType) 10);
+			xQueueSend(xQueue_men, (void *) &a, (portTickType) 10);
 
-    	if(a==1)
-    	{
-    		xTaskCreate(Manager,(char const*)"Manager",512,NULL,tskIDLE_PRIORITY + 7,&Manager_Handle);
-    	}
-    	else if(a==0)
-    	{
-    		xTaskCreate(Calc,(char const*)"Calc",4096,NULL,tskIDLE_PRIORITY + 6,&Calc_Handle);
-    	}
-    	else if(a==2)
-    	{
-    		xTaskCreate(MP3_player,(char const*)"MP3_player",1024,NULL,tskIDLE_PRIORITY + 6,&MP3_Handle);
-    	}
-    	else if(a==3)
-    	{
-//    		vTraceStart();
-    		xTaskCreate(Counter,(char const*)"Counter",512,NULL,tskIDLE_PRIORITY + 7,&Counter_Handle);
-    	}
-    	else if(a==4)
-    	{
-//    		vTraceStart();
-    		xTaskCreate(Notepad,(char const*)"Notepad",1024,NULL,tskIDLE_PRIORITY + 7,&Notepad_Handle);
-    	}
-    	else if(a==7)
-    	{
-    		xTaskCreate(Clock,(char const*)"Clock",1024,NULL,tskIDLE_PRIORITY + 7,&Clock_Handle);
-    	}
-    	else if(a==8)
-    	{
-//  		  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
-//  		  while(!wake)
-//  		  {
-//  			  sec=0;
-//  			  CPU_ON;
-//  			  IWDG_ReloadCounter();
-//  		  };
-//    	    RTC_TimeTypeDef RTC_TimeStructure;
-//            RTC_TimeStructure.RTC_Seconds = 0;
-//            RTC_TimeStructure.RTC_Minutes = 1;
-//            RTC_TimeStructure.RTC_Hours = 13;
-//            RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
-//            RTC_SetTime(RTC_Format_BIN,&RTC_TimeStructure);
-//    		dfu_run_bootloader();
-    	}
-        IsPressed = 0;
-      }
+			if(a==1)
+			{
+				xTaskCreate(Manager,(char const*)"Manager",512,NULL,tskIDLE_PRIORITY + 7,&Manager_Handle);
+			}
+			else if(a==0)
+			{
+				xTaskCreate(Calc,(char const*)"Calc",4096,NULL,tskIDLE_PRIORITY + 6,&Calc_Handle);
+			}
+			else if(a==2)
+			{
+				xTaskCreate(MP3_player,(char const*)"MP3_player",1024,NULL,tskIDLE_PRIORITY + 6,&MP3_Handle);
+			}
+			else if(a==3)
+			{
+	//    		vTraceStart();
+				xTaskCreate(Counter,(char const*)"Counter",512,NULL,tskIDLE_PRIORITY + 7,&Counter_Handle);
+			}
+			else if(a==4)
+			{
+	//    		vTraceStart();
+				xTaskCreate(Notepad,(char const*)"Notepad",1024,NULL,tskIDLE_PRIORITY + 7,&Notepad_Handle);
+			}
+			else if(a==7)
+			{
+				xTaskCreate(Clock,(char const*)"Clock",1024,NULL,tskIDLE_PRIORITY + 7,&Clock_Handle);
+			}
+			else if(a==8)
+			{
+	//  		  USBD_Init(&USB_OTG_Core,USB_OTG_FS_CORE_ID,&USR_desc,&USBD_MSC_cb,&USR_cb);
+	//  		  while(!wake)
+	//  		  {
+	//  			  sec=0;
+	//  			  CPU_ON;
+	//  			  IWDG_ReloadCounter();
+	//  		  };
+	//    	    RTC_TimeTypeDef RTC_TimeStructure;
+	//            RTC_TimeStructure.RTC_Seconds = 0;
+	//            RTC_TimeStructure.RTC_Minutes = 1;
+	//            RTC_TimeStructure.RTC_Hours = 13;
+	//            RTC_TimeStructure.RTC_H12 = RTC_H12_AM;
+	//            RTC_SetTime(RTC_Format_BIN,&RTC_TimeStructure);
+	//    		dfu_run_bootloader();
+			}
+			IsPressed = 0;
+		  }
 
-      break;
-    case WM_NOTIFICATION_MOVED_OUT:
-//        IsPressed = 0;
-      break;
-    }
-    break;
+		  break;
+		case WM_NOTIFICATION_MOVED_OUT:
+	//        IsPressed = 0;
+		  break;
+		}
+		break;
   case WM_MOTION:
     pInfo = (WM_MOTION_INFO *)pMsg->Data.p;
     switch (pInfo->Cmd) {
@@ -1573,58 +1525,58 @@ static void _cbDummy(WM_MESSAGE * pMsg)
 
 ////////////////////////////////////////////////////MAIN MENU TASK//////////////////////////////////////////////////////////
 
-void Menu(void *pvParameters)
-{
-	portTickType xLastFlashTime;
-	xLastFlashTime = xTaskGetTickCount();
-
-	  int a=-1;
-	  int i=0;
-	  int xSize, ySize;
-	  WM_HWIN hWinViewport; // Viewport window
-	  WM_HWIN hWinMenu;     // Menu window moveable within viewport window
-	  WM_HWIN hWinBase;
-
-	 if( Clock_Handle != NULL )
-	 {
-		 vTaskDelete(Clock_Handle);
-	 }
-	 else if( Counter_Handle != NULL )
-	 {
-		 vTaskDelete(Counter_Handle);
-	 }
-	 else if( Notepad_Handle != NULL )
-	 {
-		 vTaskDelete(Notepad_Handle);
-	 }
-	 else if( Manager_Handle != NULL )
-	 {
-		 vTaskDelete(Manager_Handle);
-	 }
-	 else if( MP3_Handle != NULL )
-	 {
-		 vTaskDelete(MP3_Handle);
-	 }
-	 else if( Calc_Handle != NULL )
-	 {
-		 vTaskDelete(MP3_Handle);
-	 }
-	  xSize = LCD_GetXSize();
-	  ySize = LCD_GetYSize();
-//	  xSize=240;
-//	  ySize=320;
-	  WM_SetSize(WM_HBKWIN, xSize, ySize);
-	  WM_HWIN hButton;
-
-	  hWinBase     = WM_CreateWindow(0,  60, xSize, 260,  WM_CF_SHOW, _cbDummy, 0);
-	  hWinViewport = WM_CreateWindowAsChild(0, 0, xSize, ySize ,               hWinBase,     WM_CF_SHOW, _cbDummy, 0);
-	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 45 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
-
-
-	while(1)
-	{
-		GUI_Exec();
-	}
-}
+//void Menu(void *pvParameters)
+//{
+//	portTickType xLastFlashTime;
+//	xLastFlashTime = xTaskGetTickCount();
+//
+//	  int a=-1;
+//	  int i=0;
+//	  int xSize, ySize;
+//	  WM_HWIN hWinViewport; // Viewport window
+//	  WM_HWIN hWinMenu;     // Menu window moveable within viewport window
+//	  WM_HWIN hWinBase;
+//
+//	 if( Clock_Handle != NULL )
+//	 {
+//		 vTaskDelete(Clock_Handle);
+//	 }
+//	 else if( Counter_Handle != NULL )
+//	 {
+//		 vTaskDelete(Counter_Handle);
+//	 }
+//	 else if( Notepad_Handle != NULL )
+//	 {
+//		 vTaskDelete(Notepad_Handle);
+//	 }
+//	 else if( Manager_Handle != NULL )
+//	 {
+//		 vTaskDelete(Manager_Handle);
+//	 }
+//	 else if( MP3_Handle != NULL )
+//	 {
+//		 vTaskDelete(MP3_Handle);
+//	 }
+//	 else if( Calc_Handle != NULL )
+//	 {
+//		 vTaskDelete(MP3_Handle);
+//	 }
+//	  xSize = LCD_GetXSize();
+//	  ySize = LCD_GetYSize();
+////	  xSize=240;
+////	  ySize=320;
+//	  WM_SetSize(WM_HBKWIN, xSize, ySize);
+//	  WM_HWIN hButton;
+//
+//	  hWinBase     = WM_CreateWindow(0,  60, xSize, 260,  WM_CF_SHOW, _cbDummy, 0);
+//	  hWinViewport = WM_CreateWindowAsChild(0, 0, xSize, ySize ,               hWinBase,     WM_CF_SHOW, _cbDummy, 0);
+//	  hWinMenu     = WM_CreateWindowAsChild(0,  0, xSize, 45 * GUI_COUNTOF(_aMenu), hWinViewport, WM_CF_SHOW | WM_CF_MOTION_Y, _cbMenu, 0);
+//
+//
+//	while(1)
+//	{
+//		GUI_Exec();
+//	}
+//}
 
 

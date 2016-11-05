@@ -180,7 +180,7 @@ void Notepad( void * pvParameters)
 		{
 			if(sec2>1000)
 			{
-				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
+//				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
 				xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
 			}
 		}else

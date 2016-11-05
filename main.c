@@ -38,6 +38,7 @@
 #include "explorer.h"
 #include "clock.h"
 #include "AB0805.h"
+#include "iconview.h"
 /////////////sram//////////////////
 #include "sram.h"
 ////////graphic////////////
@@ -145,14 +146,17 @@ int main(void)
 {
 	  SystemInit();
 	  RCC_cfg();
-	  delay_init();
-	  init_USART(9600);
 	  GPIO_cfg();
+	  delay_init();
+	  init_USART(115200);
 	  RNG_Cmd(ENABLE);
 	  NVIC_Config();
+
 //	  dfu_run_bootloader();
 	  while(wake){};
 	  LED_ON;
+	  GPIOG->BSRRH|=GPIO_BSRR_BS_6;
+	  GPIOG->BSRRH|=GPIO_BSRR_BS_8;
 	  backlight(50);
 	  IWDG_Config();
 	  SRAM_Init();
@@ -166,13 +170,14 @@ int main(void)
 	  AB0805_writeByte(devAddr, AB0805_RA_CONTROL1, 0x75);
 //	  AB0805_setDateTime24(2016,10,12,23,35,0);
 //	  AB0805_setDayOfWeek(7);
-	  GPIOG->BSRRH|=GPIO_BSRR_BS_6;
-	  GPIOG->BSRRH|=GPIO_BSRR_BS_8;
-	  USART_puts("TTM:RST-SYSTEMRESET");
-	  delay(50);
-	  USART_puts("TTM:REN-nWATCH");
+//	  USART_puts("TTM:REN-nWATCH");
+//	  delay(50);
+//	  USART_puts("TTM:ADP-(10)");
+//	  delay(50);
+	  USART_puts("TTM:TPL-(-23)");
 	  f=f_mount(&fs,"",0);
 	  LED_OFF;
+
 
 //	  while(1)
 //	  {
@@ -206,8 +211,9 @@ int main(void)
 			  IWDG_ReloadCounter();
 		  };
 	  }
-//	  vTraceInitTraceData();
+	  vTraceInitTraceData();
 	  GUI_Init();
+	  GUI_SetBkColor(GUI_WHITE);
 	  WM_MOTION_Enable(1);
 	  BUTTON_SetReactOnLevel();
 //	  GUI_SetColor(GUI_RED);
@@ -233,14 +239,17 @@ int main(void)
 	GPIO_Init(GPIOB, &GPIO_InitStructure);
 	ADC1_Configuration();
 
+
+
+		vTraceStart();
 	  xTaskCreate(Clock,(char const*)"Clock",1024,NULL,7,&Clock_Handle);
 //	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,7, &Menu_Handle);
 //	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
-//	  xTaskCreate(BSP_Task,(char const*)"BSP",1024,NULL, 6, &BSP_Handle);
-	  TouchScreenTimer = xTimerCreate ("Timer",15, pdTRUE,1, vTimerCallback);
+//	  xTaskCreate(BSP_Task,(char const*)"BSP",1024,NULL, 7, &BSP_Handle);
+	  xTaskCreate(Heading_Task,(char const*)"Heading",1024,NULL, 6, &Heading_Handle);
 	  xTaskCreate(Background_Task,(char const*)"Background",1024,NULL, 7,&Task_Handle);
+	  TouchScreenTimer = xTimerCreate ("Timer",25, pdTRUE,1, vTimerCallback);
 	  xTimerStart( TouchScreenTimer, 0);
-
 	  vTaskStartScheduler();
 }
 
@@ -287,19 +296,25 @@ static void BSP_Task(void * pvParameters)
 
 	  while(1)
 	  {
-		  GUI_Exec();
+		  	vTaskDelay(100);
+		    ADC_SoftwareStartConv(ADC1);
+		    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+		    float result= ADC_GetConversionValue(ADC1);
+		    float volt = result /4095 * 240;
+		    GUI_SetColor(GUI_BLACK);
+			 GUI_DispStringHCenterAt(itoa(volt,t,10), 320 / 2, 20);
 	  }
 }
 static void Background_Task(void * pvParameters)
 {
-	portTickType xLastFlashTime;
-	xLastFlashTime = xTaskGetTickCount();
-	xQueue_men = xQueueCreate(10, sizeof(int));
-
+//	portTickType xLastFlashTime;
+//	xLastFlashTime = xTaskGetTickCount();
+//	xQueue_men = xQueueCreate(10, sizeof(int));
 	  while(1)
 	  {
+//		  vTaskDelay(200);
 		  CPU_ON;
-		  GUI_Delay(100);
+		  GUI_Delay(20);
 //		  GUI_Exec();
 		  IWDG_ReloadCounter();
 	  	  if(wake || !cpu)
@@ -572,21 +587,28 @@ void NVIC_Config(void)
 	NVIC_SetVectorTable(NVIC_VectTab_FLASH, 0x00);
 
 	NVIC_InitTypeDef NVIC_InitStructure;
-	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+//	NVIC_InitStructure.NVIC_IRQChannel = RTC_Alarm_IRQn;
+//	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+//	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+//	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 
+	USART_ITConfig(USART6, USART_IT_RXNE, ENABLE); // enable the USART1 receive interrupt
+
+	NVIC_InitStructure.NVIC_IRQChannel = USART6_IRQn;		 // we want to configure the USART1 interrupts
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;// this sets the priority group of the USART1 interrupts
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		 // this sets the subpriority inside the group
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			 // the USART1 interrupts are globally enabled
+	NVIC_Init(&NVIC_InitStructure);							 // the properties are passed to the NVIC_Init function which takes care of the low level stuff
+
+	// finally this enables the complete USART1 peripheral
+
 	NVIC_Init(&NVIC_InitStructure);
 
-//	NVIC_PriorityGroupConfig( NVIC_PriorityGroup_4 );
-//	NVIC_EnableIRQ(DMA2_Stream5_IRQn);
-//	NVIC_EnableIRQ(TIM3_IRQn);
 }
 
 
@@ -849,7 +871,7 @@ void I2C1_init(void)
     for ( var= 0; var < 0xff; ++var) {};
     I2C_SoftwareResetCmd(I2C2, DISABLE);
 
-    i2c_init.I2C_ClockSpeed = 200000;
+    i2c_init.I2C_ClockSpeed = 200000;////////2
     i2c_init.I2C_Mode = I2C_Mode_I2C;
     i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
     i2c_init.I2C_OwnAddress1 = 0x69;
@@ -1005,16 +1027,8 @@ void vApplicationStackOverflowHook (void)
 		LED_OFF;
 	}
 }
-void init_USART(uint32_t baudrate){
-
-	/* This is a concept that has to do with the libraries provided by ST
-	 * to make development easier the have made up something similar to
-	 * classes, called TypeDefs, which actually just define the common
-	 * parameters that every peripheral needs to work correctly
-	 *
-	 * They make our life easier because we don't have to mess around with
-	 * the low level stuff of setting bits in the correct registers
-	 */
+void init_USART(uint32_t baudrate)
+{
 	GPIO_InitTypeDef GPIO_InitStruct; // this is for the GPIO pins used as TX and RX
 	USART_InitTypeDef USART_InitStruct; // this is for the USART1 initilization
 	NVIC_InitTypeDef NVIC_InitStructure; // this is used to configure the NVIC (nested vector interrupt controller)
@@ -1063,16 +1077,9 @@ void init_USART(uint32_t baudrate){
 	 * to jump to the USART1_IRQHandler() function
 	 * if the USART1 receive interrupt occurs
 	 */
-	USART_ITConfig(USART6, USART_IT_RXNE, ENABLE); // enable the USART1 receive interrupt
 
-	NVIC_InitStructure.NVIC_IRQChannel = USART6_IRQn;		 // we want to configure the USART1 interrupts
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;// this sets the priority group of the USART1 interrupts
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;		 // this sets the subpriority inside the group
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;			 // the USART1 interrupts are globally enabled
-	NVIC_Init(&NVIC_InitStructure);							 // the properties are passed to the NVIC_Init function which takes care of the low level stuff
-
-	// finally this enables the complete USART1 peripheral
 	USART_Cmd(USART6, ENABLE);
+
 }
 void USART_puts( volatile char *s)
 {

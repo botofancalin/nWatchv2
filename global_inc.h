@@ -58,8 +58,8 @@ static TCHAR lfname[_MAX_LFN];
 #include "notepad.h"
 #include "calc.h"
 //#include "bar.h"
-//#include "heading.h"
-//#include "menu.h"
+#include "settings.h"
+#include "menuv2.h"
 ////////////////////////////////////RNG///////////////////////////////////////////
 #include "stm32f4xx_rng.h"
 
@@ -83,6 +83,7 @@ xTaskHandle                   Menu_Handle;
 xTaskHandle                   Manager_Handle;
 xTaskHandle        			  BSP_Handle;
 xTaskHandle        			  Notepad_Handle;
+xTaskHandle        			  Settings_Handle;
 xTimerHandle                  TouchScreenTimer;
 
 xQueueHandle                  xQueue_men;

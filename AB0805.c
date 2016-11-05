@@ -471,7 +471,7 @@ uint8_t AB0805_getDayOfWeek()
 }
 void AB0805_setDayOfWeek(uint8_t dow)
 {
-//    if (dow < 1 || dow > 7) return;
+    if (dow==0)dow=7;
 //    AB0805_WriteBits(devAddr, AB0805_RA_DAY, AB0805_DAY_BIT, AB0805_DAY_LENGTH, dow);
 	AB0805_writeByte(devAddr, AB0805_RA_DAY, dow-1);
 }

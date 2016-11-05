@@ -1,6 +1,8 @@
 #ifndef _CALC_H
 #define _CALC_H
 
+#include "global_inc.h"
+
 #define GUI_ID_USER1  0x900
 
 #define ID_WINDOW_0    (GUI_ID_USER1 + 0x00)

@@ -26,7 +26,9 @@
 #include "menu.h"
 #include "heading.h"
 #include "global_inc.h"
-//#include "Math64.c"
+#include "ICONVIEW.h"
+
+#define col_gui GUI_BLACK
 
 extern volatile int sec;
 extern volatile int sec2;
@@ -36,20 +38,186 @@ int kk=0;
 u8 jed=1;
 uint8_t auc[500];//__attribute((section(".ExRam")));
 extern const GUI_FONT GUI_FontSolidEdgeStencil118;
+extern const GUI_FONT GUI_FontStencil118;
 uint8_t month, day, dow, hours, minutes, seconds, weekday;
+WM_HWIN hWinclock;
+
+static GUI_CONST_STORAGE GUI_COLOR _Colorsdown[] = {
+  0xFFFFFF, 0x000000
+};
+
+static GUI_CONST_STORAGE GUI_LOGPALETTE _Paldown = {
+  2,  // Number of entries
+  1,  // Has transparency
+  &_Colorsdown[0]
+};
+
+static GUI_CONST_STORAGE unsigned char _acdown[] = {
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ______XX, XX______, ________, ________, ________, ________, __XXXX__, ________,
+  ____XXXX, XXX_____, ________, ________, ________, ________, _XXXXXXX, ________,
+  ___XXXXX, XXXX____, ________, ________, ________, ________, XXXXXXXX, X_______,
+  __XXXXXX, XXXXX___, ________, ________, ________, _______X, XXXXXXXX, XX______,
+  _XXXXXXX, XXXXXX__, ________, ________, ________, ______XX, XXXXXXXX, XXX_____,
+  _XXXXXXX, XXXXXXX_, ________, ________, ________, _____XXX, XXXXXXXX, XXX_____,
+  XXXXXXXX, XXXXXXXX, ________, ________, ________, ____XXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, X_______, ________, ________, ___XXXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, XX______, ________, ________, __XXXXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, XXX_____, ________, ________, _XXXXXXX, XXXXXXXX, XXXX____,
+  _XXXXXXX, XXXXXXXX, XXXX____, ________, ________, XXXXXXXX, XXXXXXXX, XXX_____,
+  __XXXXXX, XXXXXXXX, XXXXX___, ________, _______X, XXXXXXXX, XXXXXXXX, XX______,
+  ___XXXXX, XXXXXXXX, XXXXXX__, ________, ______XX, XXXXXXXX, XXXXXXXX, X_______,
+  ____XXXX, XXXXXXXX, XXXXXXX_, ________, _____XXX, XXXXXXXX, XXXXXXXX, ________,
+  _____XXX, XXXXXXXX, XXXXXXXX, ________, ____XXXX, XXXXXXXX, XXXXXXX_, ________,
+  ______XX, XXXXXXXX, XXXXXXXX, X_______, ___XXXXX, XXXXXXXX, XXXXXX__, ________,
+  _______X, XXXXXXXX, XXXXXXXX, XX______, __XXXXXX, XXXXXXXX, XXXXX___, ________,
+  ________, XXXXXXXX, XXXXXXXX, XXX_____, _XXXXXXX, XXXXXXXX, XXXX____, ________,
+  ________, _XXXXXXX, XXXXXXXX, XXXX____, XXXXXXXX, XXXXXXXX, XXX_____, ________,
+  ________, __XXXXXX, XXXXXXXX, XXXXX__X, XXXXXXXX, XXXXXXXX, XX______, ________,
+  ________, ___XXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, X_______, ________,
+  ________, ____XXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, ________, ________,
+  ________, _____XXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXX_, ________, ________,
+  ________, ______XX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXX__, ________, ________,
+  ________, _______X, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXX___, ________, ________,
+  ________, ________, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXX____, ________, ________,
+  ________, ________, _XXXXXXX, XXXXXXXX, XXXXXXXX, XXX_____, ________, ________,
+  ________, ________, __XXXXXX, XXXXXXXX, XXXXXXXX, XX______, ________, ________,
+  ________, ________, ___XXXXX, XXXXXXXX, XXXXXXXX, X_______, ________, ________,
+  ________, ________, ____XXXX, XXXXXXXX, XXXXXXXX, ________, ________, ________,
+  ________, ________, _____XXX, XXXXXXXX, XXXXXXX_, ________, ________, ________,
+  ________, ________, ______XX, XXXXXXXX, XXXXXX__, ________, ________, ________,
+  ________, ________, _______X, XXXXXXXX, XXXXX___, ________, ________, ________,
+  ________, ________, ________, XXXXXXXX, XXXX____, ________, ________, ________,
+  ________, ________, ________, _XXXXXXX, XXX_____, ________, ________, ________,
+  ________, ________, ________, __XXXXXX, XX______, ________, ________, ________,
+  ________, ________, ________, ___XXXXX, X_______, ________, ________, ________,
+  ________, ________, ________, ____XXXX, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________
+};
+
+GUI_CONST_STORAGE GUI_BITMAP bmdown = {
+  60, // xSize
+  60, // ySize
+  8, // BytesPerLine
+  1, // BitsPerPixel
+  _acdown,  // Pointer to picture data (indices)
+  &_Paldown   // Pointer to palette
+};
+
+static GUI_CONST_STORAGE GUI_COLOR _Colorsup[] = {
+  0xFFFFFF, 0x000000
+};
+
+static GUI_CONST_STORAGE GUI_LOGPALETTE _Palup = {
+  2,  // Number of entries
+  1,  // Has transparency
+  &_Colorsup[0]
+};
+
+static GUI_CONST_STORAGE unsigned char _acup[] = {
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ____XXXX, ________, ________, ________, ________,
+  ________, ________, ________, ___XXXXX, X_______, ________, ________, ________,
+  ________, ________, ________, __XXXXXX, XX______, ________, ________, ________,
+  ________, ________, ________, _XXXXXXX, XXX_____, ________, ________, ________,
+  ________, ________, ________, XXXXXXXX, XXXX____, ________, ________, ________,
+  ________, ________, _______X, XXXXXXXX, XXXXX___, ________, ________, ________,
+  ________, ________, ______XX, XXXXXXXX, XXXXXX__, ________, ________, ________,
+  ________, ________, _____XXX, XXXXXXXX, XXXXXXX_, ________, ________, ________,
+  ________, ________, ____XXXX, XXXXXXXX, XXXXXXXX, ________, ________, ________,
+  ________, ________, ___XXXXX, XXXXXXXX, XXXXXXXX, X_______, ________, ________,
+  ________, ________, __XXXXXX, XXXXXXXX, XXXXXXXX, XX______, ________, ________,
+  ________, ________, _XXXXXXX, XXXXXXXX, XXXXXXXX, XXX_____, ________, ________,
+  ________, ________, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXX____, ________, ________,
+  ________, _______X, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXX___, ________, ________,
+  ________, ______XX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXX__, ________, ________,
+  ________, _____XXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXX_, ________, ________,
+  ________, ____XXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, ________, ________,
+  ________, ___XXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, XXXXXXXX, X_______, ________,
+  ________, __XXXXXX, XXXXXXXX, XXXXX__X, XXXXXXXX, XXXXXXXX, XX______, ________,
+  ________, _XXXXXXX, XXXXXXXX, XXXX____, XXXXXXXX, XXXXXXXX, XXX_____, ________,
+  ________, XXXXXXXX, XXXXXXXX, XXX_____, _XXXXXXX, XXXXXXXX, XXXX____, ________,
+  _______X, XXXXXXXX, XXXXXXXX, XX______, __XXXXXX, XXXXXXXX, XXXXX___, ________,
+  ______XX, XXXXXXXX, XXXXXXXX, X_______, ___XXXXX, XXXXXXXX, XXXXXX__, ________,
+  _____XXX, XXXXXXXX, XXXXXXXX, ________, ____XXXX, XXXXXXXX, XXXXXXX_, ________,
+  ____XXXX, XXXXXXXX, XXXXXXX_, ________, _____XXX, XXXXXXXX, XXXXXXXX, ________,
+  ___XXXXX, XXXXXXXX, XXXXXX__, ________, ______XX, XXXXXXXX, XXXXXXXX, X_______,
+  __XXXXXX, XXXXXXXX, XXXXX___, ________, _______X, XXXXXXXX, XXXXXXXX, XX______,
+  _XXXXXXX, XXXXXXXX, XXXX____, ________, ________, XXXXXXXX, XXXXXXXX, XXX_____,
+  XXXXXXXX, XXXXXXXX, XXX_____, ________, ________, _XXXXXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, XX______, ________, ________, __XXXXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, X_______, ________, ________, ___XXXXX, XXXXXXXX, XXXX____,
+  XXXXXXXX, XXXXXXXX, ________, ________, ________, ____XXXX, XXXXXXXX, XXXX____,
+  _XXXXXXX, XXXXXXX_, ________, ________, ________, _____XXX, XXXXXXXX, XXX_____,
+  _XXXXXXX, XXXXXX__, ________, ________, ________, ______XX, XXXXXXXX, XXX_____,
+  __XXXXXX, XXXXX___, ________, ________, ________, _______X, XXXXXXXX, XX______,
+  ___XXXXX, XXXX____, ________, ________, ________, ________, XXXXXXXX, X_______,
+  ____XXXX, XXX_____, ________, ________, ________, ________, _XXXXXXX, ________,
+  ______XX, XX______, ________, ________, ________, ________, __XXXX__, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________,
+  ________, ________, ________, ________, ________, ________, ________, ________
+};
+
+GUI_CONST_STORAGE GUI_BITMAP bmup = {
+  60, // xSize
+  60, // ySize
+  8, // BytesPerLine
+  1, // BitsPerPixel
+  _acup,  // Pointer to picture data (indices)
+  &_Palup   // Pointer to palette
+};
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] =
 {
   { WINDOW_CreateIndirect, "clock", ID_WINDOW_0, 0, 0, 320, 240, WM_CF_SHOW, 0x0, 0},
-  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 43, 60, 120, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 178, 60, 120, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "hours", ID_TEXT_0, 43, 70, 120, 120, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "minutes", ID_TEXT_1, 178, 70, 120, 120, 0, 0x64, 0 },
   { TEXT_CreateIndirect, "Text", ID_TEXT_2, 150, 50, 15, 120, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "weekday", ID_TEXT_3, 35, 30, 129, 32, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "date", ID_TEXT_4, 175, 31, 40, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "month", ID_TEXT_7, 210, 31, 40, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 108, 170, 150, 37, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "till", ID_TEXT_6, 100, 190, 120, 50, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "lesson", ID_TEXT_8, 180, 190, 120, 50, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "weekday", ID_TEXT_3, 35, 35, 129, 32, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "date", ID_TEXT_4, 175, 35, 40, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "month", ID_TEXT_7, 210, 35, 40, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "seconds", ID_TEXT_5, 237, 6, 37, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "till", ID_TEXT_6, 80, 200, 120, 50, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "lesson", ID_TEXT_8, 150, 200, 120, 50, 0, 0x0, 0 },
 };
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate2[] = {
@@ -66,18 +234,69 @@ static const GUI_WIDGET_CREATE_INFO _aDialogCreate2[] = {
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate3[] = {
   { WINDOW_CreateIndirect, "Alarm", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 10, 90, 60, 50, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_1, 10, 151, 60, 50, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_2, 248, 90, 60, 50, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_3, 248, 151, 60, 50, 0, 0x0, 0 },
-  { CHECKBOX_CreateIndirect, "Checkbox", ID_CHECKBOX_0, 137, 194, 86, 40, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 82, 107, 70, 80, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_1, 163, 107, 70, 80, 0, 0x0, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_2, 76, 16, 184, 20, 0, 0x64, 0 },
-  { TEXT_CreateIndirect, "Text", ID_TEXT_3, 13, 50, 293, 20, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "", ID_BUTTON_0, 10, 90, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "", ID_BUTTON_1, 10, 151, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "", ID_BUTTON_2, 248, 90, 60, 50, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "", ID_BUTTON_3, 248, 151, 60, 50, 0, 0x0, 0 },
+  { CHECKBOX_CreateIndirect, "", ID_CHECKBOX_0, 137, 194, 86, 40, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "", ID_TEXT_0, 82, 107, 70, 80, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "", ID_TEXT_1, 163, 107, 70, 80, 0, 0x0, 0 },
+  { TEXT_CreateIndirect, "", ID_TEXT_2, 76, 16, 184, 20, 0, 0x64, 0 },
+  { TEXT_CreateIndirect, "", ID_TEXT_3, 13, 50, 293, 20, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
+
+static int _Skinup(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
+{
+  int Index, xSize, ySize, IsPressed;
+  WM_HWIN hWin;
+  const GUI_BITMAP * pBm;
+  GUI_COLOR Color;
+
+  hWin = pDrawItemInfo->hWin;
+  switch (pDrawItemInfo->Cmd)
+  {
+	  case WIDGET_ITEM_DRAW_BACKGROUND:
+	  {
+			  IsPressed = BUTTON_IsPressed(pDrawItemInfo->hWin);
+			  if (IsPressed)
+			  {
+				  Color = GUI_BLUE | 0x10000000;
+				  GUI_SetBkColor(Color);
+				  GUI_Clear();
+			  }
+			  	  GUI_DrawBitmap(&bmup, 0,0);
+		break;
+	  }
+  }
+  return 0;
+}
+static int _Skindown(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
+{
+  int Index, xSize, ySize, IsPressed;
+  WM_HWIN hWin;
+  const GUI_BITMAP * pBm;
+  GUI_COLOR Color;
+
+  hWin = pDrawItemInfo->hWin;
+  switch (pDrawItemInfo->Cmd)
+  {
+	  case WIDGET_ITEM_DRAW_BACKGROUND:
+	  {
+			  IsPressed = BUTTON_IsPressed(pDrawItemInfo->hWin);
+			  if (IsPressed)
+			  {
+				  Color = GUI_BLUE | 0x10000000;
+				  GUI_SetBkColor(Color);
+				  GUI_Clear();
+			  }
+			  	  GUI_DrawBitmap(&bmdown, 0,0);
+		break;
+	  }
+  }
+  return 0;
+}
 
 static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
   WM_HWIN hItem;
@@ -116,8 +335,18 @@ static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
 	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
 	  taskEXIT_CRITICAL();
 
-	    hItem = pMsg->hWin;
-	    WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
+	hItem = pMsg->hWin;
+	WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
+
+	hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_0);
+	BUTTON_SetSkin(hItem, _Skinup);
+	hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_2);
+	BUTTON_SetSkin(hItem, _Skinup);
+
+	hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_1);
+	BUTTON_SetSkin(hItem, _Skindown);
+	hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_3);
+	BUTTON_SetSkin(hItem, _Skindown);
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_CHECKBOX_0);
     CHECKBOX_SetText(hItem, "");
@@ -127,7 +356,7 @@ static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
     TEXT_SetFont(hItem, &GUI_FontD36x48);
     sprintf(number,"%0.2d",hours);
 	TEXT_SetText(hItem,number);
-	TEXT_SetTextColor(hItem,GUI_WHITE);
+	TEXT_SetTextColor(hItem,col_gui);
     //
     // Initialization of 'Text'
     //
@@ -136,7 +365,7 @@ static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
     TEXT_SetFont(hItem, &GUI_FontD36x48);
     sprintf(number,"%0.2d",minutes);
 	TEXT_SetText(hItem,number);
-	TEXT_SetTextColor(hItem,GUI_WHITE);
+	TEXT_SetTextColor(hItem,col_gui);
     //
     // Initialization of 'Text'
     //
@@ -236,8 +465,6 @@ static void _cbDialog_alarm(WM_MESSAGE * pMsg) {
 static void _cbDialog(WM_MESSAGE * pMsg)
 {
   WM_HWIN hItem;
-  // USER START (Optionally insert additional variables)
-  // USER END
 
   switch (pMsg->MsgId)
   {
@@ -246,27 +473,13 @@ static void _cbDialog(WM_MESSAGE * pMsg)
 	  taskENTER_CRITICAL();
 	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
 	  weekday=AB0805_getDayOfWeek();
+	  LCD_BMP("0:dzien.bmp");
 	  taskEXIT_CRITICAL();
-
-	  if(hours>=6 && hours<20)
-	  {
-		  taskENTER_CRITICAL();
-	//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
-		  LCD_BMP("0:dzien.bmp");
-		  taskEXIT_CRITICAL();
-	  }
-	  else
-	  {
-		  taskENTER_CRITICAL();
-	//	  bitmap_RGB("0:papa.rgb",0,0,226,240);
-		  LCD_BMP("0:noc.bmp");
-		  taskEXIT_CRITICAL();
-	  }
-
 	  break;
   }
   case WM_INIT_DIALOG:
-
+  {
+	  taskENTER_CRITICAL();
 	  if(AB0805_getMinutes()==AB0805_getMinutes_Alarm() &&  AB0805_getHours24()==AB0805_getHours24_Alarm())
 	  {
 		  while(!GUI_PID_IsPressed() && sec2<4000)
@@ -278,17 +491,17 @@ static void _cbDialog(WM_MESSAGE * pMsg)
 			  IWDG_ReloadCounter();
 		  }
 	  }
+	  taskEXIT_CRITICAL();
 	  jed=1;
 
     hItem = pMsg->hWin;
     WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
+//    TEXT_SetFont(hItem, &GUI_FontStencil118);
     TEXT_SetFont(hItem, &GUI_FontSolidEdgeStencil118);
     TEXT_SetText(hItem, "");
-    //
-    // Initialization of 'minutes'
-    //
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
     TEXT_SetText(hItem, "");
     TEXT_SetFont(hItem, &GUI_FontSolidEdgeStencil118);
@@ -301,6 +514,10 @@ static void _cbDialog(WM_MESSAGE * pMsg)
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "");
 
+    hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);    // seconds
+    TEXT_SetFont(hItem, GUI_FONT_20_ASCII);
+    TEXT_SetText(hItem, "");
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_4);
     TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "");
@@ -310,15 +527,15 @@ static void _cbDialog(WM_MESSAGE * pMsg)
     TEXT_SetText(hItem, "");
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_5);
-    TEXT_SetFont(hItem, GUI_FONT_D32);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "");
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_6);
-    TEXT_SetFont(hItem, &GUI_Font32B_ASCII);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "");
 
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_8);
-    TEXT_SetFont(hItem, &GUI_Font24B_ASCII);
+    TEXT_SetFont(hItem, GUI_FONT_24B_ASCII);
     TEXT_SetText(hItem, "");
 
 
@@ -330,22 +547,19 @@ static void _cbDialog(WM_MESSAGE * pMsg)
 	  weekday=AB0805_getDayOfWeek();
 	  taskEXIT_CRITICAL();
 
-	if(hours>=6 && hours<20)dzien=1;
-	else dzien=0;
 	WM_HWIN minute = WM_GetDialogItem(pMsg->hWin, ID_TEXT_1);
 	sprintf(number,"%0.2d",minutes);
 	TEXT_SetText(minute,number);
-	if(dzien)TEXT_SetTextColor(minute,GUI_BLACK);
-	else TEXT_SetTextColor(minute,GUI_WHITE);
+	TEXT_SetTextColor(minute,col_gui);
+//	TEXT_SetTextColor(minute,GUI_WHITE);
 	WM_HWIN hour = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
 	sprintf(number,"%0.2d",hours);
 	TEXT_SetText(hour,number);
-	if(dzien)TEXT_SetTextColor(hour,GUI_BLACK);
-	else TEXT_SetTextColor(hour,GUI_WHITE);
+	TEXT_SetTextColor(hour,col_gui);
+//	TEXT_SetTextColor(hour,GUI_WHITE);
 
     break;
-  // USER START (Optionally insert additional message handling)
-  // USER END
+  }
   default:
     WM_DefaultProc(pMsg);
     break;
@@ -361,16 +575,10 @@ static void _cbDummy(WM_MESSAGE * pMsg) {
   {
   case WM_INIT_DIALOG:
 
-//	    hItem = pMsg->hWin;
-//	    WINDOW_SetBkColor(hItem, GUI_TRANSPARENT);
-
 	  taskENTER_CRITICAL();
-//	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
 	  weekday=AB0805_getDayOfWeek();
 	  taskEXIT_CRITICAL();
-    //
-    // Initialization of 'dzien'
-    //
+
     hItem = WM_GetDialogItem(pMsg->hWin, ID_TEXT_0);
     TEXT_SetTextAlign(hItem, GUI_TA_HCENTER | GUI_TA_VCENTER);
     TEXT_SetFont(hItem, GUI_FONT_32B_ASCII);
@@ -492,20 +700,9 @@ static void _cbDummy(WM_MESSAGE * pMsg) {
   {
 	  taskENTER_CRITICAL();
 	  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
+	  weekday=AB0805_getDayOfWeek();
+	  LCD_BMP("0:dzien.bmp");
 	  taskEXIT_CRITICAL();
-
-	  if(hours>=6 && hours<20)
-	  {
-		  taskENTER_CRITICAL();
-		  LCD_BMP("0:dzien.bmp");
-		  taskEXIT_CRITICAL();
-	  }
-	  else
-	  {
-		  taskENTER_CRITICAL();
-		  LCD_BMP("0:noc.bmp");
-		  taskEXIT_CRITICAL();
-	  }
 	  break;
   }
   default:
@@ -513,9 +710,6 @@ static void _cbDummy(WM_MESSAGE * pMsg) {
     break;
   }
 }
-
-
-
 
 WM_HWIN Createplan(void)
 {
@@ -527,9 +721,9 @@ WM_HWIN Createplan(void)
 
 WM_HWIN Createclock(void)
 {
-  WM_HWIN hWin,hWinBase;
-  hWin = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_CF_SHOW, 0, 0);
-  return hWin;
+  WM_HWIN hWin1,hWinBase;
+  hWin1 = GUI_CreateDialogBox(_aDialogCreate, GUI_COUNTOF(_aDialogCreate), _cbDialog, WM_CF_SHOW, 0, 0);
+  return hWin1;
 }
 
 WM_HWIN CreateAlarm(void)
@@ -543,36 +737,32 @@ WM_HWIN CreateAlarm(void)
 
 void Clock( void * pvParameters)
 {
+
 	long int z=0;
-	WM_HWIN hWinclock,hWinplan=0,hWinBase;
+	WM_HWIN hWinplan=0,hWinBase;
 	GUI_PID_STATE stat;
-
-	 hWinclock = Createclock();
-
-	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
-	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
-	RTC_TimeTypeDef time;
-	RTC_DateTypeDef datea;
-	GUI_SetOrientation(0);
+	hWinclock = Createclock();
 	FRESULT f=0;
 	FIL fsrc;
 	FATFS fs;
 	int tre=0;
 	u16 data[6];
 	u8 dzien=1;
+	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
+	Menu_Handle=NULL;
 
 	while(1)
 	{
-		vTaskDelay(50);
+
 
 		if(GUI_PID_IsPressed() && hWinplan==0)
 		{
-			if(sec2>400)
-			{
-//				hWinplan=Createplan();
-				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
-				xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
-			}
+//			if(sec2>400)
+//			{
+////				hWinplan=Createplan();
+//				xTaskCreate(Menu,(char const*)"Menu",512,NULL,6,&Menu_Handle);
+
+//			}
 		}
 		else
 		{
@@ -594,38 +784,32 @@ void Clock( void * pvParameters)
 //			WM_MOTION_SetMovement(hWinclock,GUI_COORD_X,240,240);
 //			hWinViewport = WM_CreateWindow(0, 0, 320, 240 ,WM_HBKWIN, _cbDummy, 0);
 //			hWinplan=Createplan();
-			hWinplan=CreateAlarm();
+//			hWinplan=CreateAlarm();
 		}
 		else if(vol_down)
 		{
+			USART_puts("TTM:RST-SYSTEMRESET");
 			MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 1);
 			hWinplan=Createplan();
 		}
 
 		char number[3];
-
 		  taskENTER_CRITICAL();
 		  AB0805_getDateTime24(0, &month, &day, &hours, &minutes, &seconds);
 		  weekday=AB0805_getDayOfWeek();
 		  taskEXIT_CRITICAL();
 //		  hours = seconds;
-
-		if(hours>=6 && hours<20)dzien=1;
-		else dzien=0;
 		WM_HWIN date = WM_GetDialogItem(hWinclock, ID_TEXT_4);
 		sprintf(number,"%0.2d",day );
 		strcat(number,".");
 		TEXT_SetText(date,number);
 		WM_HWIN mont = WM_GetDialogItem(hWinclock, ID_TEXT_7);
 		sprintf(number,"%0.2d", month);
-		if(dzien)TEXT_SetTextColor(mont,GUI_BLACK);
-		else TEXT_SetTextColor(mont,GUI_WHITE);
+		TEXT_SetTextColor(mont,col_gui);
 		TEXT_SetText(mont,number);
-		if(dzien)TEXT_SetTextColor(date,GUI_BLACK);
-		else TEXT_SetTextColor(date,GUI_WHITE);
+		TEXT_SetTextColor(date,col_gui);
 		WM_HWIN weekd = WM_GetDialogItem(hWinclock, ID_TEXT_3);
-		if(dzien)TEXT_SetTextColor(weekd,GUI_BLACK);
-		else TEXT_SetTextColor(weekd,GUI_WHITE);
+		TEXT_SetTextColor(weekd,col_gui);
 		switch(weekday)
 		{
 			case 1:
@@ -668,28 +852,17 @@ void Clock( void * pvParameters)
 		WM_HWIN minute = WM_GetDialogItem(hWinclock, ID_TEXT_1);
 		sprintf(number,"%0.2d",minutes);
 		TEXT_SetText(minute,number);
-		if(dzien)TEXT_SetTextColor(minute,GUI_BLACK);
-		else TEXT_SetTextColor(minute,GUI_WHITE);
+		TEXT_SetTextColor(minute,col_gui);
 		WM_HWIN hour = WM_GetDialogItem(hWinclock, ID_TEXT_0);
 		sprintf(number,"%0.2d",hours);
 		TEXT_SetText(hour,number);
-		if(dzien)TEXT_SetTextColor(hour,GUI_BLACK);
-		else TEXT_SetTextColor(hour,GUI_WHITE);
+		TEXT_SetTextColor(hour,col_gui);
 		WM_HWIN dwu = WM_GetDialogItem(hWinclock, ID_TEXT_2);
-		if(seconds%2==0)
-		{
-			TEXT_SetText(dwu,"");
-		}
-		else
-		{
-			TEXT_SetText(dwu,":");
-		}
-		if(dzien)TEXT_SetTextColor(dwu,GUI_BLACK);
-		else TEXT_SetTextColor(dwu,GUI_WHITE);
-
+		if(seconds%2==0)TEXT_SetText(dwu,"");
+		else TEXT_SetText(dwu,":");
+		TEXT_SetTextColor(dwu,col_gui);
 		WM_HWIN till = WM_GetDialogItem(hWinclock, ID_TEXT_6);
-		if(dzien)TEXT_SetTextColor(till,GUI_BLACK);
-		else TEXT_SetTextColor(till,GUI_WHITE);
+		TEXT_SetTextColor(till,col_gui);
 
 		char lekcja='-';
 
@@ -781,46 +954,45 @@ void Clock( void * pvParameters)
 		if(jed && lekcja!='-')
 		{
 
-
 			taskENTER_CRITICAL();
 			switch(weekday)
-					{
-						case 1:
-						{
-							f_open(&fsrc,"0:plan/pon.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 2:
-						{
-							f_open(&fsrc,"0:plan/wt.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 3:
-						{
-							f_open(&fsrc,"0:plan/sr.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 4:
-						{
-							f_open(&fsrc,"0:plan/czw.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 5:
-						{
-							f_open(&fsrc,"0:plan/pt.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 6:
-						{
-							f_open(&fsrc,"0:plan/so.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-						case 7:
-						{
-							f_open(&fsrc,"0:plan/nie.txt",FA_OPEN_EXISTING|FA_READ);
-							break;
-						}
-					}
+			{
+				case 1:
+				{
+					f_open(&fsrc,"0:plan/pon.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 2:
+				{
+					f_open(&fsrc,"0:plan/wt.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 3:
+				{
+					f_open(&fsrc,"0:plan/sr.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 4:
+				{
+					f_open(&fsrc,"0:plan/czw.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 5:
+				{
+					f_open(&fsrc,"0:plan/pt.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 6:
+				{
+					f_open(&fsrc,"0:plan/so.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+				case 7:
+				{
+					f_open(&fsrc,"0:plan/nie.txt",FA_OPEN_EXISTING|FA_READ);
+					break;
+				}
+			}
 			char aucc[f_size(&fsrc)];
 			f_read(&fsrc,aucc,f_size(&fsrc),&kk);
 //			GUI_DispDecAt(sizeof(&fsrc),220,220,5);
@@ -832,8 +1004,7 @@ void Clock( void * pvParameters)
 				if(i>=f_size(&fsrc))break;
 			}
 			WM_HWIN lesson = WM_GetDialogItem(hWinclock, ID_TEXT_8);
-			if(dzien)TEXT_SetTextColor(lesson,GUI_BLACK);
-			else TEXT_SetTextColor(lesson,GUI_WHITE);
+			TEXT_SetTextColor(lesson,col_gui);
 			u8 lk=0;
 			char less[20];
 			while(aucc[i]!='\n')
@@ -845,30 +1016,9 @@ void Clock( void * pvParameters)
 			taskEXIT_CRITICAL();
 		}
 
-		if(hours==21 && minutes==37 && time.RTC_Seconds<10)
-		{
-			taskENTER_CRITICAL();
-			bitmap_RGB("0:papa.rgb",0,0,226,320);
-			for(int l=0;l<0xfffff;l++){};
-		    taskEXIT_CRITICAL();
-		}
-
-//		if(update==1)
-//		{
-//
-//		}
-//		  GPIOG->BSRRL|=GPIO_BSRR_BS_6;
-//		  delay(10);
-//		  taskENTER_CRITICAL();
-//		  USART_puts("dziala");
-//		  taskEXIT_CRITICAL();
-//		  GPIOG->BSRRH|=GPIO_BSRR_BS_6;
-
-
-//		else
-//		{
-//			WM_Paint(hWinclock);
-//		}
+		WM_HWIN bat = WM_GetDialogItem(hWinclock, ID_TEXT_5);
+		TEXT_SetTextColor(bat,col_gui);
+		vTaskDelay(100);
 
 	}
 }
@@ -879,3 +1029,9 @@ void Clock( void * pvParameters)
 //		    jpeg_decode(&fsrc, 320, auc, 0);
 //		    jpeg_finish_decompress(&cinfo);
 //		    jpeg_destroy_decompress(&cinfo);
+
+
+
+
+
+

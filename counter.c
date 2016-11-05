@@ -203,8 +203,6 @@ void Counter( void * pvParameters)
 			  CPU_ON;
 		}
 
-
-
 		WM_HWIN hText = WM_GetDialogItem(hWincounter, ID_TEXT_0);
 		TEXT_SetText(hText,itoa(i,t,10));
 		i++;
@@ -216,13 +214,8 @@ void Counter( void * pvParameters)
 		  _aValue[i] = get_random(0,100);
 
 		}
-
 			GRAPH_DATA_YT_AddValue(_ahData, _aValue[0]);
-
-//			while(1)
-//			{
-//				CPU_OFF;
-//			}
+//			backlight(SLIDER_GetValue(hSlider));
 
 	}
 }
