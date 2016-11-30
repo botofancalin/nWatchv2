@@ -76,6 +76,8 @@ Purpose     : Display controller configuration (single layer)
 *
 **********************************************************************
 */
+void FillRect(int LayerIndex, int x0, int y0, int x1, int y1, int PixelIndex);
+
 #ifndef   VXSIZE_PHYS
   #define VXSIZE_PHYS XSIZE_PHYS
 #endif
@@ -162,20 +164,16 @@ static void LcdReadDataMultiple(U16 * pData, int NumItems) {
 *   display driver configuration.
 *
 */
-void LCD_X_Config(void) {
+void LCD_X_Config(void)
+{
   GUI_DEVICE * pDevice;
   GUI_PORT_API PortAPI = {0};
-  //
-  // Set display driver and color conversion
-  //
+
+  LCD_SetDevFunc(0, LCD_DEVFUNC_FILLRECT, (void(*)(void))FillRect);
+
   pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_TEMPLATE, GUI_COLOR_CONV_565, 0, 0);
 //  pDevice = GUI_DEVICE_CreateAndLink(GUIDRV_TEMPLATE, GUI_COLOR_CONV_8888, 0, 0);
-  //
-  // Display driver configuration, required for Lin-driver
-  //
   LCD_SetSizeEx (0, XSIZE_PHYS , YSIZE_PHYS);
-//  LCD_SetVSizeEx(0, VXSIZE_PHYS, VYSIZE_PHYS);
-//  LCD_SetVRAMAddrEx(0, (void *)0x00300000);
   LCD_SetVSizeEx(0, 320, 240);
 
 }
@@ -220,5 +218,13 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
   return r;
 }
 
-/*************************** End of file ****************************/
-
+void FillRect(int LayerIndex, int x0, int y0, int x1, int y1, int PixelIndex)
+{
+	LCD_area(x0,y0,x1,y1);
+	DMA_Config(abs(x1-x0)*abs(y1-y0),PixelIndex);
+}
+//void drwbitmap(int LayerIndex, int x0, int y0, int x1, int y1, int PixelIndex)
+//{
+//	LCD_area(x0,y0,x1,y1);
+//	DMA_Config(abs(x1-x0)*abs(y1-y0),PixelIndex);
+//}

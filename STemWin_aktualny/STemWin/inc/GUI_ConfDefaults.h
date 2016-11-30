@@ -89,19 +89,19 @@ Attention : Do not modify this file ! If you do, you will not
 #endif
 
 #ifndef GUI_SUPPORT_TOUCH
-  #define GUI_SUPPORT_TOUCH   0
+  #define GUI_SUPPORT_TOUCH   1
 #endif
 
 #ifndef GUI_SUPPORT_MOUSE
-  #define GUI_SUPPORT_MOUSE   0
+  #define GUI_SUPPORT_MOUSE   1
 #endif
 
 #ifndef GUI_SUPPORT_MEMDEV
-  #define GUI_SUPPORT_MEMDEV  0
+  #define GUI_SUPPORT_MEMDEV  1
 #endif
 
 #ifndef GUI_OS
-  #define GUI_OS              0
+  #define GUI_OS              1
 #endif
 
 #ifndef GUI_NUM_LAYERS

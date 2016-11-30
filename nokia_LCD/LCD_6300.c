@@ -69,13 +69,9 @@ void FSMC_NAND_Init(void)
 
   FSMC_Bank3->PCR3|=FSMC_ECCPageSize_8192Bytes;  //page 8192 bytres
   FSMC_Bank3->PCR3&=~FSMC_PCR3_PWID;             //bus width 8b
-//  FSMC_Bank2->PCR2|=FSMC_PCR2_PWAITEN; 			//pwait enable
+//  FSMC_Bank3->PCR3|=FSMC_PCR3_PWAITEN; 			//pwait enable
   FSMC_Bank3->PCR3|=FSMC_PCR3_PBKEN;           //do not turn on this bank
-//
-//  FSMC_Bank2->PCR2|=FSMC_ECCPageSize_8192Bytes;  //page 8192 bytres
-//  FSMC_Bank2->PCR2&=~FSMC_PCR2_PWID;             //bus width 8b
-////  FSMC_Bank2->PCR2|=FSMC_PCR2_PWAITEN; 			//pwait enable
-  FSMC_Bank2->PCR2|=FSMC_PCR2_PBKEN;
+
 
 
     FSMC_Bank3->PMEM3=FSMC_PMEM3_MEMHIZ3_0;
@@ -83,15 +79,40 @@ void FSMC_NAND_Init(void)
     FSMC_Bank3->PMEM3=FSMC_PMEM3_MEMSET3_0;
     FSMC_Bank3->PMEM3=FSMC_PMEM3_MEMWAIT3_2;
 
-    FSMC_Bank3->PATT3=FSMC_PMEM3_MEMHIZ3_0;
-    FSMC_Bank3->PATT3=FSMC_PMEM3_MEMHOLD3_1;
-    FSMC_Bank3->PATT3=FSMC_PMEM3_MEMSET3_0;
-    FSMC_Bank3->PATT3=FSMC_PMEM3_MEMWAIT3_2;
+//    FSMC_NORSRAMTimingInitTypeDef  p;
+//    FSMC_NORSRAMInitTypeDef  FSMC;
+//    p.FSMC_AddressSetupTime = 0x02;
+//    p.FSMC_AddressHoldTime = 0x00;
+//    p.FSMC_DataSetupTime = 0x05;
+//    p.FSMC_BusTurnAroundDuration = 0x00;
+//    p.FSMC_CLKDivision = 0x00;
+//    p.FSMC_DataLatency = 0x00;
+//    p.FSMC_AccessMode = FSMC_AccessMode_B;
+//    FSMC.FSMC_WriteTimingStruct = &p;
+//
+//    FSMC_NANDInit(&FSMC);
+    FSMC_NANDInitTypeDef FSMC_NANDInitStructure;
+    FSMC_NAND_PCCARDTimingInitTypeDef p;
+
+    FSMC_NANDInitStructure.FSMC_AttributeSpaceTimingStruct = &p;
+    FSMC_NANDInitStructure.FSMC_CommonSpaceTimingStruct = &p;
+
+    FSMC_NANDStructInit(&FSMC_NANDInitStructure);
+
+    p.FSMC_SetupTime = 1;
+    p.FSMC_WaitSetupTime = 2;
+    p.FSMC_HoldSetupTime = 1;
+    p.FSMC_HiZSetupTime = 4;
+
+    FSMC_NANDInitStructure.FSMC_Bank = FSMC_Bank3_NAND;
+//    FSMC_NANDInitStructure.FSMC_Waitfeature = FSMC_Waitfeature_Enable;
+    FSMC_NANDInitStructure.FSMC_MemoryDataWidth = FSMC_MemoryDataWidth_8b;
+    FSMC_NANDInitStructure.FSMC_ECC = FSMC_ECC_Disable;
+    FSMC_NANDInitStructure.FSMC_TCLRSetupTime = 0;
+    FSMC_NANDInitStructure.FSMC_TARSetupTime = 0;
+    FSMC_NANDInit(&FSMC_NANDInitStructure);
+    FSMC_NANDCmd(FSMC_Bank3_NAND, ENABLE);
 }
-
-/*************************************************/
-
-/*************************************************/
 
 void LCD_paint(unsigned int color)
 {

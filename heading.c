@@ -3,59 +3,66 @@
 
 float last_volt=150;
 extern WM_HWIN hWinclock;
+extern WM_HWIN hWinalarm;
+extern WM_HWIN hSettings;;
 
-static GUI_CONST_STORAGE GUI_COLOR _ColorsfMhGv[] = {
+static GUI_CONST_STORAGE GUI_COLOR _Colorsleft[] = {
   0xFFFFFF, 0x000000
 };
 
-static GUI_CONST_STORAGE GUI_LOGPALETTE _PalfMhGv = {
+static GUI_CONST_STORAGE GUI_LOGPALETTE _Palleft = {
   2,  // Number of entries
   1,  // Has transparency
-  &_ColorsfMhGv[0]
+  &_Colorsleft[0]
 };
 
-static GUI_CONST_STORAGE unsigned char _acfMhGv[] = {
-  ________, ________, ________,
-  ________, ____XX__, ________,
-  ________, ___XXXX_, ________,
-  ________, __XXXXX_, ________,
-  ________, _XXXXXX_, ________,
-  ________, XXXXXX__, ________,
-  _______X, XXXXX___, ________,
-  ______XX, XXXX____, ________,
-  _____XXX, XXX_____, ________,
-  ____XXXX, XX______, ________,
-  ___XXXXX, X_______, ________,
-  __XXXXXX, ________, ________,
-  _XXXXXXX, ________, ________,
-  __XXXXXX, X_______, ________,
-  ___XXXXX, X_______, ________,
-  ____XXXX, XX______, ________,
-  _____XXX, XXX_____, ________,
-  ______XX, XXXX____, ________,
-  _______X, XXXXX___, ________,
-  ________, XXXXXX__, ________,
-  ________, _XXXXXX_, ________,
-  ________, __XXXXX_, ________,
-  ________, ___XXX__, ________,
-  ________, ____X___, ________,
-  ________, ________, ________
+static GUI_CONST_STORAGE unsigned char _acleft[] = {
+  ________, ________, ___XXX__, ________,
+  ________, ________, __XXXXX_, ________,
+  ________, ________, _XXXXXXX, ________,
+  ________, ________, XXXXXXXX, ________,
+  ________, _______X, XXXXXXXX, ________,
+  ________, ______XX, XXXXXXXX, ________,
+  ________, _____XXX, XXXXXXX_, ________,
+  ________, ____XXXX, XXXXXX__, ________,
+  ________, ___XXXXX, XXXXX___, ________,
+  ________, __XXXXXX, XXXX____, ________,
+  ________, _XXXXXXX, XXX_____, ________,
+  ________, XXXXXXXX, XX______, ________,
+  _______X, XXXXXXXX, X_______, ________,
+  ______XX, XXXXXXXX, ________, ________,
+  ______XX, XXXXXXX_, ________, ________,
+  ______XX, XXXXXXX_, ________, ________,
+  ______XX, XXXXXXXX, ________, ________,
+  _______X, XXXXXXXX, X_______, ________,
+  ________, XXXXXXXX, XX______, ________,
+  ________, _XXXXXXX, XXX_____, ________,
+  ________, __XXXXXX, XXXX____, ________,
+  ________, ___XXXXX, XXXXX___, ________,
+  ________, ____XXXX, XXXXXX__, ________,
+  ________, _____XXX, XXXXXXX_, ________,
+  ________, ______XX, XXXXXXXX, ________,
+  ________, _______X, XXXXXXXX, ________,
+  ________, ________, XXXXXXXX, ________,
+  ________, ________, _XXXXXXX, ________,
+  ________, ________, __XXXXX_, ________,
+  ________, ________, ___XXX__, ________
 };
 
-GUI_CONST_STORAGE GUI_BITMAP bmfMhGv = {
-  19, // xSize
-  25, // ySize
-  3, // BytesPerLine
+GUI_CONST_STORAGE GUI_BITMAP bmleft = {
+  30, // xSize
+  30, // ySize
+  4, // BytesPerLine
   1, // BitsPerPixel
-  _acfMhGv,  // Pointer to picture data (indices)
-  &_PalfMhGv   // Pointer to palette
+  _acleft,  // Pointer to picture data (indices)
+  &_Palleft   // Pointer to palette
 };
 
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreateb[] =
 {
-  { WINDOW_CreateIndirect, "bar", ID_WINDOW_0, 0, 0, 320, 25,0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 0, 0, 54, 25, 0, 0x0, 0 },
+  { WINDOW_CreateIndirect, "bar", ID_WINDOW_0, 0, 0, 320, 30,0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 0, 0, 54, 30, 0, 0x0, 0 },
   { IMAGE_CreateIndirect, "Image", ID_IMAGE_0, 280, 4, 27, 14, 0, 0, 0 },
   { IMAGE_CreateIndirect, "Image", ID_IMAGE_1, 120, 0, 30, 25, 0, 0, 0 },
   { IMAGE_CreateIndirect, "Image", ID_IMAGE_2, 180, 0, 30, 25, 0, 0, 0 },
@@ -85,7 +92,7 @@ static int _ButtonSkin(const WIDGET_ITEM_DRAW_INFO * pDrawItemInfo)
 				  GUI_SetBkColor(Color);
 				  GUI_Clear();
 			  }
-			  	  GUI_DrawBitmap(&bmfMhGv, 0,0);
+			  	  GUI_DrawBitmap(&bmleft, 0,0);
 		   }
 		break;
 	  }
@@ -148,12 +155,13 @@ static void _cbDialogb(WM_MESSAGE * pMsg)
 	    ADC_SoftwareStartConv(ADC1);
 	    while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
 	    float result= ADC_GetConversionValue(ADC1);
-	    float volt = result /3070 * 100;  //240
+	    float volt = (result- 2200)/676 * 100;  //240   ///3070
 
 	    if(volt<last_volt)
 	    {
 	    	last_volt=volt;
 	    }
+	    if(last_volt>100)last_volt=100;
 //		volt-=140;
 //	    volt=(volt/41)*100;
 
@@ -163,6 +171,7 @@ static void _cbDialogb(WM_MESSAGE * pMsg)
 	    hItem = WM_GetDialogItem(pMsg->hWin, ID_BUTTON_0);
 	    BUTTON_SetSkin(hItem, _ButtonSkin);
 //	    GUI_DrawBitmap(&bmArrowRigth_15x24, 5, 0);
+
 
 	    if(last_volt>=80 && last_volt <=100)
 		{
@@ -215,12 +224,10 @@ void Heading_Task( void * pvParameters)
 		WM_HWIN hButton = WM_GetDialogItem(bar, ID_BUTTON_0);
 		if(BUTTON_IsPressed(hButton))
 		{
-			WM_DeleteWindow(hWinclock);
 			xTaskCreate(Menu,(char const*)"Menu",1024,NULL,7, &Menu_Handle);
 		}
-		vTaskDelay(50);
+		vTaskDelay(30);
 		WM_InvalidateWindow(bar);
 		WM_BringToTop(bar);
-//		GUI_Exec();
 	}
 }

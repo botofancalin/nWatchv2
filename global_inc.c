@@ -30,7 +30,7 @@ inline void cpu_off(void)
 //		GUI_SetColor(GUI_WHITE);
 //		GUI_DrawLine(i,0,i,320);
 //		GUI_DrawLine(240-i,0,240-i,320);
-		backlight(30-i);
+		backlight((160-i)/3);
 		delay(1);
 	}
 //	LED_OFF;

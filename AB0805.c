@@ -232,10 +232,10 @@ void AB0805_initialize()
     uint8_t xtOscSel = 0x08;//0x08
 //    AB0805_WriteBit(0xD2, AB0805_RA_CONTROL1, AB0805_CONTROL_WRTC, 1);
 //    AB0805_writeByte(devAddr, AB0805_RA_CONTROL1, stopClk);  //stops clock
-    AB0805_writeByte(devAddr, AB0805_RA_CONTROL2, 0x03); //interrupt
+    AB0805_writeByte(devAddr, AB0805_RA_CONTROL2, 0x03); //interrupt////////////
 //    AB0805_writeByte(devAddr, AB0805_RA_CONFIG_KEY, allowOscEdit);  //Allows edits to osc. cntrl register (0x1C)
 //    AB0805_writeByte(devAddr, AB0805_RA_OSC_CONTROL, xtOscSel);   //Crystal used (switch to RC if XT osc failure)
-    AB0805_writeByte(devAddr, 0x12, 0x84); //// interrupt alarm enble /// level
+    AB0805_writeByte(devAddr, 0x12, 0x84); //// interrupt alarm enble /// level///////////////
     AB0805_WriteBit(devAddr, 0x0f,2,0);
 }
 
@@ -243,7 +243,8 @@ void AB0805_initialize()
  * Make sure the device is connected and responds as expected.
  * @return 1 if connection is valid, 0 otherwise
  */
-u8 AB0805_testConnection() {
+u8 AB0805_testConnection()
+{
 //    if (AB0805_ReadByte(devAddr, AB0805_RA_ID0 , buffer_AB) == 0x08) {
         return 1;
 //    }

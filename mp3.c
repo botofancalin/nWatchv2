@@ -32,15 +32,15 @@ u8 buffez[1024];//__attribute((section(".ExRam")));
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] =
 {
-		  { WINDOW_CreateIndirect, "Window", ID_WINDOW_0, 0, 60, 320, 180, 0, 0x0, 0 },
-		  { BUTTON_CreateIndirect, "<<<<", ID_BUTTON_0, 27, 102, 80, 45, 0, 0x0, 0 },
-		  { BUTTON_CreateIndirect, ">>>>", ID_BUTTON_1, 217, 103, 80, 41, 0, 0x0, 0 },
-		  { PROGBAR_CreateIndirect, "Progbar", ID_PROGBAR_0, 32, 69, 263, 20, 0, 0x0, 0 },
-		  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 32, 40, 260, 20, 0, 0x0, 0 },
-		  { TEXT_CreateIndirect, " MP3 Player", ID_TEXT_1, 32, 10, 259, 20, 0, 0x0, 0 },
-		  { BUTTON_CreateIndirect, "play", ID_BUTTON_2, 122, 105, 80, 37, 0, 0x0, 0 },
-		  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_0, 171, 165, 119, 32, 0, 0x0, 0 },
-		  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_1, 28, 163, 112, 34, 0, 0x0, 0 },
+		  { WINDOW_CreateIndirect, "Window", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
+		  { BUTTON_CreateIndirect, "<<<<", ID_BUTTON_0, 27, 135, 80, 45, 0, 0x0, 0 },
+		  { BUTTON_CreateIndirect, ">>>>", ID_BUTTON_1, 217, 135, 80, 41, 0, 0x0, 0 },
+		  { PROGBAR_CreateIndirect, "Progbar", ID_PROGBAR_0, 32, 95, 263, 20, 0, 0x0, 0 },
+		  { TEXT_CreateIndirect, "Text", ID_TEXT_0, 32, 70, 260, 20, 0, 0x0, 0 },
+		  { TEXT_CreateIndirect, " MP3 Player", ID_TEXT_1, 32, 40, 259, 20, 0, 0x0, 0 },
+		  { BUTTON_CreateIndirect, "play", ID_BUTTON_2, 122, 135, 80, 37, 0, 0x0, 0 },
+		  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_0, 171, 200, 119, 32, 0, 0x0, 0 },
+		  { SLIDER_CreateIndirect, "Slider", ID_SLIDER_1, 28, 200, 112, 34, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -71,11 +71,11 @@ static void _cbDialog(WM_MESSAGE * pMsg)
 	  switch (pMsg->MsgId)
 	  {
 	  case WM_INIT_DIALOG:
-	    //
-	    // Initialization of 'Window'
-	    //
-	    hItem = pMsg->hWin;
-	    WINDOW_SetBkColor(hItem, 0x00070707);
+
+
+	  	  taskENTER_CRITICAL();
+	  	  LCD_BMP("0:dzien.bmp");
+	  	  taskEXIT_CRITICAL();
 	    //
 	    // Initialization of 'Text'
 	    //
@@ -151,8 +151,13 @@ static void _cbDialog(WM_MESSAGE * pMsg)
 	    // USER END
 	    }
 	    break;
-	  // USER START (Optionally insert additional message handling)
-	  // USER END
+	    case WM_PAINT:
+	    {
+	  	  taskENTER_CRITICAL();
+	  	  LCD_BMP("0:dzien.bmp");
+	  	  taskEXIT_CRITICAL();
+	    	break;
+	    }
 	  default:
 	    WM_DefaultProc(pMsg);
 	    break;
@@ -182,8 +187,6 @@ WM_HWIN CreateWindow(void)
 // USER END
 void MP3_player(void *pvParameters)
 {
-	portTickType xLastFlashTime;
-	xLastFlashTime = xTaskGetTickCount();
 	u16 br=0;
 	u8 fin=1;
 	u8 play=0;
@@ -247,10 +250,12 @@ void MP3_player(void *pvParameters)
 	name[4]='c';
 	name[5]='/';
 
-	vTaskDelete(Menu_Handle);
+	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
+	Menu_Handle=NULL;
 
 	while(1)
 	{
+
 
 //		hText1 = WM_GetDialogItem(hWin, ID_TEXT_1);
 		hText = WM_GetDialogItem(hWin, ID_TEXT_0);
@@ -397,11 +402,13 @@ void MP3_player(void *pvParameters)
 //
 			TEXT_SetText(hText,&name[6]);
 			fin=0;
+
+//			vTaskDelay(500);
 //			vTaskResume(Heading_Handle);
 		}
 
-		vTaskDelay(40);
 
+		vTaskDelay(200);
 	}
 
 }

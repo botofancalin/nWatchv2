@@ -31,6 +31,14 @@
 <part id="13"/>
 <part id="14"/>
 <part id="15"/>
+<part id="16"/>
+<part id="17"/>
+<part id="18"/>
+<part id="19"/>
+<part id="20"/>
+<part id="21"/>
+<part id="22"/>
+<part id="23"/>
 </presentation>
 </folder>
 </info>
@@ -45,7 +53,7 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="clock.c" partName="clock.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/clock.c" title="clock.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/clock.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/apps/clock.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="279034" selectionTopPixel="34481"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="16473" selectionTopPixel="10544"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="iconview.h" partName="iconview.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/icon.c" title="iconview.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/icon.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/apps/iconview.h"/>
@@ -64,12 +72,13 @@
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="445" selectionTopPixel="0"/>
 </editor>
 <editor id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" partName="Repository" title="Repository" tooltip="Repository" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">&#x0A;<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="2" verticalPosition="0"/>
+<input factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="2" verticalPosition="0"/>
 </input>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="bsp.c" partName="bsp.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/STemWin/Config/bsp.c" title="bsp.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/STemWin/Config/bsp.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/STEMWIN/bsp.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3089" selectionTopPixel="357"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3104" selectionTopPixel="1684"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="global_inc.h" partName="global_inc.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/global_inc.h" title="global_inc.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/global_inc.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/global_inc.h"/>
@@ -85,19 +94,52 @@
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="heading.c" partName="heading.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/heading.c" title="heading.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/heading.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/apps/heading.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3647" selectionTopPixel="2420"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4428" selectionTopPixel="2550"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="heading.h" partName="heading.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/heading.h" title="heading.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/heading.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/apps/heading.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1939" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/main.c" title="main.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/main.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/main.c" title="main.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5104" selectionTopPixel="2358"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5592" selectionTopPixel="2759"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="task.h" partName="task.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/FreeRTOS/Source/include/task.h" title="task.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/FreeRTOS/Source/include/task.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/FreeRTOS/task.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="13694" selectionTopPixel="5669"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="LCD_6300.c" partName="LCD_6300.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/nokia_LCD/LCD_6300.c" title="LCD_6300.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/nokia_LCD/LCD_6300.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/nokia_lcd/LCD_6300.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1631" selectionTopPixel="900"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="AB0805.c" partName="AB0805.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/AB0805.c" title="AB0805.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/AB0805.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/AB0805.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9198" selectionTopPixel="3723"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="AB0805.h" partName="AB0805.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/AB0805.h" title="AB0805.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/AB0805.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/AB0805.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1789" selectionTopPixel="493"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MPU6050.c" partName="MPU6050.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/MPU5060.c" title="MPU6050.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/MPU5060.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/MPU6050.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12733" selectionTopPixel="5627"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="MPU6050.h" partName="MPU6050.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/MPU5060.h" title="MPU6050.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/MPU5060.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/MPU6050.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1904" selectionTopPixel="476"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stmpe811.c" partName="stmpe811.c" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/touch/stmpe811.c" title="stmpe811.c" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/touch/stmpe811.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8346" selectionTopPixel="5973"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stmpe811.h" partName="stmpe811.h" path="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/touch/stmpe811.h" title="stmpe811.h" tooltip="C:/Users/UMB/Desktop/coocox_workspace/workspace/Final_FreeRTOS_nWatch_ZG/touch/stmpe811.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="120" selectionTopPixel="0"/>
+</editor>
+<editor activePart="true" focus="true" id="org.coocox.builder.ui.editors.ConfigEditor" name="" partName="Configuration" title="Configuration" tooltip="" workbook="DefaultEditorWorkbook">
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
+<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
+</input>
 </editor>
 </editors>
 <views>
@@ -110,12 +152,13 @@
 <viewState/>
 </view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="19">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/Final_FreeRTOS_nWatch_ZE"/>
+<element path="/Final_FreeRTOS_nWatch_ZE/apps"/>
 </expanded>
 <selection>
-<element path="/Final_FreeRTOS_nWatch_ZE/main.c"/>
+<element path="/Final_FreeRTOS_nWatch_ZE"/>
 </selection>
 </viewState>
 </view>
@@ -151,7 +194,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspectives activePart="org.coocox.builder.ui.editors.ConfigEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
 <alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
@@ -204,7 +247,7 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@92918f" ratio="0.67571884" ratioLeft="423" ratioRight="203" relationship="4" relative="org.eclipse.ui.internal.ViewStack@12c1562">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@92918f" ratio="0.7795527" ratioLeft="488" ratioRight="138" relationship="4" relative="org.eclipse.ui.internal.ViewStack@12c1562">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.ProgressView" label="Progress"/>
@@ -343,169 +386,169 @@
 <navigationHistory>
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/cmsis_lib/source/misc.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/heading.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/heading.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/cmsis_boot/system_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/global_inc.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/clock.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/global_inc.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/cmsis_boot/system_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/clock.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/AB0805.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/AB0805.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/MPU6050.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/MPU6050.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/STEMWIN/bsp.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/heading.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/apps/menu.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/Final_FreeRTOS_nWatch_ZE/FreeRTOS/task.h"/>
+<editor factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="2" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser">
+<subPage horizontalPosition="0" selectedItemId="0" subPageIndex="2" verticalPosition="0"/>
+</editor>
+<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
+<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
+</editor>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5091" y="0"/>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="9185" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="19772" y="0"/>
+<position info="not_deleted" x="5455" y="0"/>
+</item>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="8605" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="9732" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5410" y="0"/>
+<position info="not_deleted" x="5592" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="13068" y="0"/>
+<position info="not_deleted" x="5459" y="0"/>
+</item>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="8749" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="13076" y="0"/>
+<position info="not_deleted" x="5459" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="13085" y="0"/>
+<position info="not_deleted" x="5363" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="13104" y="0"/>
+<position info="not_deleted" x="29301" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
+</item>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="20996" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
+</item>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="21090" y="0"/>
+</item>
+<item historyLabel="AB0805.h" index="3">
+<position info="not_deleted" x="4642" y="19"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5462" y="0"/>
+<position info="not_deleted" x="5540" y="0"/>
 </item>
-<item historyLabel="misc.c" index="1">
-<position info="not_deleted" x="8035" y="0"/>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="21090" y="0"/>
 </item>
-<item historyLabel="misc.c" index="1">
-<position info="not_deleted" x="8129" y="0"/>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="2991" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5206" y="0"/>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="5256" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5217" y="0"/>
+<item historyLabel="AB0805.h" index="3">
+<position info="not_deleted" x="1789" y="0"/>
 </item>
-<item historyLabel="heading.h" index="2">
-<position info="not_deleted" x="1939" y="0"/>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
 </item>
-<item historyLabel="heading.c" index="3">
-<position info="not_deleted" x="2371" y="0"/>
+<item historyLabel="MPU6050.c" index="4">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="system_stm32f4xx.c" index="4">
-<position info="not_deleted" x="9826" y="0"/>
+<item historyLabel="MPU6050.c" index="4">
+<position info="not_deleted" x="3124" y="0"/>
 </item>
-<item historyLabel="global_inc.c" index="5">
-<position info="not_deleted" x="60" y="34"/>
+<item historyLabel="MPU6050.c" index="4">
+<position info="not_deleted" x="12733" y="0"/>
 </item>
-<item historyLabel="clock.c" index="6">
-<position info="not_deleted" x="285706" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5711" y="0"/>
+<item historyLabel="MPU6050.h" index="5">
+<position info="not_deleted" x="1904" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
+<position info="not_deleted" x="5540" y="0"/>
+</item>
+<item historyLabel="stmpe811.c" index="6">
+<position info="not_deleted" x="586" y="0"/>
+</item>
+<item historyLabel="stmpe811.h" index="7">
+<position info="not_deleted" x="120" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="7975" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
 <position/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="32499" y="10"/>
+<position info="not_deleted" x="7975" y="0"/>
 </item>
-<item historyLabel="global_inc.c" index="7">
-<position info="not_deleted" x="60" y="34"/>
+<item historyLabel="bsp.c" index="8">
+<position info="not_deleted" x="3089" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="33010" y="0"/>
+<item historyLabel="bsp.c" index="8">
+<position info="not_deleted" x="3104" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position/>
+<item historyLabel="stmpe811.c" index="6">
+<position info="not_deleted" x="8346" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="19923" y="0"/>
-</item>
-<item historyLabel="global_inc.c" index="7">
-<position info="not_deleted" x="60" y="34"/>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16475" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="19923" y="0"/>
+<position info="not_deleted" x="7957" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16473" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position/>
+<position info="not_deleted" x="5579" y="0"/>
+</item>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16473" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="33818" y="0"/>
+<position info="not_deleted" x="5457" y="0"/>
 </item>
-<item historyLabel="global_inc.c" index="7">
-<position info="not_deleted" x="60" y="34"/>
+<item historyLabel="AB0805.c" index="2">
+<position info="not_deleted" x="9198" y="0"/>
 </item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="33818" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="5091" y="0"/>
+<item historyLabel="clock.c" index="1">
+<position info="not_deleted" x="16473" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
-<position info="not_deleted" x="6578" y="0"/>
+<position info="not_deleted" x="5592" y="0"/>
 </item>
-<item historyLabel="global_inc.c" index="7">
-<position info="not_deleted" x="60" y="34"/>
+<item historyLabel="heading.c" index="9">
+<position info="not_deleted" x="4428" y="0"/>
 </item>
-<item historyLabel="system_stm32f4xx.c" index="8">
-<position info="not_deleted" x="9826" y="0"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="285710" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="6578" y="0"/>
-</item>
-<item historyLabel="heading.c" index="10">
-<position info="not_deleted" x="2371" y="0"/>
-</item>
-<item historyLabel="menu.c" index="11">
-<position info="not_deleted" x="179" y="0"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="279089" y="0"/>
-</item>
-<item historyLabel="task.h" index="12">
-<position info="not_deleted" x="13694" y="11"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="279109" y="0"/>
-</item>
-<item historyLabel="heading.c" index="10">
-<position info="not_deleted" x="3647" y="0"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="279032" y="0"/>
-</item>
-<item historyLabel="menu.c" index="11">
-<position info="not_deleted" x="70894" y="0"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="279102" y="0"/>
-</item>
-<item historyLabel="heading.c" index="10">
-<position info="not_deleted" x="3647" y="0"/>
-</item>
-<item historyLabel="menu.c" index="11">
-<position info="not_deleted" x="70894" y="0"/>
-</item>
-<item historyLabel="clock.c" index="9">
-<position info="not_deleted" x="279034" y="0"/>
-</item>
-<item historyLabel="menu.c" index="11">
-<position info="not_deleted" x="70894" y="0"/>
-</item>
-<item active="true" historyLabel="main.c" index="0">
-<position info="not_deleted" x="6578" y="0"/>
-</item>
+<item historyLabel="Repository" index="10"/>
+<item historyLabel="Repository" index="11"/>
+<item active="true" historyLabel="Configuration" index="12"/>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -513,23 +556,31 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="task.h" tooltip="Final_FreeRTOS_nWatch_ZE/FreeRTOS/task.h">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/FreeRTOS/task.h"/>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
+<persistable>
+<org.coocox.builder.ui.editors.ConfigEditor horizontalPosition="0" subTagIndex="0" verticalPosition="0"/>
+</persistable>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="Final_FreeRTOS_nWatch_ZE/cmsis_boot/startup/startup_stm32f4xx.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/cmsis_boot/startup/startup_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stmpe811.h" tooltip="Final_FreeRTOS_nWatch_ZE/touch/stmpe811.h">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Final_FreeRTOS_nWatch_ZE/main.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stmpe811.c" tooltip="Final_FreeRTOS_nWatch_ZE/touch/stmpe811.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/touch/stmpe811.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="heading.h" tooltip="Final_FreeRTOS_nWatch_ZE/apps/heading.h">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/heading.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="MPU6050.h" tooltip="Final_FreeRTOS_nWatch_ZE/MPU6050.h">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/MPU6050.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="heading.c" tooltip="Final_FreeRTOS_nWatch_ZE/apps/heading.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/heading.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="MPU6050.c" tooltip="Final_FreeRTOS_nWatch_ZE/MPU6050.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/MPU6050.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="Final_FreeRTOS_nWatch_ZE/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/cmsis_boot/system_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="AB0805.h" tooltip="Final_FreeRTOS_nWatch_ZE/AB0805.h">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/AB0805.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="AB0805.c" tooltip="Final_FreeRTOS_nWatch_ZE/AB0805.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/AB0805.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="LCD_6300.c" tooltip="Final_FreeRTOS_nWatch_ZE/nokia_lcd/LCD_6300.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/nokia_lcd/LCD_6300.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="global_inc.c" tooltip="Final_FreeRTOS_nWatch_ZE/global_inc.c">
 <persistable path="/Final_FreeRTOS_nWatch_ZE/global_inc.c"/>
@@ -537,27 +588,20 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="global_inc.h" tooltip="Final_FreeRTOS_nWatch_ZE/global_inc.h">
 <persistable path="/Final_FreeRTOS_nWatch_ZE/global_inc.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="motee_v3/main.c">
-<persistable path="/motee_v3/main.c"/>
-</file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage/>
-</persistable>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="bsp.c" tooltip="Final_FreeRTOS_nWatch_ZE/STEMWIN/bsp.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/STEMWIN/bsp.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="counter.h" tooltip="Final_FreeRTOS_nWatch_ZE/apps/counter.h">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/counter.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="counter.c" tooltip="Final_FreeRTOS_nWatch_ZE/apps/counter.c">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/counter.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="clock.h" tooltip="Final_FreeRTOS_nWatch_ZE/apps/clock.h">
-<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/clock.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="startup_stm32f4xx.c" tooltip="Final_FreeRTOS_nWatch_ZE/cmsis_boot/startup/startup_stm32f4xx.c">
 <persistable path="/Final_FreeRTOS_nWatch_ZE/cmsis_boot/startup/startup_stm32f4xx.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="WM.h" tooltip="Final_FreeRTOS_nWatch_ZE/STEMWIN/WM.h">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/STEMWIN/WM.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="menu.c" tooltip="Final_FreeRTOS_nWatch_ZE/apps/menu.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/menu.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="clock.c" tooltip="Final_FreeRTOS_nWatch_ZE/apps/clock.c">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/clock.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="heading.h" tooltip="Final_FreeRTOS_nWatch_ZE/apps/heading.h">
+<persistable path="/Final_FreeRTOS_nWatch_ZE/apps/heading.h"/>
 </file>
 </mruList>
 </workbench>

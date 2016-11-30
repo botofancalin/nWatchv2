@@ -38,22 +38,22 @@ char s[20];
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Calc", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
-  { MULTIEDIT_CreateIndirect, "Text", ID_TEXT_0, 0, 0, 320, 40, 0, 0x64, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 3, 42, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_3, 4, 91, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_6, 5, 140, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_1, 66, 43, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_4, 66, 92, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_8, 130, 140, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_2, 128, 43, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_5, 128, 91, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_7, 68, 140, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_9, 191, 91, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_10, 190, 44, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_11, 192, 139, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_12, 193, 188, 60, 45, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_13, 11, 193, 172, 38, 0, 0x0, 0 },
-  { BUTTON_CreateIndirect, "Button", ID_BUTTON_14, 256, 42, 60, 45, 0, 0x0, 0 },
+  { MULTIEDIT_CreateIndirect, "Text", ID_TEXT_0, 0, 32, 320, 40, 0, 0x64, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_0, 3, 72, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_3, 4, 115, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_6, 5, 157, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_1, 66, 72, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_4, 66, 115, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_8, 130, 157, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_2, 128, 72, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_5, 128, 115, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_7, 68, 157, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_9, 191, 115, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_10, 190, 72, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_11, 192, 157, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_12, 193, 200, 60, 40, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_13, 11, 200, 172, 38, 0, 0x0, 0 },
+  { BUTTON_CreateIndirect, "Button", ID_BUTTON_14, 256, 72, 60, 40, 0, 0x0, 0 },
   // USER START (Optionally insert additional widgets)
   // USER END
 };
@@ -430,8 +430,13 @@ static void _cbDialog(WM_MESSAGE * pMsg) {
     // USER END
     }
     break;
-  // USER START (Optionally insert additional message handling)
-  // USER END
+    case WM_PAINT:
+    {
+  	  taskENTER_CRITICAL();
+  	  LCD_BMP("0:dzien.bmp");
+  	  taskEXIT_CRITICAL();
+    	break;
+    }
   default:
     WM_DefaultProc(pMsg);
     break;
@@ -462,7 +467,7 @@ void Calc( void * pvParameters)
 	WM_HWIN hWincalc;
 	hWincalc  = CreateCalc();
 	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
-	if(Heading_Handle!=NULL)vTaskDelete(Heading_Handle);
+	Menu_Handle=NULL;
 
 	while(1)
 	{
@@ -478,6 +483,7 @@ void Calc( void * pvParameters)
 			sec2=0;
 		}
 
+		vTaskDelay(100);
 
 	}
 }

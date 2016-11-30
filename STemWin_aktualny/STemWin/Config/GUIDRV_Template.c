@@ -271,6 +271,8 @@ static void _FillRect(GUI_DEVICE * pDevice, int x0, int y0, int x1, int y1) {
   		int g = ( PixelIndex & 0x07e0 ) << 5;
   		int b = ( PixelIndex & 0x001f ) << 3;
   		LCD_box(x0,y0,x1,y1,r|g|b,1);
+//  		LCD_area(x0,y0,x1,y1);
+//  		DMA_Config(abs(x1-x0)*abs(y1-y0),r|g|b);
 //    for (; y0 <= y1; y0++)
 //    {
 //      for (x = x0; x <= x1; x++)

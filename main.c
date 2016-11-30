@@ -147,11 +147,12 @@ int main(void)
 	  SystemInit();
 	  RCC_cfg();
 	  GPIO_cfg();
+	  SRAM_Init();
+	  FSMC_NAND_Init();
 	  delay_init();
 	  init_USART(115200);
 	  RNG_Cmd(ENABLE);
 	  NVIC_Config();
-
 //	  dfu_run_bootloader();
 	  while(wake){};
 	  LED_ON;
@@ -159,26 +160,23 @@ int main(void)
 	  GPIOG->BSRRH|=GPIO_BSRR_BS_8;
 	  backlight(50);
 	  IWDG_Config();
-	  SRAM_Init();
-	  FSMC_NAND_Init();
 	  WM_SetCreateFlags(WM_CF_MEMDEV);
 	  I2C1_init();
 	  MPU6050_WriteBit(MPU6050_RA_INT_PIN_CFG , 7, 0);
 	  stmpe811_init();
 	  AB0805_initialize();
-	  AB0805_WriteBit(devAddr, 0x0f,2,0);
-	  AB0805_writeByte(devAddr, AB0805_RA_CONTROL1, 0x75);
+//	  AB0805_WriteBit(devAddr, AB0805_RA_CONTROL1, AB0805_CONTROL_WRTC, 0);
+	  AB0805_WriteBit(devAddr, 0x0f,2,0);/////////////
+	  AB0805_writeByte(devAddr, AB0805_RA_CONTROL1, 0x75);////////
 //	  AB0805_setDateTime24(2016,10,12,23,35,0);
 //	  AB0805_setDayOfWeek(7);
 //	  USART_puts("TTM:REN-nWATCH");
 //	  delay(50);
 //	  USART_puts("TTM:ADP-(10)");
 //	  delay(50);
-	  USART_puts("TTM:TPL-(-23)");
+	  USART_puts("TTM:TPL-(-6)");
 	  f=f_mount(&fs,"",0);
 	  LED_OFF;
-
-
 //	  while(1)
 //	  {
 //		  IWDG_ReloadCounter();
@@ -241,14 +239,14 @@ int main(void)
 
 
 
-		vTraceStart();
+//		vTraceStart();
 	  xTaskCreate(Clock,(char const*)"Clock",1024,NULL,7,&Clock_Handle);
 //	  xTaskCreate(Menu,(char const*)"Menu",512,NULL,7, &Menu_Handle);
 //	  xTaskCreate(Heading_Task,(char const*)"Heading",512,NULL, 6, &Heading_Handle);
 //	  xTaskCreate(BSP_Task,(char const*)"BSP",1024,NULL, 7, &BSP_Handle);
 	  xTaskCreate(Heading_Task,(char const*)"Heading",1024,NULL, 6, &Heading_Handle);
 	  xTaskCreate(Background_Task,(char const*)"Background",1024,NULL, 7,&Task_Handle);
-	  TouchScreenTimer = xTimerCreate ("Timer",25, pdTRUE,1, vTimerCallback);
+	  TouchScreenTimer = xTimerCreate ("Timer",50, pdTRUE,1, vTimerCallback);
 	  xTimerStart( TouchScreenTimer, 0);
 	  vTaskStartScheduler();
 }
@@ -271,6 +269,9 @@ static void vTimerCallback( xTimerHandle pxTimer )
 }
 void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly)
 {
+	LCD_WRITE_COMMAND=(MADCTR);
+	LCD_WRITE_DATA = (0x86);
+
 	  f = f_open(&fsrc,sc, FA_READ | FA_OPEN_EXISTING );
 	  int read= lx*ly*3;
 	  int s1=0;
@@ -287,6 +288,9 @@ void bitmap_RGB(char *sc , u16 x, u16 y, u16 lx, u16 ly)
 		  DMA2->LISR=0x00000000;
 		  read-=BUF;
 	  }
+
+		LCD_WRITE_COMMAND=(MADCTR);
+		LCD_WRITE_DATA = (0x66);
 
 }
 static void BSP_Task(void * pvParameters)
@@ -314,8 +318,8 @@ static void Background_Task(void * pvParameters)
 	  {
 //		  vTaskDelay(200);
 		  CPU_ON;
-		  GUI_Delay(20);
-//		  GUI_Exec();
+		  GUI_Delay(100);
+//		  GUI_Exec1();
 		  IWDG_ReloadCounter();
 	  	  if(wake || !cpu)
 	  	  {
@@ -440,6 +444,7 @@ void TIM2_IRQHandler(void)
 	if(sec==5000)
 	{
 		cpu=0;
+//		sec=0;
 	}
 	TIM2->SR = (uint16_t)~TIM_SR_UIF;
 }
@@ -871,7 +876,7 @@ void I2C1_init(void)
     for ( var= 0; var < 0xff; ++var) {};
     I2C_SoftwareResetCmd(I2C2, DISABLE);
 
-    i2c_init.I2C_ClockSpeed = 200000;////////2
+    i2c_init.I2C_ClockSpeed = 400000;////////2
     i2c_init.I2C_Mode = I2C_Mode_I2C;
     i2c_init.I2C_DutyCycle = I2C_DutyCycle_2;
     i2c_init.I2C_OwnAddress1 = 0x69;

@@ -22,7 +22,7 @@
 #include "global_inc.h"
 
 /*----------Stack Configuration-----------------------------------------------*/
-#define STACK_SIZE       0x0000200     /*!< The Stack size suggest using even number    *///0x0004200
+#define STACK_SIZE       0x0001000     /*!< The Stack size suggest using even number    *///0x0004200
 
 __attribute__ ((section(".co_stack")))
 unsigned long pulStack[STACK_SIZE];

@@ -84,6 +84,7 @@ xTaskHandle                   Manager_Handle;
 xTaskHandle        			  BSP_Handle;
 xTaskHandle        			  Notepad_Handle;
 xTaskHandle        			  Settings_Handle;
+xTaskHandle        			  Alarm_Handle;
 xTimerHandle                  TouchScreenTimer;
 
 xQueueHandle                  xQueue_men;

@@ -5,6 +5,7 @@
 #include "heading.h"
 #include "settings.h"
 
+WM_HWIN hSettings;
 
 static const GUI_WIDGET_CREATE_INFO _aDialogCreate[] = {
   { WINDOW_CreateIndirect, "Settings", ID_WINDOW_0, 0, 0, 320, 240, 0, 0x0, 0 },
@@ -71,14 +72,17 @@ WM_HWIN CreateSettings(void) {
 
 void Settings( void * pvParameters)
 {
-	WM_HWIN hSettings;
+
 	hSettings  = CreateSettings();
 	if(Menu_Handle!=NULL)vTaskDelete(Menu_Handle);
+	Menu_Handle=NULL;
+	WM_HWIN hSlider = WM_GetDialogItem(hSettings, ID_SLIDER_0);
+	SLIDER_SetValue(hSlider,50);
 
 	while(1)
 	{
 		vTaskDelay(200);
-		WM_HWIN hSlider = WM_GetDialogItem(hSettings, ID_SLIDER_0);
+		hSlider = WM_GetDialogItem(hSettings, ID_SLIDER_0);
 		backlight(SLIDER_GetValue(hSlider));
 	}
 }
